@@ -112,6 +112,6 @@
 		<div class="section">
 			<p><?php echo $request['notes_info'] ?></p> 
 		</div>
-
+<script src="../dependencies/scripts/google.js"></script>
 	</body>
 </html>

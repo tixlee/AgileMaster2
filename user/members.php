@@ -133,10 +133,11 @@
                                     $u_query = $conn->query("SELECT * FROM `user_created_project` WHERE `created_proj_id` = '$row[project_id]'") or die(mysqli_error());
                                     $u_fetch = $u_query->fetch_array();
                                     
-                                    $query = $conn->query("SELECT * FROM `users` NATURAL JOIN `user_project` NATURAL JOIN `project` WHERE `project_id` = '$row[project_id]'") or die(mysqli_error());
-                                    while($b_query = $query->fetch_array())
-                                    {
-                                        
+                                    $query = $conn->query("SELECT * FROM `users` NATURAL JOIN `user_project` WHERE NOT `user_id` = '$userId' AND `project_id` = '$row[project_id]'") or die(mysqli_error());
+                                    while($b_query = $query->fetch_array()) {
+//                                        $sql = $conn->query("SELECT * FROM `users` NATURAL JOIN `user_project` WHERE `user_id` = '$b_query[user_id]'") or die(mysqli_error());
+//                                        while($m_query = $sql->fetch_array())
+                                   
                                     ?>
                                  <tr>
                                     <td> 
@@ -180,7 +181,7 @@
             var myVar;
 
             function myFunction() {
-              myVar = setTimeout(showPage, 1000);
+              myVar = setTimeout(showPage, 500);
             }
 
             function showPage() {
@@ -197,6 +198,7 @@
       <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
       <script src="../dependencies/scripts/datatables-demo.js"></script>  
       <script src="../dependencies/navigation/js/adminlte.js"></script>
+	  <script src="../dependencies/scripts/google.js"></script>
       <script>
          $(document).ready(function() {
              $('table#dataTables').DataTable( {

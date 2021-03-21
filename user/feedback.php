@@ -632,5 +632,6 @@
       <script src="../dependencies/scripts/datatables-demo.js"></script>
       <script src="../dependencies/navigation/js/adminlte.js"></script>
       <script src="../dependencies/select/select2/js/select2.full.min.js"></script>
+	  <script src="../dependencies/scripts/google.js"></script>
    </body>
 </html>

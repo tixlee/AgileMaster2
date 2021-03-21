@@ -307,6 +307,7 @@
       <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
       <script src="../dependencies/scripts/datatables-demo.js"></script>
       <script src="../dependencies/navigation/js/adminlte.js"></script>
+	  <script src="../dependencies/scripts/google.js"></script>
       <script>
          $(document).ready(function() {
              $('table#dataTables').DataTable( {

@@ -268,6 +268,12 @@
 					</a>
 				</li>
 				
+			
+				
+				<li class="nav-item">
+					<div id="google_translate_element"></div>
+				</li>
+				
 				
 		  
 				<br ><br ><br >
@@ -275,3 +281,17 @@
 		</nav>
     </div>
 </aside>
+
+<style>
+	.translated-ltr{margin-top:-40px;}
+	.translated-ltr{margin-top:-40px;}
+	.goog-te-banner-frame {display: none;margin-top:-20px;}
+
+	.goog-logo-link {
+	display:none !important;
+	} 
+
+	.goog-te-gadget{
+	color: transparent !important;
+	}
+</style>

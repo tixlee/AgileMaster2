@@ -195,6 +195,6 @@
 			<h3>6.1 Management Process</h3>
 			<p><?php echo $request['management_process'] ?></p>
 		</div>
-		
+<script src="../dependencies/scripts/google.js"></script>		
 	</body>
 </html>

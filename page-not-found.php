@@ -73,6 +73,7 @@
     <!-- Bootstrap tether Core JavaScript -->
     <script src="dependencies/scripts/popper.min.js"></script>
     <script src="dependencies/scripts/bootstrap.min.js"></script>
+	<script src="dependencies/scripts/google.js"></script>
     <!-- ============================================================== -->
     <!-- This page plugin js -->
     <!-- ============================================================== -->

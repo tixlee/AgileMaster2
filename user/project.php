@@ -43,6 +43,21 @@
    
    
    ?>
+   
+<?php
+// Create an encryption method to hide the id number in the URL Link
+
+// Create a variable for data
+$data = 50;
+
+// Encrypt the data by randoming the number from 10 to 100000
+$encrypt_1 =  $data*rand(10,10000);
+
+// Using Base64 Encryption method to encrypt the data and show on the URL for id number
+// $link = "../user/project_details.php?project_id=".urlencode(base64_encode($encrypt_1));
+
+?>
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -163,7 +178,7 @@
                              ?>
                      <div class="box-wrap col-xl-3 col-md-4 mb-4">
                         <div class="card shadow " >
-							<a href="project_details.php?project_id=<?php echo $row['project_id']; ?>">
+							<a href="project_details.php?project_id=<?php echo $row['project_id'].urlencode(base64_encode($encrypt_1)); ?>">
                            <img src="../resources/images/bg6.jpg" class="" style="filter: brightness(90%); color: #990021; width: 100%"/></a>
                            <?php
                               $u_query = $conn->query("SELECT * FROM `user_created_project` WHERE `created_proj_id` = '$project_id'") or die(mysqli_error());
@@ -241,7 +256,7 @@
                                         </div>
                                      </div>
                                   </div>
-						   <a href="project_details.php?project_id=<?php echo $row['project_id']; ?>" class="h4 font-weight-bold text-uppercase mb-1"  style="color: #d6002f;">
+						   <a href="project_details.php?project_id=<?php echo $row['project_id'].urlencode(base64_encode($encrypt_1)); ?>" class="h4 font-weight-bold text-uppercase mb-1"  style="color: #d6002f;">
                                <div class="card-body">
 
                                   <?php echo $rRow['project_name']; ?>
@@ -294,5 +309,6 @@
       <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
       <script src="../dependencies/scripts/datatables-demo.js"></script>
       <script src="../dependencies/navigation/js/adminlte.js"></script>
+	  <script src="../dependencies/scripts/google.js"></script>
    </body>
 </html>

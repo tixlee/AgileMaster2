@@ -251,7 +251,7 @@ include_once '../helpers/module.php';
 <script src="../dependencies/scripts/datatables-demo.js"></script>  
 <script src="../dependencies/navigation/js/adminlte.js"></script>
 <script src="js/global.js"></script>
-
+<script src="../dependencies/scripts/google.js"></script>
 </body>
 </html>
 

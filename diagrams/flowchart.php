@@ -335,7 +335,7 @@ include_once '../helpers/module.php';
 								</textarea>
 								</br>
 								<div class="form-row">
-									<button class="btn btn-success" onclick="doCapture();">Save Image</button>
+									<button id="button" style="color:white;background-color:green;border-radius:5px;padding:10px;border:1px solid white;">Download Image</button>
 								</div>
 							</div>
 						</div>
@@ -357,6 +357,21 @@ include_once '../helpers/module.php';
 <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="../dependencies/scripts/datatables-demo.js"></script>
 <script src="../dependencies/navigation/js/adminlte.js"></script>
+<script src="../dependencies/scripts/google.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+<script src="https://cdn.jsdelivr.net/g/filesaver.js"></script>
+<script>
+$(document).ready(function(){
+	$("#button").click(function(){
+		domtoimage.toBlob(document.getElementById('myDiagramDiv'))
+		.then(function(blob){
+			window.saveAs(blob,"Flowchart-Diagram.png")
+		})
+	})
+})
+</script>
 </body>
 </html>
 

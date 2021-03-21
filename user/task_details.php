@@ -442,6 +442,7 @@
       <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
       <script src="../dependencies/scripts/datatables-demo.js"></script>  
       <script src="../dependencies/navigation/js/adminlte.js"></script>
+	  <script src="../dependencies/scripts/google.js"></script>
       <script type="text/javascript">
          $("#completion_date").change(function () {
          var completeDate = "<?php echo $start_date ?>";

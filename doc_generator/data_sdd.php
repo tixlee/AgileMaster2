@@ -136,6 +136,6 @@
 			<h2><u>7. Requirement Matrix</u></h2>
 			<p><?php echo $request['requirement_matrix'] ?></p>
 		</div>
-
+<script src="../dependencies/scripts/google.js"></script>
 	</body>
 </html>

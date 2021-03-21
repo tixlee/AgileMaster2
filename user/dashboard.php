@@ -67,6 +67,7 @@
    </head>
    <body class="hold-transition sidebar-mini layout-fixed" onload="myFunction()" style="margin:0;">
       <div id="loader"></div>
+	  <!-- display: block, if display: none, the bug chart alignment will not be aligned -->
       <div class="wrapper animate-bottom" style="display:none;" id="myDiv" >
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/user_sidebar.php');?>
@@ -378,6 +379,7 @@
       <script src="../dependencies/flot/flot/jquery.flot.js"></script>
       <script src="../dependencies/flot/flot-old/jquery.flot.resize.min.js"></script>
       <script src="../dependencies/flot/flot-old/jquery.flot.pie.min.js"></script>
+	  <script src="../dependencies/scripts/google.js"></script>
       <script>
          $(function () {
          

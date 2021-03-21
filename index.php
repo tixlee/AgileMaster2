@@ -34,6 +34,19 @@ include_once 'helpers/module.php';
 
 	<!-- Template Main CSS File -->
 	<link href="dependencies/css/style.css" rel="stylesheet">
+	<style>
+	.translated-ltr{margin-top:-40px;}
+	.translated-ltr{margin-top:-40px;}
+	.goog-te-banner-frame {display: none;margin-top:-20px;}
+
+	.goog-logo-link {
+	display:none !important;
+	} 
+
+	.goog-te-gadget{
+	color: transparent !important;
+	}
+	</style>
 
 </head>
 
@@ -56,6 +69,7 @@ include_once 'helpers/module.php';
 							<li><a href="#team">Team</a></li>
 							<li><a href="#contact">Contact</a></li>
 							<li><a href="main/login.php">Login</a></li>
+							<li><div id="google_translate_element"></div></li>
 						</ul>
 					</nav>
 					<a href="main/register.php" class="get-started-btn scrollto">Get Started</a>
@@ -858,7 +872,8 @@ include_once 'helpers/module.php';
 	<script src="dependencies/vendor/aos/aos.js"></script>
 
 	<script src="dependencies/scripts/main.js"></script>
-
+	<script src="dependencies/scripts/google.js"></script>
+	
 </body>
 
 </html>

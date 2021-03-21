@@ -139,7 +139,10 @@
                      $cRow = mysqli_fetch_array($get_project);
                      
                      ?>
-                  <div class="col-md-12">
+					 <!-- Back Button -->
+					<a href="project.php" style="text-decoration: none;"><i class="ri-arrow-go-back-line" style="font-size: 1.5em; color: red;"></i></a>
+					<br><br>
+				  <div class="col-md-12">
                      <div class="card">
                         <div class="card-header">
                            <h1 class="card-title font-weight-bold">Project Name: <?php echo $cRow['project_name']; ?></h1>
@@ -493,5 +496,6 @@
       <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
       <script src="../dependencies/scripts/datatables-demo.js"></script>
       <script src="../dependencies/navigation/js/adminlte.js"></script>
+	  <script src="../dependencies/scripts/google.js"></script>
    </body>
 </html>
