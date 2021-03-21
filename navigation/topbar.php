@@ -15,12 +15,24 @@ if(isset($_SESSION['user_id']))
 				<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
 			</li>
 			<li class="nav-item mr-auto" style="text-align: center; margin-top: 5px;" >
-				<a href="../user/dashboard.php"><img src="../resources/images/logo.png" alt="" style="max-width: 12%;" ></a>
+				<a href="../user/dashboard.php"><img src="../resources/images/logo.png" alt="" style="max-width: 12%;margin-left: 20%;" ></a>
 			</li>
 		</ul>
-		
+		<div id="google_translate_element" style="margin-top:1.25%;"></div>
 		<ul class="navbar-nav ml-auto">
-            <li class="nav-item mr-3"><a href="users.php" class="dropdown-item"> <i class='fas fa-comments' style='font-size:30px'></i></a></li>
+		
+			<a class="nav-link"  href="#" style="margin-left: 10%; margin-top:-3%;">
+					<i class="ri-notification-2-fill" style='font-size:1.5em'></i>
+					<span class="badge badge-warning navbar-badge"></span>
+			</a>
+			
+			
+			<a class="nav-link"  href="users.php">
+					<i class='fas fa-comments' style='font-size:1.5em'></i>
+					<span class="badge badge-warning navbar-badge"></span>
+			</a>
+			
+		
 			<li class="nav-item dropdown">
 				<a class="nav-link" data-toggle="dropdown" href="#">
 					<i class="fas fa-user-tie" style="font-size: 1.5em;"></i>
@@ -48,3 +60,17 @@ if(isset($_SESSION['user_id']))
 			</li>
 		</ul>
 	</nav>
+	
+<style>
+	.translated-ltr{margin-top:-40px;}
+	.translated-ltr{margin-top:-40px;}
+	.goog-te-banner-frame {display: none;margin-top:-20px;}
+
+	.goog-logo-link {
+	display:none !important;
+	} 
+
+	.goog-te-gadget{
+	color: transparent !important;
+	}
+</style>

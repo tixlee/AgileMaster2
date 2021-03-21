@@ -15,6 +15,7 @@
 <html>
    <head>
       <title>AgileMaster | Dashboard</title>
+	  
       <?php include('../navigation/head.php');?>
        <style type="text/css">
 
@@ -347,7 +348,7 @@
             var myVar;
 
             function myFunction() {
-              myVar = setTimeout(showPage, 1000);
+              myVar = setTimeout(showPage, 0);
             }
 
             function showPage() {
@@ -470,4 +471,5 @@
          } );
       </script>
    </body>
+   
 </html>
