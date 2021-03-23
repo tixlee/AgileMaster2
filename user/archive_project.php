@@ -55,6 +55,7 @@ if(isset($_POST['create'])){
 	<?php include('../navigation/head.php');?>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+<div class="se-pre-con"></div>
 <div class="wrapper">
 
 	<?php include('../navigation/topbar.php');?>

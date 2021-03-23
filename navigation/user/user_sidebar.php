@@ -270,10 +270,13 @@
 				
 			
 				
+<<<<<<< Updated upstream
 				<li class="nav-item">
 					<div id="google_translate_element"></div>
 				</li>
 				
+=======
+>>>>>>> Stashed changes
 				
 		  
 				<br ><br ><br >
@@ -281,6 +284,7 @@
 		</nav>
     </div>
 </aside>
+<<<<<<< Updated upstream
 
 <style>
 	.translated-ltr{margin-top:-40px;}
@@ -295,3 +299,5 @@
 	color: transparent !important;
 	}
 </style>
+=======
+>>>>>>> Stashed changes

@@ -25,6 +25,7 @@ include_once '../helpers/module.php';
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+<div class="se-pre-con"></div>
 <div class="wrapper">
 
 	<?php include('../navigation/topbar.php');?>

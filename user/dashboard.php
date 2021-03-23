@@ -16,6 +16,7 @@
    <head>
       <title>AgileMaster | Dashboard</title>
       <?php include('../navigation/head.php');?>
+<<<<<<< Updated upstream
 <style>
 .se-pre-con {
 	position: fixed;
@@ -37,6 +38,12 @@
 
    <body class="hold-transition sidebar-mini layout-fixed">
     <div class="se-pre-con"></div>
+=======
+   </head>
+   
+   <body class="hold-transition sidebar-mini layout-fixed">
+	<div class="se-pre-con"></div>
+>>>>>>> Stashed changes
       <div class="wrapper">
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/user_sidebar.php');?>

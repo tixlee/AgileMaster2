@@ -65,9 +65,9 @@ include_once '../resources/links/require.php';
 
        </style>
    </head>
-   <body class="hold-transition sidebar-mini layout-fixed" onload="myFunction()" style="margin:0;">
-      <div id="loader"></div>
-      <div class="wrapper animate-bottom" style="display:none;" id="myDiv" >
+   <body class="hold-transition sidebar-mini layout-fixed">
+	  <div class="se-pre-con"></div>
+      <div class="wrapper">
 
 	<?php include('../navigation/topbar.php');?>
 	<?php include('../navigation/user/timetracker_sidebar.php');?>
@@ -105,18 +105,7 @@ include_once '../resources/links/require.php';
 	<aside class="control-sidebar control-sidebar-dark">
 	</aside>
 </div>
-                     <script>
-            var myVar;
 
-            function myFunction() {
-              myVar = setTimeout(showPage, 1000);
-            }
-
-            function showPage() {
-              document.getElementById("loader").style.display = "none";
-              document.getElementById("myDiv").style.display = "block";
-            }
-        </script>
 <script src="../dependencies/navigation/jquery/jquery.min.js"></script>
 <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../dependencies/navigation/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>

@@ -28,6 +28,7 @@ if(isset($_SESSION['admin_id']))
 	</style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+<div class="se-pre-con"></div>
 <div class="wrapper">
 
 	<?php include('../navigation/topbar_admin.php');?>

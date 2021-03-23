@@ -19,50 +19,7 @@
       <?php include('../navigation/head.php');?>
        <style type="text/css">
           
-           /* Center the loader */
-            #loader {
-              position: absolute;
-              left: 50%;
-              top: 50%;
-              z-index: 1;
-              width: 120px;
-              height: 120px;
-              margin: -76px 0 0 -76px;
-              border: 16px solid #f3f3f3;
-              border-radius: 50%;
-              border-top: 16px solid #9a1b25;
-              -webkit-animation: spin 2s linear infinite;
-              animation: spin 2s linear infinite;
-            }
-
-            @-webkit-keyframes spin {
-              0% { -webkit-transform: rotate(0deg); }
-              100% { -webkit-transform: rotate(360deg); }
-            }
-
-            @keyframes spin {
-              0% { transform: rotate(0deg); }
-              100% { transform: rotate(360deg); }
-            }
-
-            /* Add animation to "page content" */
-            .animate-bottom {
-              position: relative;
-              -webkit-animation-name: animatebottom;
-              -webkit-animation-duration: 1s;
-              animation-name: animatebottom;
-              animation-duration: 1s
-            }
-
-            @-webkit-keyframes animatebottom {
-              from { bottom:-100px; opacity:0 } 
-              to { bottom:0px; opacity:1 }
-            }
-
-            @keyframes animatebottom { 
-              from{ bottom:-100px; opacity:0 } 
-              to{ bottom:0; opacity:1 }
-            }
+           
 
            
            .bg-custom{
@@ -91,9 +48,9 @@
       <!-- <link rel="stylesheet" href="./css/bootstrap.min.css"> -->
       <link rel="stylesheet" href="./github/style.css">
    </head>
-   <body class="hold-transition sidebar-mini layout-fixed" onload="myFunction()" style="margin:0;">
-      <div id="loader"></div>
-      <div class="wrapper animate-bottom" style="display:none;" id="myDiv" >
+   <body class="hold-transition sidebar-mini layout-fixed">
+      <div class="se-pre-con"></div>
+      <div class="wrapper">
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/githubrepo_sidebar.php');?>
           <div class="content-wrapper"  style="background-color: #ffffff;">
@@ -123,18 +80,7 @@
       </div>
        </div>
        
-                            <script>
-            var myVar;
-
-            function myFunction() {
-              myVar = setTimeout(showPage, 1000);
-            }
-
-            function showPage() {
-              document.getElementById("loader").style.display = "none";
-              document.getElementById("myDiv").style.display = "block";
-            }
-        </script>
+            
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <!-- <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> -->
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->

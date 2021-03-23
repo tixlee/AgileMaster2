@@ -65,7 +65,7 @@ if(isset($_POST['create'])){
 </head>
 
 <body id="login">
-
+<div class="se-pre-con"></div>
     <main class="d-flex align-items-center min-vh-100 py-3 py-md-0 section-bg">
 		<div class="container">
 			<div class="card login-card">

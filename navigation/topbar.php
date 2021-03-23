@@ -21,7 +21,11 @@ if(isset($_SESSION['user_id']))
 		<div id="google_translate_element" style="margin-top:1.25%;"></div>
 		<ul class="navbar-nav ml-auto">
 		
+<<<<<<< Updated upstream
 			<a class="nav-link"  href="#" style="margin-left: 10%; margin-top:-3%;">
+=======
+			<a class="nav-link"  href="#" style="margin-left: 10%; margin-top:-5%;">
+>>>>>>> Stashed changes
 					<i class="ri-notification-2-fill" style='font-size:1.5em'></i>
 					<span class="badge badge-warning navbar-badge"></span>
 			</a>

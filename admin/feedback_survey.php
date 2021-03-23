@@ -24,6 +24,7 @@ include_once '../helpers/module.php';
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+<div class="se-pre-con"></div>
 <div class="wrapper">
 	<?php include('../navigation/topbar_admin.php');?>
 	<?php include('../navigation/feedbacksurvey_adminsidebar.php');?>

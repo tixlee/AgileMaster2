@@ -66,81 +66,13 @@
 <html>
    <head>
       <title>AgileMaster | Feedback Survey</title>
-       <style type="text/css">
-          
-           /* Center the loader */
-            #loader {
-              position: absolute;
-              left: 50%;
-              top: 50%;
-              z-index: 1;
-              width: 120px;
-              height: 120px;
-              margin: -76px 0 0 -76px;
-              border: 16px solid #f3f3f3;
-              border-radius: 50%;
-              border-top: 16px solid #9a1b25;
-              -webkit-animation: spin 2s linear infinite;
-              animation: spin 2s linear infinite;
-            }
-
-            @-webkit-keyframes spin {
-              0% { -webkit-transform: rotate(0deg); }
-              100% { -webkit-transform: rotate(360deg); }
-            }
-
-            @keyframes spin {
-              0% { transform: rotate(0deg); }
-              100% { transform: rotate(360deg); }
-            }
-
-            /* Add animation to "page content" */
-            .animate-bottom {
-              position: relative;
-              -webkit-animation-name: animatebottom;
-              -webkit-animation-duration: 1s;
-              animation-name: animatebottom;
-              animation-duration: 1s
-            }
-
-            @-webkit-keyframes animatebottom {
-              from { bottom:-100px; opacity:0 } 
-              to { bottom:0px; opacity:1 }
-            }
-
-            @keyframes animatebottom { 
-              from{ bottom:-100px; opacity:0 } 
-              to{ bottom:0; opacity:1 }
-            }
-           .bg-custom{
-              background-image: url("../resources/images/profile_header.png");
-              background-color: #9a1b25;
-              border-bottom-left-radius: 20% 50%;
-              border-bottom-right-radius: 20% 50%;
-              
-          }
-          .bg-img {
-              max-width: 35%;
-              min-height: 220px;
-              max-height: auto;
-              margin-left:auto;
-              margin-right:auto;
-              text-align: center;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-              color: white; 
-              padding: 40px 0px 0px 0px;
-              font-size: 60px;
-              font-weight: bold;
-           }
-       </style>
+       
       <?php include('../navigation/head.php');?>
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
    </head>
-   <body class="hold-transition sidebar-mini layout-fixed" onload="myFunction()" style="margin:0;">
-      <div id="loader"></div>
-      <div class="wrapper animate-bottom" style="display:none;" id="myDiv" >
+   <body class="hold-transition sidebar-mini layout-fixed">
+   <div class="se-pre-con"></div>
+      <div class="wrapper">
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/feedbacksurvey_sidebar.php');?>
          <div class="content-wrapper">
@@ -610,18 +542,7 @@
          </aside>
       </div>
        
-                            <script>
-            var myVar;
-
-            function myFunction() {
-              myVar = setTimeout(showPage, 1000);
-            }
-
-            function showPage() {
-              document.getElementById("loader").style.display = "none";
-              document.getElementById("myDiv").style.display = "block";
-            }
-        </script>
+           
       <script src="../dependencies/navigation/jquery/jquery.min.js"></script>
       <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
       <script src="../dependencies/navigation/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>

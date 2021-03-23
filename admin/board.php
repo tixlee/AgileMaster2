@@ -14,6 +14,7 @@ include_once '../helpers/module.php';
 	<?php include('../navigation/head.php');?>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+<div class="se-pre-con"></div>
 <div class="wrapper">
 	<?php include('../navigation/topbar_admin.php');?>
 	<?php include('../navigation/board_adminsidebar.php');?>
