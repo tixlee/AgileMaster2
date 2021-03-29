@@ -76,9 +76,12 @@
                            <table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
                               <thead>
                                  <tr>
+									<th >Profile Picture </th>
                                     <th >Member Name</th>
+									<th > Status </th>
                                     <th >Email Address</th>
                                     <th >Role</th>
+									<th >Action</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -93,9 +96,22 @@
                                    
                                     ?>
                                  <tr>
+									<td style="text-align: center;">
+										<?php
+                        $get_user = get_user($userId);
+                        $row = mysqli_fetch_array($get_user);
+                        echo '<img src="../upload/profile/'.$row["photo"].'" id="sideimg" class="img-circle elevation-2" alt="User Image">';
+                    ?>	
+									</td>
+									
                                     <td> 
                                        <?php echo $b_query['fname']?>
                                     </td>
+									
+									<td>
+										<!-- Status Code Here -->
+									</td>
+									
                                     <td >
                                        <?php echo $b_query['email']?>
                                     </td>
@@ -109,6 +125,11 @@
                                           }
                                           ?>
                                     </td>
+									<td>
+										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+											<i class="ri-send-plane-fill"></i>
+										</button>
+									</td>
                                  </tr>
                                  <?php
                                     }	
