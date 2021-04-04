@@ -16,7 +16,7 @@ if(isset($_POST['next'])){
         if($row>0){
 
         $_SESSION['email']=$email;
-        header('location:../main/forgot-passwordemail.php');
+        header('location:../index.php');
         } else {
             echo "<script>alert('Invalid Email Address. Please Try Again!');</script>";
             echo "<script>window.location.href ='forgot-password.php'</script>";
@@ -50,15 +50,9 @@ if(isset($_POST['next'])){
 							<div class="logIn col-md-12 mr-auto">
 								<img src="../resources/images/logo.png" alt="logo" class="logo">
 							</div>
-							<p class="login-card-description">Please Enter your Email</p>
-							<form method="post">
-								<div class="form-group">
-									<label for="email" class="sr-only">Email</label>
-									<input type="email" name="email" id="email" class="form-control" placeholder="Email address" required autocomplete="off">
-								</div>
-								<input type="submit" name="next" id="login" class="btn btn-block login-btn mb-4" value="Reset Password">
-							</form>
-							<p class="login-card-footer-text">Return to <a href="login.php" class="text-reset"><strong>Login</strong></a></p>
+							<p class="login-card-description">You can now reset your password using the link in your email.</p>
+							
+							<p class="login-card-footer-text">Return to <a href="../index.php" class="text-reset"><strong>Homepage</strong></a></p>
 						</div>
 					</div>
 				</div>

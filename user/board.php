@@ -12,7 +12,19 @@ if(isset($_SESSION['user_id']))
 }
 
 ?>
+<?php
+// Create an encryption method to hide the id number in the URL Link
 
+// Create a variable for data
+$data = 50;
+
+// Encrypt the data by randoming the number from 10 to 100000
+$encrypt_1 =  $data*rand(10,10000);
+
+// Using Base64 Encryption method to encrypt the data and show on the URL for id number
+// $link = "../user/project_details.php?project_id=".urlencode(base64_encode($encrypt_1));
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,7 +91,7 @@ if(isset($_SESSION['user_id']))
                                                                 
 												<td>
 													<center>
-														<a  href="task.php?board_id=<?php echo $b_query['board_id']; ?>" class = "btn btn-success " >
+														<a  href="task.php?board_id=<?php echo $b_query['board_id'].urlencode(base64_encode($encrypt_1)); ?>" class = "btn btn-success " >
 															View
 														</a>
 													</center>

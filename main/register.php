@@ -53,7 +53,7 @@ if(isset($_POST['create'])){
 }
 
 ?>
-
+<?php include 'sendmailregisters.php'; ?>
 
 <!DOCTYPE html>
 <html>

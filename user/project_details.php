@@ -22,7 +22,7 @@ $yRow = mysqli_fetch_array($user_not);
 
 $user_name = $yRow['fname'];
 $proj_name = $cRow['project_name'];
-$brd_name = $nuRow['board_name'];
+// $brd_name = $nuRow['board_name'];
    
    if(isset($_POST['save'])){
 //       $recipients = array($nuRow['user_id']);
@@ -71,6 +71,21 @@ $brd_name = $nuRow['board_name'];
    
    
    ?>
+   
+<?php
+// Create an encryption method to hide the id number in the URL Link
+
+// Create a variable for data
+$data = 50;
+
+// Encrypt the data by randoming the number from 10 to 100000
+$encrypt_1 =  $data*rand(10,10000);
+
+// Using Base64 Encryption method to encrypt the data and show on the URL for id number
+// $link = "../user/project_details.php?project_id=".urlencode(base64_encode($encrypt_1));
+
+?>
+   
 <?php include 'sendemail.php'; ?>
 <!DOCTYPE html>
 <html>
@@ -219,7 +234,7 @@ $brd_name = $nuRow['board_name'];
                                                 </td>
                                                 <td >
                                                    <center>
-                                                      <a  href="task.php?board_id=<?php echo $b_query['board_id']; ?>" class = "btn btn-success " >
+                                                      <a  href="task.php?board_id=<?php echo $b_query['board_id'].urlencode(base64_encode($encrypt_1)); ?>" class = "btn btn-success " >
                                                       View
                                                       </a>
                                                    </center>

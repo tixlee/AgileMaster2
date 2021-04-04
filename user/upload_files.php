@@ -214,7 +214,7 @@
                                           {
                                           ?>
                                        <center>
-                                          <a href='delete_file_storage.php?storageid=<?php echo $fRow['storage_id'];?>'class="trash-button btn btn-danger" onclick="return confirm('<?php echo $confirmation; ?>')">
+                                          <a href='delete_file_storage.php?storageid=<?php echo $b_query['storage_id'];?>'class="trash-button btn btn-danger" onclick="return confirm('<?php echo $confirmation; ?>')">
                                           <i class="fa fa-trash" aria-hidden="true"></i>
                                           </a>
                                        </center>

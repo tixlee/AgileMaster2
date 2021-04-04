@@ -200,7 +200,7 @@ $encrypt_1 =  $data*rand(10,10000);
                                                
                                                while ($row = mysqli_fetch_array($result)) {
                                                    $tn = $row['project_task_num'];
-                                                   $task_id = $row['task_id'];
+                                                   $task_id = $row['task_id'].urlencode(base64_encode($encrypt_1));
                                                    $assignees_arr = array();
                                                    $getAssignees = getAssignees($task_id);
                                        //                                                                    $nRow = mysqli_fetch_array($getAssignees);
