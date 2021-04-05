@@ -11,193 +11,209 @@ include_once '../resources/links/require.php';
 <html>
 <head>
 	<title>AgileMaster | Calendar</title>
-	<?php include('../navigation/head.php');?>
-	
-	<link rel="stylesheet" href="style.css">
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" /> -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-    
-           <style type="text/css">
+	<?php include('../navigation/headcalendar.php');?>
 
-           /* Center the loader */
-            #loader {
-              position: absolute;
-              left: 50%;
-              top: 50%;
-              z-index: 1;
-              width: 120px;
-              height: 120px;
-              margin: -76px 0 0 -76px;
-              border: 16px solid #f3f3f3;
-              border-radius: 50%;
-              border-top: 16px solid #9a1b25;
-              -webkit-animation: spin 2s linear infinite;
-              animation: spin 2s linear infinite;
-            }
-
-            @-webkit-keyframes spin {
-              0% { -webkit-transform: rotate(0deg); }
-              100% { -webkit-transform: rotate(360deg); }
-            }
-
-            @keyframes spin {
-              0% { transform: rotate(0deg); }
-              100% { transform: rotate(360deg); }
-            }
-
-            /* Add animation to "page content" */
-            .animate-bottom {
-              position: relative;
-              -webkit-animation-name: animatebottom;
-              -webkit-animation-duration: 1s;
-              animation-name: animatebottom;
-              animation-duration: 1s
-            }
-
-            @-webkit-keyframes animatebottom {
-              from { bottom:-100px; opacity:0 } 
-              to { bottom:0px; opacity:1 }
-            }
-
-            @keyframes animatebottom { 
-              from{ bottom:-100px; opacity:0 } 
-              to{ bottom:0; opacity:1 }
-            }
-
-       </style>
-    
-    
-	<script>
+    <link href='packages/core/main.css' rel='stylesheet' />
+    <link href='packages/daygrid/main.css' rel='stylesheet' />
+    <link href='packages/timegrid/main.css' rel='stylesheet' />
+    <link href='packages/list/main.css' rel='stylesheet' />
+    <link href='packages/bootstrap/css/bootstrap.css' rel='stylesheet' />
+    <link href="packages/jqueryui/custom-theme/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <link href='packages/datepicker/datepicker.css' rel='stylesheet' />
+    <link href='packages/colorpicker/bootstrap-colorpicker.min.css' rel='stylesheet' />
    
-  $(document).ready(function() {
-   var calendar = $('#calendar').fullCalendar({
-    editable:true,
-    header:{
-     left:'prev,next today',
-     center:'title',
-     right:'month,agendaWeek,agendaDay'
-    },
-    events: 'load.php',
-    selectable:true,
-    selectHelper:true,
-    select: function(start, end, allDay)
-    {
-     var title = prompt("Enter Event Title");
-     if(title)
-     {
-      var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
-      var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
-      $.ajax({
-       url:"insert.php",
-       type:"POST",
-       data:{title:title, start:start, end:end},
-       success:function()
-       {
-        calendar.fullCalendar('refetchEvents');
-        alert("Added Successfully");
-       }
-      })
-     }
-    },
-    editable:true,
-    eventResize:function(event)
-    {
-     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-     var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-     var title = event.title;
-     var id = event.id;
-     $.ajax({
-      url:"update.php",
-      type:"POST",
-      data:{title:title, start:start, end:end, id:id},
-      success:function(){
-       calendar.fullCalendar('refetchEvents');
-       alert('Event Update');
-      }
-     })
-    },
 
-    eventDrop:function(event)
-    {
-     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-     var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-     var title = event.title;
-     var id = event.id;
-     $.ajax({
-      url:"update.php",
-      type:"POST",
-      data:{title:title, start:start, end:end, id:id},
-      success:function()
-      {
-       calendar.fullCalendar('refetchEvents');
-       alert("Event Updated");
-      }
-     });
-    },
-
-    eventClick:function(event)
-    {
-     if(confirm("Are you sure you want to remove it?"))
-     {
-      var id = event.id;
-      $.ajax({
-       url:"delete.php",
-       type:"POST",
-       data:{id:id},
-       success:function()
-       {
-        calendar.fullCalendar('refetchEvents');
-        alert("Event Removed");
-       }
-      })
-     }
-    },
-
-   });
-  });
-   
-  </script>
-
-   </head>
-   <body class="hold-transition sidebar-mini layout-fixed" onload="myFunction()" style="margin:0;">
-      <div id="loader"></div>
-      <div class="wrapper animate-bottom" style="display:none;" id="myDiv" >
+    <script src='packages/core/main.js'></script>
+    <script src='packages/daygrid/main.js'></script>
+    <script src='packages/timegrid/main.js'></script>
+    <script src='packages/list/main.js'></script>
+    <script src='packages/interaction/main.js'></script>
+    <script src='packages/jquery/jquery.js'></script>
+    <script src='packages/jqueryui/jqueryui.min.js'></script>
+    <script src='packages/bootstrap/js/bootstrap.js'></script>
+    <script src='packages/datepicker/datepicker.js'></script>
+    <script src='packages/colorpicker/bootstrap-colorpicker.min.js'></script>
+    <script src='calendar.js'></script>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div id="loader"></div>
+<div class="wrapper animate-bottom">
 	<?php include('../navigation/topbar.php');?>
 	<?php include('../navigation/user/calendar_sidebar.php');?>
-	
 	<div class="content-wrapper">
-		<section class="content">
-			<div class="container-fluid">
-				<div class="card-header py-3">
-				</div>
-				<div class="card-body" style="background-color: white;">
-					<div class="container">
-						<div id="calendar" style="border: 1px solid #e6e6e6";></div>
-					</div>
-				</div>
-			</div>
-		</section>
+	<div class="card-header py-3">
+	</div>
+	<div class="card-body" style="background-color: white;">
+	<div class="container" style="border: 1px solid #e6e6e6";>
+	
+<div class="modal fade" id="addeventmodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Add Event</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="container-fluid">
+
+                    <form id="createEvent" class="form-horizontal">
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div id="title-group" class="form-group">
+                                <label class="control-label" for="title">Title</label>
+                                <input type="text" class="form-control" name="title">
+                                <!-- errors will go here -->
+                            </div>
+
+                            <div id="startdate-group" class="form-group">
+                                <label class="control-label" for="startDate">Start Date</label>
+                                <input type="text" class="form-control datetimepicker" id="startDate" name="startDate">
+                                <!-- errors will go here -->
+                            </div>
+
+                            <div id="enddate-group" class="form-group">
+                                <label class="control-label" for="endDate">End Date</label>
+                                <input type="text" class="form-control datetimepicker" id="endDate" name="endDate">
+                                <!-- errors will go here -->
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div id="color-group" class="form-group">
+                                <label class="control-label" for="color">Colour</label>
+                                <input type="text" class="form-control colorpicker" name="color" value="#6453e9">
+                                <!-- errors will go here -->
+                            </div>
+
+                            <div id="textcolor-group" class="form-group">
+                                <label class="control-label" for="textcolor">Text Colour</label>
+                                <input type="text" class="form-control colorpicker" name="text_color" value="#ffffff">
+                                <!-- errors will go here -->
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+
+            </form>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="editeventmodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Update Event</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="container-fluid">
+
+                    <form id="editEvent" class="form-horizontal">
+                    <input type="hidden" id="editEventId" name="editEventId" value="">
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div id="edit-title-group" class="form-group">
+                                <label class="control-label" for="editEventTitle">Title</label>
+                                <input type="text" class="form-control" id="editEventTitle" name="editEventTitle">
+                                <!-- errors will go here -->
+                            </div>
+
+                            <div id="edit-startdate-group" class="form-group">
+                                <label class="control-label" for="editStartDate">Start Date</label>
+                                <input type="text" class="form-control datetimepicker" id="editStartDate" name="editStartDate">
+                                <!-- errors will go here -->
+                            </div>
+
+                            <div id="edit-enddate-group" class="form-group">
+                                <label class="control-label" for="editEndDate">End Date</label>
+                                <input type="text" class="form-control datetimepicker" id="editEndDate" name="editEndDate">
+                                <!-- errors will go here -->
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <div id="edit-color-group" class="form-group">
+                                <label class="control-label" for="editColor">Colour</label>
+                                <input type="text" class="form-control colorpicker" id="editColor" name="editColor" value="#6453e9">
+                                <!-- errors will go here -->
+                            </div>
+
+                            <div id="edit-textcolor-group" class="form-group">
+                                <label class="control-label" for="editTextColor">Text Colour</label>
+                                <input type="text" class="form-control colorpicker" id="editTextColor" name="editTextColor" value="#ffffff">
+                                <!-- errors will go here -->
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-danger" id="deleteEvent" data-id>Delete</button>
+            </div>
+
+            </form>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="container">
+
+   <br>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addeventmodal">
+      Add Event
+    </button>
+
+    <div id="calendar"></div>
+	</div>
 	</div>
 	<aside class="control-sidebar control-sidebar-dark">
-  </aside>
+	</aside>
+	</div>
 </div>
-    
-                         <script>
-            var myVar;
-
-            function myFunction() {
-              myVar = setTimeout(showPage, 1000);
-            }
-
-            function showPage() {
-              document.getElementById("loader").style.display = "none";
-              document.getElementById("myDiv").style.display = "block";
-            }
-        </script>
-<!-- <script src="../dependencies/navigation/jquery/jquery.min.js"></script> -->
+</div>
 <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../dependencies/navigation/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <script src="../dependencies/vendor/jquery-easing/jquery.easing.min.js"></script>
