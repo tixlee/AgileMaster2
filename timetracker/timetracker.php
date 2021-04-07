@@ -33,22 +33,6 @@ include_once '../resources/links/require.php';
             $('#task').html('<option value="">Select board first</option>');
         }
     });
-
-    $('#board').on('change', function(){
-        var boardID = $(this).val();
-        if(boardID){
-            $.ajax({
-                type:'POST',
-                url:'ajaxData.php',
-                data:'board_id='+boardID,
-                success:function(html){
-                    $('#task').html(html);
-                }
-            });
-        }else{
-            $('#task').html('<option value="">Select board first</option>');
-        }
-    });
 });</script>
 	<?php include('../navigation/head.php');?>
        <style type="text/css">
