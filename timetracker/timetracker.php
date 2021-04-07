@@ -44,7 +44,14 @@ include_once '../resources/links/require.php';
               100% { transform: rotate(360deg); }
             }
 
-            
+            /* Add animation to "page content" */
+            .animate-bottom {
+              position: relative;
+              -webkit-animation-name: animatebottom;
+              -webkit-animation-duration: 1s;
+              animation-name: animatebottom;
+              animation-duration: 1s
+            }
 
             @-webkit-keyframes animatebottom {
               from { bottom:-100px; opacity:0 } 
