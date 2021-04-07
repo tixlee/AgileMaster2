@@ -15,25 +15,6 @@ include_once '../resources/links/require.php';
 	<link href="css/timer.css" rel="stylesheet" type="text/css" />
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/timer.js" type="text/javascript"></script>
-    <script>
-    $(document).ready(function(){
-    $('#project').on('change', function(){
-        var projectID = $(this).val();
-        if(projectID){
-            $.ajax({
-                type:'POST',
-                url:'ajaxData.php',
-                data:'project_id='+projectID,
-                success:function(html){
-                    $('#board').html(html);
-                }
-            });
-        }else{
-            $('#board').html('<option value="">Select project first</option>');
-            $('#task').html('<option value="">Select board first</option>');
-        }
-    });
-});</script>
 	<?php include('../navigation/head.php');?>
        <style type="text/css">
 
