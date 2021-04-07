@@ -85,14 +85,7 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                 <?php
-                                    $u_query = $conn->query("SELECT * FROM `user_created_project` WHERE `created_proj_id` = '$row[project_id]'") or die(mysqli_error());
-                                    $u_fetch = $u_query->fetch_array();
-                                    
-                                    $query = $conn->query("SELECT * FROM `users` NATURAL JOIN `user_project` WHERE NOT `user_id` = '$userId' AND `project_id` = '$row[project_id]'") or die(mysqli_error());
-                                    while($b_query = $query->fetch_array()) {
-                                   
-                                    ?>
+                                 <p>Edit</p>
                                  <tr>
 									<td style="text-align: center;">
 										<?php
