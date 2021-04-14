@@ -129,12 +129,13 @@ $encrypt_1 =  $data*rand(10,10000);
       <title>AgileMaster | Project Details</title>
       <?php include('../navigation/head.php');?>
        <style type="text/css">
-           
-           
           .nav-tabs{
-          border:0px solid;
+          border:1px solid rgba(0,0,0,.125);
+		  border-top-left-radius: 0rem;
+          border-top-right-radius: 0rem;
           }
           .nav-tabs .nav-link{
+	      border-left:1px solid rgba(0,0,0,.125);  
           padding: 15px 30px;
           border-top-left-radius: 0rem;
           border-top-right-radius: 0rem;
@@ -147,6 +148,34 @@ $encrypt_1 =  $data*rand(10,10000);
           .nav-tabs .nav-item a{
           color: #000;
           }
+		  
+		  
+		  #wrapper .card{
+			cursor: pointer;
+		}
+		
+		.bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 100px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 40px 0px 0px 0px;
+              font-size: 60px;
+              font-weight: bold;
+           }
        </style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
@@ -157,6 +186,17 @@ $encrypt_1 =  $data*rand(10,10000);
          <div class="content-wrapper">
             <br > <br >
             <section class="content">
+			
+			<div class="bg-custom">
+				<div class="bg-img" style="text-align: center;">
+					<div class="searchContainer">
+						<h2>Project Details</h2>
+					</div>
+                               
+				</div>
+                <br>
+			</div>
+			
                <div class="container-fluid">
                   <?php 
                      
@@ -164,16 +204,21 @@ $encrypt_1 =  $data*rand(10,10000);
                      
                      ?>
 					 <!-- Back Button -->
-					<a href="project.php" style="text-decoration: none;"><i class="ri-arrow-go-back-line" style="font-size: 1.5em; color: red;"></i></a>
-					<br><br>
+					<!-- Back Button -->
+					 <br>
+					 <button onclick="location.href='project.php'" type="button" class="btn btn-dark">
+						<i class="ri-arrow-go-back-line"></i> Back
+                     </button>
+					 <br><br>
+					 
 				  <div class="col-md-12">
                      <div class="card">
                         <div class="card-header">
-                           <h1 class="card-title font-weight-bold">Project Name: <?php echo $cRow['project_name']; ?></h1>
+                           <h1 class="card-title font-weight-bold">Project: <?php echo $cRow['project_name']; ?></h1>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                           <ul class="nav nav-tabs nav-justified" id="myTabMD" role="tablist">
+                           <ul class="nav nav-tabs nav-justified" id="myTabMD" role="tablist" style="font-weight: bold;">
                               <li class="nav-item waves-effect waves-light">
                                  <a class="nav-link active" id="home-tab-md" data-toggle="tab" href="#home-md" role="tab" aria-controls="home-md" aria-selected="true">Project Description</a>
                               </li>
@@ -184,8 +229,8 @@ $encrypt_1 =  $data*rand(10,10000);
                                  <a class="nav-link" id="profile-tab-md" data-toggle="tab" href="#profile-md" role="tab" aria-controls="profile-md" aria-selected="false">Boards</a>
                               </li>
                            </ul>
-                           <div class="tab-content card pt-3" id="myTabContentMD">
-                              <div class="tab-pane fade show active" id="home-md" role="tabpanel" aria-labelledby="home-tab-md">
+                           <div class="tab-content card pt-3" id="myTabContentMD" style="min-height: 330px;">
+                              <div class="tab-pane fade show active" id="home-md" role="tabpanel" aria-labelledby="home-tab-md" style="font-weight: bold;">
                                  <p style="padding: 0 15px 0 15px;"><?php echo $cRow['project_description']; ?></p>
                               </div>
                               <div class="tab-pane fade" id="profile-md" role="tabpanel" aria-labelledby="profile-tab-md">
@@ -197,7 +242,7 @@ $encrypt_1 =  $data*rand(10,10000);
                                        {
                                        ?>
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
-                                    <i class="fas fa-plus"></i> ADD BOARD
+                                    <i class="fas fa-plus"></i> Add Board
                                     </button>
                                     <?php
                                        }
@@ -214,7 +259,7 @@ $encrypt_1 =  $data*rand(10,10000);
                                              <div class="modal-body">
                                                 <form method="POST" enctype="multipart/form-data">
                                                    <div class="form-group">
-                                                      <label for="board_name" class="sr-only">Board Name</label>
+                                                      <label for="board_name">Board Name</label>
                                                       <input type="text" name="board_name" id="board_name" class="form-control" placeholder="Board Name" required autocomplete="off">
                                                       <input type = "hidden" id = "project_id" value = "<?php echo $a_fetch['project_id'];?>" />
                                                    </div>
@@ -309,17 +354,17 @@ $encrypt_1 =  $data*rand(10,10000);
                                        {
                                        ?>
                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myAnnounModal">
-                                    <i class="fa fa-bullhorn" aria-hidden="true"></i>  ADD ANNOUNCEMENT
+                                    <i class="fa fa-bullhorn" aria-hidden="true"></i>  Add Announcement
                                     </button>
                                     
                                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
-                                    <i class="fas fa-plus"></i>  ADD MEMBER
+                                    <i class="fas fa-users"></i>  Add Member
                                     </button>
                                     <?php
                                        }
                                        ?>
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#mySecondModal">
-                                    <i class="far fa-envelope"></i> INVITE MEMBER
+                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#mySecondModal">
+                                    <i class="far fa-envelope"></i> Invite
                                     </button>
                                     <?php echo $alert; ?>
                                     <div class="modal fade" id="mySecondModal" role="dialog">
@@ -343,8 +388,6 @@ $encrypt_1 =  $data*rand(10,10000);
                                           </div>
                                        </div>
                                     </div>
-                                     
-                                     
                                       <!-- The Modal -->
                                     <div class="modal fade" id="myAnnounModal"  role="dialog" aria-labelledby="myAnnounModal" aria-hidden="true">
                                        <div class="modal-dialog" role="document">
@@ -358,12 +401,12 @@ $encrypt_1 =  $data*rand(10,10000);
                                              <div class="modal-body">
                                               <form method="POST" enctype="multipart/form-data">
                                                  <div class="row col-md-12 col-xm-3">
-                                                    <label for="project_name" class="sr-only">Title</label>
-                                                    <input type="text" name="title" id="title" class="form-control" placeholder="Project Name" required autocomplete="off">
+                                                    <label for="project_name">Title</label>
+                                                    <input type="text" name="title" id="title" class="form-control" placeholder="Announcement Title" required autocomplete="off">
                                                  </div>
                                                  <br>
                                                  <div class="row col-md-12 col-xm-6">
-                                                    <label for="project_description" class="sr-only">Description</label>
+                                                    <label for="project_description">Description</label>
                                                     <textarea class="form-control" id="description" name="description"  placeholder="Announcement Description" autocomplete="off" required></textarea>
                                                  </div>
                                                  <br>
@@ -439,10 +482,10 @@ $encrypt_1 =  $data*rand(10,10000);
                                                    {
                                                    ?>
                                                 <th >
-                                                   <center>Action</center>
+                                                   <center>Switch Role</center>
                                                 </th>
                                                 <th >
-                                                   <center>Switch Role</center>
+                                                   <center>Action</center>
                                                 </th>
                                                 <?php 
                                                    }
@@ -476,6 +519,14 @@ $encrypt_1 =  $data*rand(10,10000);
                                                    if($u_fetch['user_id'] != $f_query['user_id'])
                                                    {
                                                    ?>
+												<td style="border: 0px;">
+                                                   <center>
+                                                      <form method="POST"enctype="multipart/form-data">
+                                                         <input type = "hidden" id = "user_id" name = "user_id" value = "<?php echo $f_query['user_id'];?>" />
+                                                         <input type="submit" name="switch" value="Switch" id="submit-fs" class="btn btn-success" >
+                                                      </form>
+                                                   </center>
+                                                </td>
                                                 <td style="border: 0px;">
                                                    <center>
                                                       <a  href = "#" class = "btn btn-danger "  data-toggle="modal" data-target="#MYModal">
@@ -492,13 +543,13 @@ $encrypt_1 =  $data*rand(10,10000);
                                                               </div>
                                                               <!-- Modal body -->
                                                               <div class="modal-body text-center mb-5">
-                                                                <img src="../resources/images/right1.png" class="img-responsive" style="width: 20%;">
+                                                                <img src="../resources/images/right1.png" class="img-responsive" style="width: 15%;">
                                                                 <h1>Are You Sure?</h1>
-                                                                <p>Do you really want to delete this record? This process cannot be undone.</p>
+                                                                <p>Do you sure to remove this user? This action could not be undone.</p>
                                                                 <div class="btn-group">
-                                                                  <button type="button" class="btn btn-secondary btn-lg mr-2 rounded-lg" data-dismiss="modal">Cancel</button>
+                                                                  <button type="button" class="btn btn-secondary mr-2 rounded-lg" data-dismiss="modal">Cancel</button>
 <!--                                                                  <button type="button" class="btn btn-danger btn-lg rounded-lg">Delete</button>-->
-                                                                    <a  href = "delete.php?user_id=<?php echo $f_query['user_id']?>&project_id=<?php echo $f_query['project_id']?>" class = "btn btn-danger btn-lg rounded-lg" onload="myFunction()">Delete</a>
+                                                                    <a  href = "delete.php?user_id=<?php echo $f_query['user_id']?>&project_id=<?php echo $f_query['project_id']?>" class = "btn btn-danger rounded-lg" onload="myFunction()">Delete</a>
                                                                 </div>
                                                               </div>
                                                             </div>
@@ -506,14 +557,7 @@ $encrypt_1 =  $data*rand(10,10000);
                                                         </div>
                                                    </center>
                                                 </td>
-                                                <td style="border: 0px;">
-                                                   <center>
-                                                      <form method="POST"enctype="multipart/form-data">
-                                                         <input type = "hidden" id = "user_id" name = "user_id" value = "<?php echo $f_query['user_id'];?>" />
-                                                         <input type="submit" name="switch" value="Switch" id="submit-fs" class="btn btn-success" >
-                                                      </form>
-                                                   </center>
-                                                </td>
+                                                
                                                 <?php } ?>
                                              </tr>
                                              <?php

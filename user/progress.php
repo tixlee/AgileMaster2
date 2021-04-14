@@ -30,6 +30,70 @@
             <br > <br >
             <section class="content">
                <div class="container-fluid">
+			   
+			   
+			   <div class="row">
+				  <div class="col-md-6">
+					<!-- Bar chart -->
+					<div class="card card-danger card-outline">
+					  <div class="card-header">
+						<h3 class="card-title">
+						  <i class="far fa-chart-bar"></i>
+						  Tasks
+						</h3>
+
+						<div class="card-tools">
+						  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+							<i class="fas fa-minus"></i>
+						  </button>
+						</div>
+					  </div>
+					  <div class="card-body">
+						<div id="bar-chart" style="height: 300px;"></div>
+					  </div>
+					</div>
+				  </div>
+				  
+				  
+				  <div class="col-md-6">
+					<!-- Bar chart -->
+					<div class="card card-danger card-outline">
+					  <div class="card-header">
+						<h3 class="card-title">
+						  <i class="far fa-chart-bar"></i>
+						  Performance
+						</h3>
+
+						<div class="card-tools">
+						  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+							<i class="fas fa-minus"></i>
+						  </button>
+						</div>
+					  </div>
+					  <div class="card-body">
+						<div id="g2" class="gauge" style="height: 300px;"></div>
+					  </div>
+					</div>
+				  </div>
+				  
+				</div>
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
+			   
                   <?php 
                      $getProjectByUser = getProjectByUser($userId);
                      $total_projects = mysqli_num_rows($getProjectByUser);
@@ -185,6 +249,9 @@
       <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
       <script src="../dependencies/scripts/datatables-demo.js"></script>
       <script src="../dependencies/navigation/js/adminlte.js"></script>
+	  <script src="../dependencies/flot/flot/jquery.flot.js"></script>
+	    <script src="../dependencies/scripts/raphael.min.js"></script>
+  <script src="../dependencies/scripts/justgage.js"></script>
 	  <script src="../dependencies/scripts/google.js"></script>
       <script>
          $(document).ready(function() {
@@ -196,5 +263,73 @@
              } );
          } );
       </script>
+	  <script>
+  $(function () {
+    /*
+     * BAR CHART
+     * ---------
+     */
+
+    var bar_data = {
+      data : [[1,10], [2,8], [3,4], [4,13]],
+      bars: { show: true }
+    }
+    $.plot('#bar-chart', [bar_data], {
+      grid  : {
+        borderWidth: 1,
+        borderColor: '#f3f3f3',
+        tickColor  : '#f3f3f3'
+      },
+      series: {
+         bars: {
+          show: true, barWidth: 0.5, align: 'center',
+        },
+      },
+      colors: ['#3c8dbc'],
+      xaxis : {
+        ticks: [[1,'To Do'], [2,'Doing'], [3,'Testing'], [4,'Done']]
+      }
+    })
+    /* END BAR CHART */
+
+    
+  })
+</script>
+<script>
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+     
+
+      var g2 = new JustGage({
+        id: 'g2',
+        value: 90,
+        min: 0,
+        max: 100,
+        symbol: '%',
+        pointer: true,
+        pointerOptions: {
+          toplength: -15,
+          bottomlength: 10,
+          bottomwidth: 12,
+          color: '#8e8e93',
+          stroke: '#ffffff',
+          stroke_width: 3,
+          stroke_linecap: 'round'
+        },
+        gaugeWidthScale: 0.6,
+        counter: true
+      });
+
+      
+
+     
+
+     
+    });
+  </script>
    </body>
 </html>

@@ -68,8 +68,31 @@ $encrypt_1 =  $data*rand(10,10000);
        <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js"></script>
        <style type="text/css">
         #wrapper .card{
-  cursor: pointer;
-}
+			cursor: pointer;
+		}
+		
+		.bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 100px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 40px 0px 0px 0px;
+              font-size: 60px;
+              font-weight: bold;
+           }
  </style>
 
    </head>
@@ -79,13 +102,24 @@ $encrypt_1 =  $data*rand(10,10000);
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/project_sidebar.php');?>
          <div class="content-wrapper">
-            <br > <br >
             <section class="content">
+			
+			<div class="bg-custom">
+				<div class="bg-img" style="text-align: center;">
+					<div class="searchContainer">
+						<h2>Project List</h2>
+					</div>
+                               
+				</div>
+                <br>
+			</div>
+			
+				<br>
                <div class="container-fluid">
                   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
-                  <i class="fas fa-plus"></i> ADD PROJECT
+                  <i class="fas fa-project-diagram"></i> Add Project
                   </button>
-                  <button type="button" class="btn btn-info" style="float: right;" onclick="location.href='archive_project.php'"> ARCHIVE PROJECT(s)</button>
+                  <button type="button" class="btn btn-secondary" style="float: right;" onclick="location.href='archive_project.php'"><span class="iconify" data-icon="bi-archive" data-inline="false"></span> Archived</button>
                   <br><br>
                   <!-- Modal -->
                   <div class="modal fade" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -101,13 +135,13 @@ $encrypt_1 =  $data*rand(10,10000);
                               <form method="POST" enctype="multipart/form-data">
                                  <input type="hidden" name="project_id" value="<?php $_SESSION['project_id']; ?>">
                                  <div class="row col-md-12 col-xm-3">
-                                    <label for="project_name" class="sr-only">Project Name</label>
-                                    <input type="text" name="project_name" id="project_name" class="form-control" placeholder="Project Name" required autocomplete="off">
+                                    <label for="project_name">Project Name</label>
+                                    <input type="text" name="project_name" id="project_name" class="form-control" placeholder="Enter Project Name" required autocomplete="off">
                                  </div>
                                  <br>
                                  <div class="row col-md-12 col-xm-6">
-                                    <label for="project_description" class="sr-only">Project Description</label>
-                                    <textarea class="form-control" name="project_description"  placeholder="Project Description" autocomplete="off" required></textarea>
+                                    <label for="project_description">Project Description</label>
+                                    <textarea class="form-control" name="project_description"  placeholder="Enter Project Description" autocomplete="off" required></textarea>
                                  </div>
                                  <br>
                                  <div class="modal-footer">
@@ -132,10 +166,10 @@ $encrypt_1 =  $data*rand(10,10000);
                             
                             if(mysqli_num_rows($getAllProjects) > 0) {
                              ?>
-                     <div class="box-wrap col-xl-3 col-md-4 mb-4">
-                        <div class="card shadow " >
+                     <div class="box-wrap col-xl-3 col-md-4 mb-4" >
+                        <div class="card shadow" style="border-radius: 15px;">
 							<a href="project_details.php?project_id=<?php echo $row['project_id'].urlencode(base64_encode($encrypt_1)); ?>">
-                           <img src="../resources/images/bg6.jpg" class="" style="filter: brightness(90%); color: #990021; width: 100%"/></a>
+                           <img src="../resources/images/5.jpg" height="180" class="" style="filter: brightness(90%); color: #990021; width: 100%; border-top-left-radius: 15px; border-top-right-radius: 15px;" /></a>
                            <?php
                               $u_query = $conn->query("SELECT * FROM `user_created_project` WHERE `created_proj_id` = '$project_id'") or die(mysqli_error());
                               $u_fetch = $u_query->fetch_array();
@@ -162,16 +196,17 @@ $encrypt_1 =  $data*rand(10,10000);
                                     <circle cx="16" cy="19" r="1"></circle>
                                  </svg>
                               </a>
+							  
                               <div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> 
                                  <?php
                                     $confirmation = "Are you sure about archiving the selected project?";
                                     ?>
-                                 <a href = "#"  class="dropdown-item trash" data-abc="true" data-toggle="modal" data-target="#xampleModalCenter-<?php echo $row['project_id'];?>">
-                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                 <a href = "#"  class="dropdown-item trash" data-abc="true" data-toggle="modal" data-target="#xampleModalCenter-<?php echo $row['project_id'];?>" style="color:black;">
+                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp; Edit</a>
                                   
                                   <div class="dropdown-divider"></div>
-                                  <a href = "archive.php?project_id=<?php echo $row['project_id']?>&status=Archive&project_name=<?php echo $rRow['project_name']?>" class="dropdown-item trash" data-abc="true"  onclick="return confirm('<?php echo $confirmation; ?>')">
-                                 <i class="fa fa-file-archive-o" aria-hidden="true"></i> Archive Project</a>
+                                  <a href = "archive.php?project_id=<?php echo $row['project_id']?>&status=Archive&project_name=<?php echo $rRow['project_name']?>" class="dropdown-item trash" data-abc="true"  onclick="return confirm('<?php echo $confirmation; ?>')" style="color:black;">
+                                 <span class="iconify" data-icon="bi-archive" data-inline="false"></span>&nbsp; Archive</a>
                               </div>
                            </div>
 
@@ -197,12 +232,12 @@ $encrypt_1 =  $data*rand(10,10000);
                                               <form method="POST" action="edit_project.php?project_id=<?php echo $row['project_id']; ?>" enctype="multipart/form-data">
                                                  <input type="hidden" name="project_id" value="<?php $_POST['project_id']; ?>">
                                                  <div class="row col-md-12 col-xm-3">
-                                                    <label for="project_name" class="sr-only">Project Name</label>
+                                                    <label for="project_name">Project Name</label> <!-- Removed class="sr-only" -->
                                                     <input type="text" name="proj_name" id="projectname" class="form-control" value="<?php echo $rRow['project_name']; ?>" placeholder="Project Name" required autocomplete="off">
                                                  </div>
                                                  <br>
                                                  <div class="row col-md-12 col-xm-6">
-                                                    <label for="project_description" class="sr-only">Project Description</label>
+                                                    <label for="project_description">Project Description</label> <!-- Removed class="sr-only" -->
                                                     <textarea class="form-control" name="proj_description"  placeholder="Project Description" autocomplete="off" required><?php echo $rRow['project_description']; ?></textarea>
                                                  </div>
                                                  <br>
@@ -216,8 +251,8 @@ $encrypt_1 =  $data*rand(10,10000);
                                         </div>
                                      </div>
                                   </div>
-						   <a href="project_details.php?project_id=<?php echo $row['project_id'].urlencode(base64_encode($encrypt_1)); ?>" class="h4 font-weight-bold text-uppercase mb-1"  style="color: #d6002f;">
-                               <div class="card-body">
+						   <a href="project_details.php?project_id=<?php echo $row['project_id'].urlencode(base64_encode($encrypt_1)); ?>" class="h5 font-weight-bold text-uppercase mb-1">
+                               <div class="card-body" style="color:#9a1b25;">
 
                                   <?php echo $rRow['project_name']; ?>
 
@@ -248,7 +283,7 @@ $encrypt_1 =  $data*rand(10,10000);
             });
         </script>
        
-           
+      <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>   <!-- For archive icon -->  
       <script src="../dependencies/navigation/jquery/jquery.min.js"></script>
       <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
       <script src="../dependencies/navigation/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>

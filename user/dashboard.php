@@ -323,19 +323,19 @@
 				</div>
 				
 				<div class="col-3"> 
-                        <div class="card card-danger card-outline">
+                        <div class="card card-danger card-outline"  style="min-height:1325px;">
 <!--
                               <h4 class="card-title" style="text-align:center";>
                                  <i class="fa fa-bullhorn" aria-hidden="true"></i>
                                  Announcement
                               </h4>
 -->
-                               <ul class="nav nav-tabs nav-justified" id="myTabMD" role="tablist">
+                            <ul class="nav nav-tabs nav-justified" id="myTabMD" role="tablist">
                               <li class="nav-item waves-effect waves-light">
-                                 <a class="nav-link active font-weight-bold" id="home-tab-md" data-toggle="tab" href="#home-md" role="tab" aria-controls="home-md" aria-selected="true"><i class="fa fa-bell"  aria-hidden="true"></i> Notification</a>
+                                 <a class="nav-link active font-weight-bold" id="home-tab-md" data-toggle="tab" href="#home-md" role="tab" aria-controls="home-md" aria-selected="true"><i class="fa fa-bell"  aria-hidden="true"></i> <br>Notification</a>
                               </li>
                               <li class="nav-item waves-effect waves-light">
-                                 <a class="nav-link   font-weight-bold" id="profile-tab-md" data-toggle="tab" href="#profile-md" role="tab" aria-controls="profile-md" aria-selected="false"><i class="fa fa-bullhorn" aria-hidden="true"></i> Announcement</a>
+                                 <a class="nav-link   font-weight-bold" id="profile-tab-md" data-toggle="tab" href="#profile-md" role="tab" aria-controls="profile-md" aria-selected="false"><i class="fa fa-bullhorn" aria-hidden="true"></i> <br>Announcement</a>
                               </li>
                            </ul>
 
@@ -354,7 +354,7 @@
                             ?>
                         <div class="card card-danger card-outline">
                            <div class="toast-header">
-                                <strong><i class="fa fa-bullhorn" aria-hidden="true"></i></strong>
+                                <strong><i class="fa fa-bell" aria-hidden="true"></i></strong>
                                 &nbsp;
                                 <strong>Notification</strong> <div class="col text-right"><strong><?php echo $notRow['date_time']; ?></strong></div>
 

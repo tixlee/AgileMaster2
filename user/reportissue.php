@@ -36,6 +36,34 @@
    <head>
       <title>AgileMaster | Report Issue</title>
       <?php include('../navigation/head.php');?>
+	  <style type="text/css">
+        #wrapper .card{
+			cursor: pointer;
+		}
+		
+		.bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 100px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 40px 0px 0px 0px;
+              font-size: 60px;
+              font-weight: bold;
+           }
+	</style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
       <div class="se-pre-con"></div>
@@ -43,13 +71,22 @@
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/user_sidebar.php');?>
          <div class="content-wrapper">
-            <br><br>
             <section class="content">
-               <div class="container-fluid">
+			
+			<div class="bg-custom">
+				<div class="bg-img" style="text-align: center;">
+					<div class="searchContainer">
+						<h2>Report Issue</h2>
+					</div>
+                               
+				</div>
+                <br>
+			</div>
+			<br>
+			
+               <div class="container-fluid" >
                   <div class="card shadow mb-4">
-                     <div class="card-header">
-                        <h3 class="card-title font-weight-bold" style="color: #990021;">Report Issue</h3>
-                     </div>
+                     
                      <div class="card-body">
                         <form method="POST" enctype="multipart/form-data">
                            <div class="col-md-6">

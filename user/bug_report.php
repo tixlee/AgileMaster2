@@ -89,6 +89,58 @@
          $("#suggesstion-box").hide();
          }
       </script>
+	  <style type="text/css">
+	  .nav-tabs{
+          border:1px solid rgba(0,0,0,.125);
+		  border-top-left-radius: 0rem;
+          border-top-right-radius: 0rem;
+          }
+          .nav-tabs .nav-link{
+	      border-left:1px solid rgba(0,0,0,.125);  
+          padding: 15px 30px;
+          border-top-left-radius: 0rem;
+          border-top-right-radius: 0rem;
+          }
+          .nav-tabs .nav-link.active{
+          background-color: #2a384c;
+          border-color: #2a384c;
+          color: #fff;
+          }
+          .nav-tabs .nav-item a{
+          color: #000;
+          }
+		  
+		  
+		  #wrapper .card{
+			cursor: pointer;
+		}
+        #wrapper .card{
+			cursor: pointer;
+		}
+		
+		.bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 100px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 40px 0px 0px 0px;
+              font-size: 60px;
+              font-weight: bold;
+           }
+	</style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="se-pre-con"></div>
@@ -97,9 +149,19 @@
          <?php include('../navigation/user/bug_sidebar.php');?>
          <!-- Content Wrapper. Contains page content -->
          <div class="content-wrapper">
-            <br > <br >
             <!-- Main content -->
             <section class="content">
+			
+			<div class="bg-custom">
+				<div class="bg-img" style="text-align: center;">
+					<div class="searchContainer">
+						<h2>Bugs Page</h2>
+					</div>        
+				</div>
+                <br>
+			</div>
+			<br>
+			
                <div class="container-fluid">
                   <?php
                      
@@ -112,7 +174,7 @@
                      ?>
                   <div class="col-md-6 " align="left">
                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
-                     <i class="fas fa-plus"></i> ADD BUG REPORT
+                     <i class="fas fa-plus"></i> Report Bugs
                      </button>
                      <br><br>
                      <!-- Modal -->
@@ -134,7 +196,7 @@
                                     </div>
                                     <br>
                                     <div class="row col-md-12 col-xm-3">
-                                       <label for="bug_desc" class="text-lg">Description</label>
+                                       <label for="bug_desc">Description</label>
                                        <textarea class="form-control"  name="bug_desc" id="bug_desc" rows="3" placeholder="Add a more detailed description..."  required="required"></textarea>
                                     </div>
                                     <br>
@@ -158,7 +220,7 @@
                                     </div>
                                     <br>
                                     <div class="row col-lg-12">
-                                       <label for="exampleDropdown">Select Project: </label>
+                                       <label for="exampleDropdown">Project</label>
                                        <select onChange="getmember(this.value);" data-live-search="true" title="Please select project" name="project_id" id="project_id" class="form-control selectpicker col-sm-12 col-md-12" required="required">
                                           <?php
                                              $getProjectByUser = getProjectByUser($userId);

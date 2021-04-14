@@ -11,7 +11,34 @@
    <head>
       <title>AgileMaster | Members</title>
       <?php include('../navigation/head.php');?>
-       
+       <style type="text/css">
+        #wrapper .card{
+			cursor: pointer;
+		}
+		
+		.bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 100px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 40px 0px 0px 0px;
+              font-size: 60px;
+              font-weight: bold;
+           }
+	</style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
       <div class="se-pre-con"></div>
@@ -19,12 +46,22 @@
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/member_sidebar.php');?>
          <div class="content-wrapper">
-            <br><br>
             <section class="content">
+			
+			<div class="bg-custom">
+				<div class="bg-img" style="text-align: center;">
+					<div class="searchContainer">
+						<h2>Project Members</h2>
+					</div>
+                               
+				</div>
+                <br>
+			</div>
+			<br>
                <div class="container-fluid">
-                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
-                  <i class="far fa-envelope"></i> INVITE MEMBER
-                  </button>
+                  <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#myModal">
+						<i class="far fa-envelope"></i> Invite
+					</button>
                   <?php echo $alert; ?>
                   <div class="modal fade" id="myModal" role="dialog">
                      <div class="modal-dialog">
@@ -47,8 +84,8 @@
                         </div>
                      </div>
                   </div>
-                  <br >
-                  <br >
+                  <br>
+                  <br>
                   <?php 
                      $getProjectByUser = getProjectByUser($userId);
                      $total_projects = mysqli_num_rows($getProjectByUser);
@@ -60,7 +97,8 @@
                        $rRow = mysqli_fetch_array($getAllProjects);
                        $project = $row['project_id'];
                      ?>
-                  <div class="card shadow mb-4">
+					
+                  <div class="card shadow mb-4 card-danger card-outline">
                      <div class="card-header">
                         <h1 class="card-title font-weight-bold"  style="color: #990021;">Project Name: <?php echo $rRow['project_name']; ?></h1>
                         <input type = "hidden" id = "project_id" value = "<?php echo $a_fetch['project_id'];?>" />
@@ -85,7 +123,7 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                 <?php
+                              <?php
                                     $u_query = $conn->query("SELECT * FROM `user_created_project` WHERE `created_proj_id` = '$row[project_id]'") or die(mysqli_error());
                                     $u_fetch = $u_query->fetch_array();
                                     

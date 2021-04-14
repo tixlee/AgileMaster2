@@ -11,10 +11,7 @@
    	$userId = $_SESSION["user_id"];
    }   
      
-$user_not = get_user($userId);
-$yRow = mysqli_fetch_array($user_not);
-
-$user_name = $yRow['fname']; 
+   
    
    if(isset($_POST['save'])){
        $board_id = $_GET['board_id'];
@@ -30,34 +27,24 @@ $user_name = $yRow['fname'];
     
    
    }
-$board_id = $_GET['board_id'];
    
-$sql = "SELECT * FROM `task` WHERE `board_id` = '$board_id'";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
-$task_name = $row['task_name'];
    
    if(isset($_POST['assign'])){
        $board_id = $_GET['board_id'];
     
        $user_id = $_POST["user_id"];
        $task_id = $_GET['task_id'];
-       $recipient_id = $_POST["user_id"];
+   
        $tn = $_GET['tn'];
        
        insert_more_task_assignees($user_id, $task_id);
-       insert_notification($recipient_id, "$user_name assigned $task_name task to you" );
        echo "<script>window.location.href ='../user/task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn'</script>";
       
     
    
    }
    
-  $sql = "SELECT * FROM `board` NATURAL JOIN `project`  WHERE `board_id` = '$board_id'";
-                     $result = $conn->query($sql);
-                     $zqRow = $result->fetch_assoc();
-                     $result->free_result();
-
+   
    
    if(isset($_POST['post'])){
        $board_id = $_GET['board_id'];
@@ -68,17 +55,7 @@ $task_name = $row['task_name'];
        $comment = $_POST['comment'];
        $comment_id = $_POST['comment_id'];
        $tn = $_GET['tn'];
-       
-       $assigns_arr = array();
-       $get_not_comment = get_not_comment($zqRow['project_id']);
-       while ($mrRow = mysqli_fetch_array($get_not_comment)){
-           $assigns_arr = array($mrRow['user_id']);
-           $assigns = implode($assigns_arr);
-           $recipient_id = $assigns;
-           insert_notification($recipient_id, "$user_name added comment in $task_name task" );}
-       
        insert_comment_task($user_id, $task_id, $comment);
-       
        echo "<script>window.location.href ='../user/task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn'</script>";
       
     
@@ -96,12 +73,42 @@ $task_name = $row['task_name'];
    
    $today = $year . '-' . $month . '-' . $day;
    ?>
+   
+
 <!DOCTYPE html>
 <html>
    <head>
       <title>AgileMaster | Board</title>
       <?php include('../navigation/head.php');?>
-
+	<style type="text/css">
+        #wrapper .card{
+			cursor: pointer;
+		}
+		
+		.bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 100px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 40px 0px 0px 0px;
+              font-size: 60px;
+              font-weight: bold;
+           }
+   
+		</style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
        <div class="se-pre-con"></div>
@@ -109,9 +116,25 @@ $task_name = $row['task_name'];
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/project_sidebar.php');?>
          <div class="content-wrapper">
-            <br > <br >
             <section class="content">
+			
+			<div class="bg-custom">
+				<div class="bg-img" style="text-align: center;">
+					<div class="searchContainer">
+						<h2>Task Details</h2>
+					</div>
+                               
+				</div>
+                <br>
+			</div>
+			
                <div class="container-fluid">
+			   
+			   <br>
+					 <button onclick="location.href='task.php?board_id=<?php echo $board_id ?>'" type="button" class="btn btn-dark">
+						<i class="ri-arrow-go-back-line"></i> Back
+                     </button>
+						
                   <?php 
                      $getProjectByUser = getProjectByUser($userId);
                      $iRow = mysqli_fetch_array($getProjectByUser);
@@ -137,35 +160,25 @@ $task_name = $row['task_name'];
                        
                      ?>
                   <div class="col-md-12">
-                     <div class="card">
-                        <div class="card-header">
-                           <h3 class="text-center" style="font-weight: bold; color: #d6002f;">TASK DETAILS</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                           <h1 class="card-title font-weight-bold" >Board Name:&nbsp;</h1>
-                           <h1 class="card-title font-weight-bold" style=" color: #d6002f;"><?php echo $bRow['board_name']; ?> </h1>
-                           <button onclick="location.href='task.php?board_id=<?php echo $board_id ?>'" class="btn btn-info " style="float: right;">BACK TO REQUIREMENTS</button>
-                        </div>
-                        <!-- /.card-body -->
-                     </div>
+                     <br>
                      <!-- /.card -->
                      <div class="row">
                         <div class="col-md-6">
-                           <div class="card">
+                           <div class="card card-danger card-outline" style="min-height: 310px;">
                               <div class="card-header">
-                                 <h5 class=" font-weight-bold" style="color: #d6002f;" >TASK DETAILS</h5>
+                                 <h6 class=" font-weight-bold" style="color: #d6002f;" >TASK DETAILS</h6>
                               </div>
                               <!-- /.card-header -->
                               <div class="card-body">
-                                 <div class="text-lg font-weight-bold">
+                                 <div class="font-weight-bold">
                                     Task Name:  <?php echo $row['task_name'];?>
                                  </div>
                                  <br>
                                  <form method="POST" enctype="multipart/form-data">
                                     <div class="form-group shadow-textarea">
-                                       <label for="task_desc" class="text-lg">Description</label>
+                                       <label for="task_desc">Description</label>
                                        <textarea class="form-control"  name="task_desc" id="task_desc" rows="3" readonly><?php echo $row['task_desc']; ?></textarea>
+	
                                     </div>
                                  </form>
                               </div>
@@ -174,9 +187,9 @@ $task_name = $row['task_name'];
                            <!-- /.card -->
                         </div>
                         <div class="col-md-6">
-                           <div class="card">
+                           <div class="card card-danger card-outline">
                               <div class="card-header">
-                                 <h5 class="font-weight-bold" style="color: #d6002f;" >STATUS</h5>
+                                 <h6 class="font-weight-bold" style="color: #d6002f;" >STATUS</h6>
                               </div>
                               <!-- /.card-header -->
                               <div class="card-body">
@@ -250,18 +263,26 @@ $task_name = $row['task_name'];
                                                    $completion_date = $row['completion_date'];
                                                    // Creating timestamp from given date
                                                    $timestamp = strtotime($completion_date);
+												   $ontime = " <span style='color:#00FF00; font-weight: bold;'>(ON TIME)</span>";
+												   $late = " <span style='color:red; font-weight: bold;'>(LATE)</span>";
                                                    
                                                    // Creating new date format from that timestamp
                                                    $completion_format_date = date("d-m-Y", $timestamp);
                                                    
                                                    if($row['completion_date'] != NULL){
-                                                       echo $completion_format_date;
+													   if($completion_date > $due_date){
+														   echo $completion_format_date . $late;
+													   }
+													   else{
+														   echo $completion_format_date . $ontime;
+													   }
+                                                       
                                                    
                                                    }else{
                                                        
                                                    ?>
                                                 <form method="POST" enctype="multipart/form-data">
-                                                   <input class="form-control col-md-10" type="date" value="<?php echo $today; ?>" name="completion_date" id="completion_date" required="" style="float: left;"/>
+                                                   <input class="form-control col-md-9" type="date" value="<?php echo $today; ?>" name="completion_date" id="completion_date" required="" style="float: left;"/>
                                                    <input type="submit" name="save" value="Save" id="submit-fs" class="btn btn-success" style="float: right;"> 
                                                 </form>
                                                 <?php
@@ -280,9 +301,9 @@ $task_name = $row['task_name'];
                      </div>
                      <div class="row">
                         <div class="col-md-6">
-                           <div class="card">
+                           <div class="card card-danger card-outline">
                               <div class="card-header">
-                                 <h5 class=" font-weight-bold"  style="color: #d6002f;" >ASSIGNEES</h5>
+                                 <h6 class=" font-weight-bold"  style="color: #d6002f;" >ASSIGNEES</h6>
                               </div>
                               <!-- /.card-header -->
                               <div class="card-body">
@@ -339,9 +360,9 @@ $task_name = $row['task_name'];
                            <!-- /.card -->
                         </div>
                         <div class="col-md-6">
-                           <div class="card">
+                           <div class="card card-danger card-outline">
                               <div class="card-header">
-                                 <h5 class=" font-weight-bold"  style="color: #d6002f;" >COMMENTS</h5>
+                                 <h6 class=" font-weight-bold"  style="color: #d6002f;" >COMMENTS</h6>
                               </div>
                               <!-- /.card-header -->
                               <div class="card-body">

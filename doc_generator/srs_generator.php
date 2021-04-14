@@ -445,7 +445,7 @@ file_put_contents('pdfs/SRS.pdf', $dompdf->output());
 								</div>
 							</div>
 							
-							<br><hr><br>
+							<br>
 							
                             <div class="row">
                                 <div class="col text-left">

@@ -73,6 +73,40 @@ $encrypt_1 =  $data*rand(10,10000);
       <title>AgileMaster | Task</title>
       <?php include('../navigation/head.php');?>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+	  <style type="text/css">
+        #wrapper .card{
+			cursor: pointer;
+		}
+		
+		.bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 100px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 40px 0px 0px 0px;
+              font-size: 60px;
+              font-weight: bold;
+           }
+
+		 .card-body a:hover{
+			webkit-transform: scale(0.9);
+			-ms-transform: scale(0.9);
+			transform: scale(0.9);
+		   }	   
+		</style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
        <div class="se-pre-con"></div>
@@ -80,10 +114,10 @@ $encrypt_1 =  $data*rand(10,10000);
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/project_sidebar.php');?>
          <div class="content-wrapper">
-            <br > <br >
             <section class="content">
-               <div class="container-fluid">
-                  <?php
+			
+			<div class="bg-custom">
+			<?php
                      $getAllProjectsAdmin = getAllProjectsAdmin();
                      $iRow = mysqli_fetch_array($getAllProjectsAdmin);
 //                     $project_id = $_GET['project_id'];
@@ -98,28 +132,33 @@ $encrypt_1 =  $data*rand(10,10000);
                      $project_id = $l_query['project_id'];
  
                      if(isset($bRow['board_id'])){
-                     ?>
+               ?>
+			   
+			   
+				<div class="bg-img" style="text-align: center;">
+					<div class="searchContainer">
+						<h2>Board</h2>
+						<h5 class=" font-weight-bold">Project Name: &nbsp; <?php echo $bRow['project_name']; ?></h5>
+						<h5 class=" font-weight-bold">Board Name: &nbsp; <?php echo $bRow['board_name']; ?></h5>
+					</div>
+
+                               
+				</div>
+                <br>
+			</div>
+			
+               <div class="container-fluid">
+					 <button onclick="location.href='project_details.php?project_id=<?php echo $bRow['project_id']; ?>'" type="button" class="btn btn-dark">
+						<i class="ri-arrow-go-back-line"></i> Back
+                     </button>
+					 
                   <div class="col-md-12">
-                     <div class="card">
-                        <div class="card-header">
-                           <h3 class="text-center" style="font-weight: bold; color: #d6002f;">REQUIREMENTS</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                           <h1 class="card-title font-weight-bold">Project Name:&nbsp;</h1>
-                           <h1 class="card-title font-weight-bold" style=" color: #d6002f;"><?php echo $bRow['project_name']; ?> </h1>
-                           <p>&nbsp;   </p>
-                           <h1 class="card-title font-weight-bold">Board Name:&nbsp;</h1>
-                           <h1 class="card-title font-weight-bold" style=" color: #d6002f;"><?php echo $bRow['board_name']; ?> </h1>
-                           <button onclick="location.href='project_details.php?project_id=<?php echo $bRow['project_id']; ?>'" class="btn btn-info " style="float: right;">BACK TO PROJECT DETAILS</button>
-                        </div>
-                        <!-- /.card-body -->
-                     </div>
+                   <br>
                      <div class="card">
                         <!-- /.card-header -->
-                        <div class="card-body" style="background-image: url('../resources/images/task-background5.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center; min-height: 600px; background-attachment: fixed;">
+                        <div class="card-body" style="background-image: url('../resources/images/profile_header.png'); background-repeat: no-repeat; background-size: cover; background-position: center center; min-height: 600px; background-attachment: fixed; background-color: #9a1b25;">
                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
-                           <i class="fas fa-plus"></i> ADD TASK
+                           <i class="fas fa-plus"></i> Add Task
                            </button>
                            <br><br>
                            <!-- Modal -->
@@ -142,8 +181,8 @@ $encrypt_1 =  $data*rand(10,10000);
                                           </div>
                                           <br>
                                           <div class="form-group shadow-textarea">
-                                             <label for="task_desc" class="text-lg">Description</label>
-                                             <textarea class="form-control"  name="task_desc" id="task_desc" rows="3" placeholder="Add a more detailed description..."  required=""></textarea>
+                                             <label for="task_desc">Description</label>
+                                             <textarea class="form-control"  name="task_desc" id="task_desc" rows="3" placeholder="Add Task Description"  required=""></textarea>
                                           </div>
                                           <br>
                                           <div class="row col-md-12 col-xm-6">
@@ -185,7 +224,7 @@ $encrypt_1 =  $data*rand(10,10000);
                               <div class="lg-3 backlog ">
                                  <div>
                                     <div class="card-header text-center" style="background-color:#ededed;" >
-                                       <h4 class="font-weight-bold" >BACKLOG ITEMS</h4>
+                                       <h6 class="font-weight-bold" >BACKLOG</h6>
                                     </div>
                                     <?php
                                        $sql1 = "SELECT * FROM task WHERE board_id = '$board_id' AND state = '1'";
@@ -235,24 +274,24 @@ $encrypt_1 =  $data*rand(10,10000);
                                                                </div>
                                                            </div>
                                                        
-                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task'>
-                                                               <h5 class='font-weight-bold'>" . ($row['task_name']) . "</h5>
+                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task' style='text-decoration:none;'>
+                                                               <h6 class='font-weight-bold'>" . ($row['task_name']) . "</h6>
                                                                <input type = 'hidden' id = 'task_id' value = ". $row["task_id"] ." />
                                                                <div>
-                                                                   <span class='task-id' style='color: #404040;'>Assigned to " . $assignees ."</span>
+                                                                   <span class='task-id' style='color: #404040;'>Assigned: " . $assignees ."</span>
                                                                    <br>
-                                                                   <span class='task-id' style='color: #404040;'>Due Date: " . $new_format_date ."</span>
+                                                                   <span class='task-id' style='color: #404040;'>Due: " . $new_format_date ."</span>
                                                                    <br>
                                                                    <p class='text-right'>See Details</p>
                                                                </div>
                                                            </a>
                                                            <select data-live-search='true' class='form-control changeStatus col-sm-8' onchange='location = this.value'>
                                                                <option class='no-display' selected='selected'>Status</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog Items</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>TO DO</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>DOING</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>TESTING</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>DONE</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>To Do</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>Doing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>Testing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>Done</option>
                                                            </select>
                                                        </div>
                                                    </div>
@@ -268,7 +307,7 @@ $encrypt_1 =  $data*rand(10,10000);
                               <div class="lg-3 todo">
                                  <div>
                                     <div class="card-header text-center"  style="background-color:#ededed;" >
-                                       <h4  class="font-weight-bold">TO DO</h4>
+                                       <h6  class="font-weight-bold">TO DO</h6>
                                     </div>
                                     <?php
                                        if($result = $conn->query($sql2)){
@@ -311,24 +350,24 @@ $encrypt_1 =  $data*rand(10,10000);
                                                                </div>
                                                            </div>
                                                        
-                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task'>
-                                                               <h5 class='font-weight-bold'>" . ($row['task_name']) . "</h5>
+                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task' style='text-decoration:none;'>
+                                                               <h6 class='font-weight-bold'>" . ($row['task_name']) . "</h6>
                                                                <input type = 'hidden' id = 'task_id' value = ". $row["task_id"] ." />
                                                                <div>
-                                                                   <span class='task-id' style='color: #404040;'>Assigned to " . $assignees ."</span>
+                                                                   <span class='task-id' style='color: #404040;'>Assigned: " . $assignees ."</span>
                                                                    <br>
-                                                                   <span class='task-id' style='color: #404040;'>Due Date: " . $new_format_date ."</span>
+                                                                   <span class='task-id' style='color: #404040;'>Due: " . $new_format_date ."</span>
                                                                    <br>
                                                                    <p class='text-right'>See Details</p>
                                                                </div>
                                                            </a>
                                                            <select data-live-search='true' class='form-control changeStatus col-sm-8' onchange='location = this.value'>
                                                                <option class='no-display' selected='selected'>Status</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog Items</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>TO DO</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>DOING</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>TESTING</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>DONE</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>To Do</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>Doing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>Testing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>Done</option>
                                                            </select>
                                                        </div>
                                                    </div>
@@ -343,7 +382,7 @@ $encrypt_1 =  $data*rand(10,10000);
                               <div class="lg-3 doing">
                                  <div>
                                     <div class="card-header text-center"  style="background-color:#ededed;" >
-                                       <h4 class="font-weight-bold">DOING</h4>
+                                       <h6 class="font-weight-bold">DOING</h6>
                                     </div>
                                     <?php
                                        if($result = $conn->query($sql3)){
@@ -386,24 +425,24 @@ $encrypt_1 =  $data*rand(10,10000);
                                                                </div>
                                                            </div>
                                                        
-                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task'>
-                                                               <h5 class='font-weight-bold'>" . ($row['task_name']) . "</h5>
+                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task' style='text-decoration:none;'>
+                                                               <h6 class='font-weight-bold'>" . ($row['task_name']) . "</h6>
                                                                <input type = 'hidden' id = 'task_id' value = ". $row["task_id"] ." />
                                                                <div>
-                                                                   <span class='task-id' style='color: #404040;'>Assigned to " . $assignees ."</span>
+                                                                   <span class='task-id' style='color: #404040;'>Assigned: " . $assignees ."</span>
                                                                    <br>
-                                                                   <span class='task-id' style='color: #404040;'>Due Date: " . $new_format_date ."</span>
+                                                                   <span class='task-id' style='color: #404040;'>Due: " . $new_format_date ."</span>
                                                                    <br>
                                                                    <p class='text-right'>See Details</p>
                                                                </div>
                                                            </a>
                                                            <select data-live-search='true' class='form-control changeStatus col-sm-8' onchange='location = this.value'>
                                                                <option class='no-display' selected='selected'>Status</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog Items</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>TO DO</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>DOING</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>TESTING</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>DONE</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>To Do</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>Doing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>Testing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>Done</option>
                                                            </select>
                                                        </div>
                                                    </div>
@@ -418,7 +457,7 @@ $encrypt_1 =  $data*rand(10,10000);
                               <div class="lg-3 done">
                                  <div>
                                     <div class="card-header text-center"  style="background-color:#ededed;" >
-                                       <h4 class="font-weight-bold">TESTING</h4>
+                                       <h6 class="font-weight-bold">TESTING</h6>
                                     </div>
                                     <?php
                                        if($result = $conn->query($sql4)){
@@ -461,24 +500,24 @@ $encrypt_1 =  $data*rand(10,10000);
                                                                </div>
                                                            </div>
                                                        
-                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task'>
-                                                               <h5 class='font-weight-bold'>" . ($row['task_name']) . "</h5>
+                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task' style='text-decoration:none;'>
+                                                               <h6 class='font-weight-bold'>" . ($row['task_name']) . "</h6>
                                                                <input type = 'hidden' id = 'task_id' value = ". $row["task_id"] ." />
                                                                <div>
-                                                                   <span class='task-id' style='color: #404040;'>Assigned to " . $assignees ."</span>
+                                                                   <span class='task-id' style='color: #404040;'>Assigned: " . $assignees ."</span>
                                                                    <br>
-                                                                   <span class='task-id' style='color: #404040;'>Due Date: " . $new_format_date ."</span>
+                                                                   <span class='task-id' style='color: #404040;'>Due: " . $new_format_date ."</span>
                                                                    <br>
                                                                    <p class='text-right'>See Details</p>
                                                                </div>
                                                            </a>
                                                            <select data-live-search='true' class='form-control changeStatus col-sm-8' onchange='location = this.value'>
                                                                <option class='no-display' selected='selected'>Status</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog Items</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>TO DO</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>DOING</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>TESTING</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>DONE</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>To Do</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>Doing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>Testing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>Done</option>
                                                            </select>
                                                        </div>
                                                    </div>
@@ -493,7 +532,7 @@ $encrypt_1 =  $data*rand(10,10000);
                               <div class="lg-3 testing">
                                  <div>
                                     <div class="card-header text-center"  style="background-color:#ededed;" >
-                                       <h4 class="font-weight-bold">DONE</h4>
+                                       <h6 class="font-weight-bold">DONE</h6>
                                     </div>
                                     <?php
                                        if($result = $conn->query($sql5)){
@@ -536,24 +575,24 @@ $encrypt_1 =  $data*rand(10,10000);
                                                                </div>
                                                            </div>
                                                        
-                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task'>
-                                                               <h5 class='font-weight-bold'>" . ($row['task_name']) . "</h5>
+                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task' style='text-decoration:none;'>
+                                                               <h6 class='font-weight-bold'>" . ($row['task_name']) . "</h6>
                                                                <input type = 'hidden' id = 'task_id' value = ". $row["task_id"] ." />
                                                                <div>
-                                                                   <span class='task-id' style='color: #404040;'>Assigned to " . $assignees ."</span>
+                                                                   <span class='task-id' style='color: #404040;'>Assigned: " . $assignees ."</span>
                                                                    <br>
-                                                                   <span class='task-id' style='color: #404040;'>Due Date: " . $new_format_date ."</span>
+                                                                   <span class='task-id' style='color: #404040;'>Due: " . $new_format_date ."</span>
                                                                    <br>
                                                                    <p class='text-right'>See Details</p>
                                                                </div>
                                                            </a>
                                                            <select data-live-search='true' class='form-control changeStatus col-sm-8' onchange='location = this.value'>
                                                                <option class='no-display' selected='selected'>Status</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog Items</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>TO DO</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>DOING</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>TESTING</option>
-                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>DONE</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>To Do</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>Doing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>Testing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>Done</option>
                                                            </select>
                                                        </div>
                                                    </div>

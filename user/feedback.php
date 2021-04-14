@@ -69,12 +69,12 @@
        
       <?php include('../navigation/head.php');?>
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
-       <style type="text/css">
-          
-           
-
-           
-           .bg-custom{
+	  <style type="text/css">
+        #wrapper .card{
+			cursor: pointer;
+		}
+		
+		.bg-custom{
               background-image: url("../resources/images/profile_header.png");
               background-color: #9a1b25;
               border-bottom-left-radius: 20% 50%;
@@ -83,7 +83,7 @@
           }
           .bg-img {
               max-width: 35%;
-              min-height: 220px;
+              min-height: 100px;
               max-height: auto;
               margin-left:auto;
               margin-right:auto;
@@ -96,7 +96,7 @@
               font-size: 60px;
               font-weight: bold;
            }
-       </style>
+	</style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
    <div class="se-pre-con"></div>
@@ -109,16 +109,17 @@
                   <div class="bg-custom" >
                             <div class="bg-img" style="text-align: center;">
                         <h3>Feedback Survey</h3>
-                        <p class="lead" style="font-size: 20px;"><b class="font-weight-bold">Note: </b><i class="font-weight-normal">This feedback survey is to collect the testing result in using Agile Master system (User Module). 
+                        <p class="lead" style="font-size: 20px; padding-bottom: 5%;"><b class="font-weight-bold">Note: </b><i class="font-weight-normal">This feedback survey is to collect the testing result in using Agile Master system (User Module). 
                            User could access to all the functionalities in this system. Do give us more feedback so that the team could improve the system in future. Thank you for your participation.</i>
                         </p>
+						
                      </div>
                   </div>
                 <div class="container-fluid">
                    <br>
                   <form method="POST" enctype="multipart/form-data">
                      <!--							<div class="row">-->
-                     <div class="card shadow mb-4">
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">Personal Information</h3>
                            <div class="card-tools">
@@ -163,7 +164,10 @@
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">Understanding of Agile Software Development?</h3>
                            <div class="card-tools">
@@ -176,24 +180,27 @@
                               <div class="form-group">
                                  <div class="form-check-inline">
                                     <label class="form-check-label" for="Not Understand">
-                                    <input type="radio" name="understanding" <?php if (isset($understanding) && $understanding=="Not Understand") echo "checked";?> value="Not Understand"> Not Understand
+                                    <input type="radio" name="understanding" id="Not Understand" <?php if (isset($understanding) && $understanding=="Not Understand") echo "checked";?> value="Not Understand"> Not Understand
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
                                     <label class="form-check-label" for="Average">
-                                    <input type="radio" name="understanding" <?php if (isset($understanding) && $understanding=="Average") echo "checked";?> value="Average"> Average
+                                    <input type="radio" name="understanding" id="Average" <?php if (isset($understanding) && $understanding=="Average") echo "checked";?> value="Average"> Average
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
                                     <label class="form-check-label" for="Understand">
-                                    <input type="radio" name="understanding" <?php if (isset($understanding) && $understanding=="Understand") echo "checked";?> value="Good"> Understand  
+                                    <input type="radio" name="understanding" id="Understand" <?php if (isset($understanding) && $understanding=="Understand") echo "checked";?> value="Good"> Understand  
                                     </label>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">Experience of using Agile Software Development before?</h3>
                            <div class="card-tools">
@@ -205,35 +212,38 @@
                            <div class="col-md-12">
                               <div class="form-group">
                                  <div class="form-check-inline">
-                                    <label class="form-check-label" for="Poor">
-                                    <input type="radio" name="experience" <?php if (isset($experience) && $experience=="Poor") echo "checked";?> value="Poor"> Poor
+                                    <label class="form-check-label" for="Poor1">
+                                    <input type="radio" name="experience" id="Poor1" <?php if (isset($experience) && $experience=="Poor") echo "checked";?> value="Poor"> Poor
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Average">
-                                    <input type="radio" name="experience" <?php if (isset($experience) && $experience=="Average") echo "checked";?> value="Average"> Average
+                                    <label class="form-check-label" for="Average1">
+                                    <input type="radio" name="experience" id="Average1" <?php if (isset($experience) && $experience=="Average") echo "checked";?> value="Average"> Average
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Good">
-                                    <input type="radio" name="experience" <?php if (isset($experience) && $experience=="Good") echo "checked";?> value="Good"> Good  
+                                    <label class="form-check-label" for="Good1">
+                                    <input type="radio" name="experience" id="Good1" <?php if (isset($experience) && $experience=="Good") echo "checked";?> value="Good"> Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Very Good">
-                                    <input type="radio" name="experience" <?php if (isset($experience) && $experience=="Very Good") echo "checked";?> value="Very Good"> Very Good  
+                                    <label class="form-check-label" for="Very Good1">
+                                    <input type="radio" name="experience" id="Very Good1" <?php if (isset($experience) && $experience=="Very Good") echo "checked";?> value="Very Good"> Very Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Excellent">
-                                    <input type="radio" name="experience" <?php if (isset($experience) && $experience=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
+                                    <label class="form-check-label" for="Excellent1">
+                                    <input type="radio" name="experience" id="Excellent1" <?php if (isset($experience) && $experience=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
                                     </label>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">How do you like User the Interface (UI)?</h3>
                            <div class="card-tools">
@@ -245,35 +255,38 @@
                            <div class="col-md-12">
                               <div class="form-group">
                                  <div class="form-check-inline">
-                                    <label class="form-check-label" for="Poor">
-                                    <input type="radio" name="like_ui" <?php if (isset($like_ui) && $like_ui=="Poor") echo "checked";?> value="Poor"> Poor
+                                    <label class="form-check-label" for="Poor2">
+                                    <input type="radio" name="like_ui" id="Poor2" <?php if (isset($like_ui) && $like_ui=="Poor") echo "checked";?> value="Poor"> Poor
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Average">
-                                    <input type="radio" name="like_ui" <?php if (isset($like_ui) && $like_ui=="Average") echo "checked";?> value="Average"> Average
+                                    <label class="form-check-label" for="Average2">
+                                    <input type="radio" name="like_ui" id="Average2" <?php if (isset($like_ui) && $like_ui=="Average") echo "checked";?> value="Average"> Average
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Good">
-                                    <input type="radio" name="like_ui" <?php if (isset($like_ui) && $like_ui=="Good") echo "checked";?> value="Good"> Good  
+                                    <label class="form-check-label" for="Good2">
+                                    <input type="radio" name="like_ui" id="Good2" <?php if (isset($like_ui) && $like_ui=="Good") echo "checked";?> value="Good"> Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Very Good">
-                                    <input type="radio" name="like_ui" <?php if (isset($like_ui) && $like_ui=="Very Good") echo "checked";?> value="Very Good"> Very Good  
+                                    <label class="form-check-label" for="Very Good2">
+                                    <input type="radio" name="like_ui" id="Very Good2" <?php if (isset($like_ui) && $like_ui=="Very Good") echo "checked";?> value="Very Good"> Very Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Excellent">
-                                    <input type="radio" name="like_ui" <?php if (isset($like_ui) && $like_ui=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
+                                    <label class="form-check-label" for="Excellent2">
+                                    <input type="radio" name="like_ui" id="Excellent2" <?php if (isset($like_ui) && $like_ui=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
                                     </label>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">How do you like the Navigation?</h3>
                            <div class="card-tools">
@@ -285,35 +298,38 @@
                            <div class="col-md-12">
                               <div class="form-group">
                                  <div class="form-check-inline">
-                                    <label class="form-check-label" for="Poor">
-                                    <input type="radio" name="navigation_feature" <?php if (isset($navigation_feature) && $navigation_feature=="Poor") echo "checked";?> value="Poor"> Poor
+                                    <label class="form-check-label" for="Poor3">
+                                    <input type="radio" name="navigation_feature" id="Poor3" <?php if (isset($navigation_feature) && $navigation_feature=="Poor") echo "checked";?> value="Poor"> Poor
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Average">
-                                    <input type="radio" name="navigation_feature" <?php if (isset($navigation_feature) && $navigation_feature=="Average") echo "checked";?> value="Average"> Average
+                                    <label class="form-check-label" for="Average3">
+                                    <input type="radio" name="navigation_feature" id="Average3" <?php if (isset($navigation_feature) && $navigation_feature=="Average") echo "checked";?> value="Average"> Average
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Good">
-                                    <input type="radio" name="navigation_feature" <?php if (isset($navigation_feature) && $navigation_feature=="Good") echo "checked";?> value="Good"> Good  
+                                    <label class="form-check-label" for="Good3">
+                                    <input type="radio" name="navigation_feature" id="Good3" <?php if (isset($navigation_feature) && $navigation_feature=="Good") echo "checked";?> value="Good"> Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Very Good">
-                                    <input type="radio" name="navigation_feature" <?php if (isset($navigation_feature) && $navigation_feature=="Very Good") echo "checked";?> value="Very Good"> Very Good  
+                                    <label class="form-check-label" for="Very Good3">
+                                    <input type="radio" name="navigation_feature" id="Very Good3" <?php if (isset($navigation_feature) && $navigation_feature=="Very Good") echo "checked";?> value="Very Good"> Very Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Excellent">
-                                    <input type="radio" name="navigation_feature" <?php if (isset($navigation_feature) && $navigation_feature=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
+                                    <label class="form-check-label" for="Excellent3">
+                                    <input type="radio" name="navigation_feature" id="Excellent3" <?php if (isset($navigation_feature) && $navigation_feature=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
                                     </label>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">How do you like the Process Flow?</h3>
                            <div class="card-tools">
@@ -325,35 +341,38 @@
                            <div class="col-md-12">
                               <div class="form-group">
                                  <div class="form-check-inline">
-                                    <label class="form-check-label" for="Poor">
-                                    <input type="radio" name="process_flow" <?php if (isset($like_ui) && $like_ui=="Poor") echo "checked";?> value="Poor"> Poor
+                                    <label class="form-check-label" for="Poor4">
+                                    <input type="radio" name="process_flow" id="Poor4" <?php if (isset($like_ui) && $like_ui=="Poor") echo "checked";?> value="Poor"> Poor
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Average">
-                                    <input type="radio" name="process_flow" <?php if (isset($like_ui) && $like_ui=="Average") echo "checked";?> value="Average"> Average
+                                    <label class="form-check-label" for="Average4">
+                                    <input type="radio" name="process_flow" id="Average4" <?php if (isset($like_ui) && $like_ui=="Average") echo "checked";?> value="Average"> Average
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Good">
-                                    <input type="radio" name="process_flow" <?php if (isset($like_ui) && $like_ui=="Good") echo "checked";?> value="Good"> Good  
+                                    <label class="form-check-label" for="Good4">
+                                    <input type="radio" name="process_flow" id="Good4" <?php if (isset($like_ui) && $like_ui=="Good") echo "checked";?> value="Good"> Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Very Good">
-                                    <input type="radio" name="process_flow" <?php if (isset($like_ui) && $like_ui=="Very Good") echo "checked";?> value="Very Good"> Very Good  
+                                    <label class="form-check-label" for="Very Good4">
+                                    <input type="radio" name="process_flow" id="Very Good4" <?php if (isset($like_ui) && $like_ui=="Very Good") echo "checked";?> value="Very Good"> Very Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Excellent">
-                                    <input type="radio" name="process_flow" <?php if (isset($like_ui) && $like_ui=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
+                                    <label class="form-check-label" for="Excellent4">
+                                    <input type="radio" name="process_flow" id="Excellent4" <?php if (isset($like_ui) && $like_ui=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
                                     </label>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">How do you like the Tools Provided?</h3>
                            <div class="card-tools">
@@ -365,35 +384,38 @@
                            <div class="col-md-12">
                               <div class="form-group">
                                  <div class="form-check-inline">
-                                    <label class="form-check-label" for="Poor">
-                                    <input type="radio" name="tools_provided" <?php if (isset($tools_provided) && $tools_provided=="Poor") echo "checked";?> value="Poor"> Poor
+                                    <label class="form-check-label" for="Poor5">
+                                    <input type="radio" name="tools_provided" id="Poor5" <?php if (isset($tools_provided) && $tools_provided=="Poor") echo "checked";?> value="Poor"> Poor
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Average">
-                                    <input type="radio" name="tools_provided" <?php if (isset($tools_provided) && $tools_provided=="Average") echo "checked";?> value="Average"> Average
+                                    <label class="form-check-label" for="Average5">
+                                    <input type="radio" name="tools_provided" id="Average5" <?php if (isset($tools_provided) && $tools_provided=="Average") echo "checked";?> value="Average"> Average
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Good">
-                                    <input type="radio" name="tools_provided" <?php if (isset($tools_provided) && $tools_provided=="Good") echo "checked";?> value="Good"> Good  
+                                    <label class="form-check-label" for="Good5">
+                                    <input type="radio" name="tools_provided" id="Good5" <?php if (isset($tools_provided) && $tools_provided=="Good") echo "checked";?> value="Good"> Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Very Good">
-                                    <input type="radio" name="tools_provided" <?php if (isset($tools_provided) && $tools_provided=="Very Good") echo "checked";?> value="Very Good"> Very Good  
+                                    <label class="form-check-label" for="Very Good5">
+                                    <input type="radio" name="tools_provided" id="Very Good5" <?php if (isset($tools_provided) && $tools_provided=="Very Good") echo "checked";?> value="Very Good"> Very Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Excellent">
-                                    <input type="radio" name="tools_provided" <?php if (isset($tools_provided) && $tools_provided=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
+                                    <label class="form-check-label" for="Excellent5">
+                                    <input type="radio" name="tools_provided" id="Excellent5" <?php if (isset($tools_provided) && $tools_provided=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
                                     </label>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">How do you find the linkage between the different tools, do you feels that they are linked together or stand alone?</h3>
                            <div class="card-tools">
@@ -405,35 +427,38 @@
                            <div class="col-md-12">
                               <div class="form-group">
                                  <div class="form-check-inline">
-                                    <label class="form-check-label" for="Poor">
-                                    <input type="radio" name="linkage" <?php if (isset($linkage) && $linkage=="Poor") echo "checked";?> value="Poor"> Poor
+                                    <label class="form-check-label" for="Poor6">
+                                    <input type="radio" name="linkage" id="Poor6" <?php if (isset($linkage) && $linkage=="Poor") echo "checked";?> value="Poor"> Poor
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Average">
-                                    <input type="radio" name="linkage" <?php if (isset($linkage) && $linkage=="Average") echo "checked";?> value="Average"> Average
+                                    <label class="form-check-label" for="Average6">
+                                    <input type="radio" name="linkage" id="Average6" <?php if (isset($linkage) && $linkage=="Average") echo "checked";?> value="Average"> Average
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Good">
-                                    <input type="radio" name="linkage" <?php if (isset($linkage) && $linkage=="Good") echo "checked";?> value="Good"> Good  
+                                    <label class="form-check-label" for="Good6">
+                                    <input type="radio" name="linkage" id="Good6" <?php if (isset($linkage) && $linkage=="Good") echo "checked";?> value="Good"> Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Very Good">
-                                    <input type="radio" name="linkage" <?php if (isset($linkage) && $linkage=="Very Good") echo "checked";?> value="Very Good"> Very Good  
+                                    <label class="form-check-label" for="Very Good6">
+                                    <input type="radio" name="linkage" id="Very Good6" <?php if (isset($linkage) && $linkage=="Very Good") echo "checked";?> value="Very Good"> Very Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Excellent">
-                                    <input type="radio" name="linkage" <?php if (isset($linkage) && $linkage=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
+                                    <label class="form-check-label" for="Excellent6">
+                                    <input type="radio" name="linkage" id="Excellent6" <?php if (isset($linkage) && $linkage=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
                                     </label>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">How would you rate your experience of using this system?</h3>
                            <div class="card-tools">
@@ -445,35 +470,38 @@
                            <div class="col-md-12">
                               <div class="form-group">
                                  <div class="form-check-inline">
-                                    <label class="form-check-label" for="Poor">
-                                    <input type="radio" name="rate" <?php if (isset($rate) && $rate=="Poor") echo "checked";?> value="Poor"> Poor
+                                    <label class="form-check-label" for="Poor7">
+                                    <input type="radio" name="rate" id="Poor7" <?php if (isset($rate) && $rate=="Poor") echo "checked";?> value="Poor"> Poor
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Average">
-                                    <input type="radio" name="rate" <?php if (isset($rate) && $rate=="Average") echo "checked";?> value="Average"> Average
+                                    <label class="form-check-label" for="Average7">
+                                    <input type="radio" name="rate" id="Average7" <?php if (isset($rate) && $rate=="Average") echo "checked";?> value="Average"> Average
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Good">
-                                    <input type="radio" name="rate" <?php if (isset($rate) && $rate=="Good") echo "checked";?> value="Good"> Good  
+                                    <label class="form-check-label" for="Good7">
+                                    <input type="radio" name="rate" id="Good7" <?php if (isset($rate) && $rate=="Good") echo "checked";?> value="Good"> Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Very Good">
-                                    <input type="radio" name="rate" <?php if (isset($rate) && $rate=="Very Good") echo "checked";?> value="Very Good"> Very Good  
+                                    <label class="form-check-label" for="Very Good7">
+                                    <input type="radio" name="rate" id="Very Good7" <?php if (isset($rate) && $rate=="Very Good") echo "checked";?> value="Very Good"> Very Good  
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Excellent">
-                                    <input type="radio" name="rate" <?php if (isset($rate) && $rate=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
+                                    <label class="form-check-label" for="Excellent7">
+                                    <input type="radio" name="rate" id="Excellent7" <?php if (isset($rate) && $rate=="Excellent ") echo "checked";?> value="Excellent "> Excellent   
                                     </label>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">Considering your complete experience with Agile Master, How likely would you be to recommend it to a friends or colleague?</h3>
                            <div class="card-tools">
@@ -485,20 +513,23 @@
                            <div class="col-md-12">
                               <div class="form-group">
                                  <div class="form-check-inline">
-                                    <label class="form-check-label" for="Poor">
-                                    <input type="radio" name="recommend" <?php if (isset($recommend) && $recommend=="Unlikely") echo "checked";?> value="Unlikely"> Unlikely
+                                    <label class="form-check-label" for="Poor8">
+                                    <input type="radio" name="recommend" id="Poor8" <?php if (isset($recommend) && $recommend=="Unlikely") echo "checked";?> value="Unlikely"> Unlikely
                                     </label>
                                  </div>
                                  <div class="form-check-inline ml-5">
-                                    <label class="form-check-label" for="Average">
-                                    <input type="radio" name="recommend" <?php if (isset($recommend) && $recommend=="Very Likely") echo "checked";?> value="Very Likely"> Very Likely
+                                    <label class="form-check-label" for="Average8">
+                                    <input type="radio" name="recommend" id="Average8" <?php if (isset($recommend) && $recommend=="Very Likely") echo "checked";?> value="Very Likely"> Very Likely
                                     </label>
                                  </div>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">What did you like the most in the system?</h3>
                            <div class="card-tools">
@@ -512,7 +543,10 @@
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">What did you like the least in the system?</h3>
                            <div class="card-tools">
@@ -526,7 +560,10 @@
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">Which part of the system could be improve and how?</h3>
                            <div class="card-tools">
@@ -540,7 +577,10 @@
                            </div>
                         </div>
                      </div>
-                     <div class="card shadow mb-4">
+					 
+					 <br>
+					 
+                     <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">Are there any features that you would like to proposed in this system?</h3>
                            <div class="card-tools">
@@ -553,15 +593,15 @@
                               <textarea type="text" class="md-textarea form-control"  id="new_feature" name="new_feature" rows="4" cols="50"></textarea>
                            </div>
                         </div>
-                     </div>
-                     <div class="card">
-                        <div class="card-body">
-                           <input type="submit" name="submit" value="Submit" id="submit-fs" class="btn btn-success" >
-                        </div>
-                        <div class="card-footer">
+						 <div class="card-footer">
                            Thank you for your time filling this feedback survey!
                         </div>
                      </div>
+                     
+                       
+                           <input type="submit" name="submit" value="Submit" id="submit-fs" class="btn btn-success" >
+							<br><br>
+                     
                   </form>
                </div>
             </section>

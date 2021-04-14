@@ -294,6 +294,34 @@ include_once '../helpers/module.php';
         });
       }
   </script>
+  <style type="text/css">
+          
+           
+
+           
+           .bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 100px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 40px 0px 0px 0px;
+              font-size: 60px;
+              font-weight: bold;
+           }
+	</style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed" onload="init()">
@@ -303,17 +331,24 @@ include_once '../helpers/module.php';
 	<?php include('../navigation/user/diagramflowchart_sidebar.php');?>
 
 	<div class="content-wrapper">
-		</br></br>
 		<section class="content">
+		
+			<div class="bg-custom">
+				<div class="bg-img" style="text-align: center;">
+					<div class="searchContainer">
+						<h2>Flowchart Diagram Creator</h2>
+						<p class="lead">Create A Flowchart with different types of the shaped provided</p>
+					</div>
+                               
+				</div>
+                <br>
+			</div>
+			<br>
+			
 			<div class="container-fluid">
 				<div class="card shadow mb-4">
 					<div class="card-body">
-		
-						<div class="card-header py-3">
-							<h3 class="m-4 font-weight-bold">Flowchart Creator</h3>
-							<h5 class="m-4 font-weight-bold">Create A Flowchart with different types of the shaped provided.</h5>
-						</div>
-			
+	
 						<div id="sample">
 							<div style="width: 100%; display: flex; justify-content: space-between">
 								<div id="myPaletteDiv" style="width: 105px; margin-right: 2px; background-color: whitesmoke; border: solid 1px black"></div>
@@ -335,8 +370,9 @@ include_once '../helpers/module.php';
 								 ]}
 								</textarea>
 								</br>
-								<div class="form-row">
-									<button id="button" style="color:white;background-color:green;border-radius:5px;padding:10px;border:1px solid white;">Download Image</button>
+								
+								<div class="forms-row">
+									<button type="button" id="button" class="btn btn-outline-dark" style="font-weight: bold";><i class="ri-download-2-fill"></i> Download</button>
 								</div>
 							</div>
 						</div>

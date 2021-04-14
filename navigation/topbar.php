@@ -18,7 +18,7 @@ if(isset($_SESSION['user_id']))
 				<a href="../user/dashboard.php"><img src="../resources/images/logo.png" alt="" style="max-width: 12%;margin-left: 20%;" ></a>
 			</li>
 		</ul>
-		<div id="google_translate_element" style="margin-top:1.25%;"></div>
+		<div id="google_translate_element" style="margin-top:1.25%;"></div>&nbsp;&nbsp;
 		<ul class="navbar-nav ml-auto">
 <!--
             
@@ -59,7 +59,7 @@ if(isset($_SESSION['user_id']))
             
 			
 			<a class="nav-link"  href="users.php">
-					<i class='fas fa-comments fa-2x'></i>
+					<i class='fas fa-comments' style="font-size: 1.5em;"></i>
 					<span class="badge badge-warning navbar-badge"></span>
 			</a>
 			

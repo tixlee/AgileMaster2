@@ -53,6 +53,34 @@ if(isset($_POST['create'])){
 <head>
 	<title>AgileMaster | Projects</title>
 	<?php include('../navigation/head.php');?>
+	<style type="text/css">
+        #wrapper .card{
+			cursor: pointer;
+		}
+		
+		.bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 100px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 40px 0px 0px 0px;
+              font-size: 60px;
+              font-weight: bold;
+           }
+ </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="se-pre-con"></div>
@@ -62,12 +90,26 @@ if(isset($_POST['create'])){
 	<?php include('../navigation/user/project_sidebar.php');?>
 
 	<div class="content-wrapper">
-		<br><br>
 		<section class="content">
+		
+		<div class="bg-custom">
+				<div class="bg-img" style="text-align: center;">
+					<div class="searchContainer">
+						<h2>Archived Projects</h2>
+					</div>
+                               
+				</div>
+                <br>
+			</div>
+			
 			<div class="container-fluid">
+			
+			<br>
+				<button onclick="location.href='project.php'" type="button" class="btn btn-dark">
+					<i class="ri-arrow-go-back-line"></i> Back
+                </button>
 	  
-				<button type="button" class="btn btn-success" onclick="location.href='project.php'"> ACTIVE PROJECT(s)</button>
-                <br><br>
+				<br><br>
 				<div class="row">
 
                 <?php 
@@ -83,9 +125,9 @@ if(isset($_POST['create'])){
                             if(mysqli_num_rows($getAllProjects) > 0) {
                           ?>
                             <div class="box-wrap col-xl-3 col-md-4 mb-4">
-                              <div class="card shadow " >
+                              <div class="card shadow " style="border-radius: 15px;">
 							  <a href="project_details.php?project_id=<?php echo $row['project_id']; ?>">
-                                  <img src="../resources/images/bg6.jpg" class="" style="filter: brightness(90%); color: #990021; width: 100%"/></a>
+                                  <img src="../resources/images/5.jpg" class="" style="filter: brightness(90%); color: #990021; width: 100%; border-top-left-radius: 15px; border-top-right-radius: 15px;"/></a>
                                     
                                   <?php
                                                 $u_query = $conn->query("SELECT * FROM `user_created_project` WHERE `created_proj_id` = '$project_id'") or die(mysqli_error());
@@ -104,17 +146,17 @@ if(isset($_POST['create'])){
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right bg-black" role="menu"> 
                                             <?php
-                                                    $confirmation = "Are you sure about restoring the selected project?";
+                                                    $confirmation = "Are you sure to reactivate the selected project?";
                                             ?>
                                             
-                                            <a href = "archive.php?project_id=<?php echo $row['project_id']?>&status=Active" class="dropdown-item trash" data-abc="true"  onclick="return confirm('<?php echo $confirmation; ?>')">
-                                                Active Project</a>
+                                            <a href = "archive.php?project_id=<?php echo $row['project_id']?>&status=Active" class="dropdown-item trash" data-abc="true"  onclick="return confirm('<?php echo $confirmation; ?>')" style="color:black;">
+                                                <i class="ri-inbox-unarchive-line"></i>&nbsp;Active Project</a>
                                             
                                         </div>
                                     </div>
                                   <?php } ?>
-								  <a href="project_details.php?project_id=<?php echo $row['project_id']; ?>" class="h4 font-weight-bold text-uppercase mb-1"  style="color: #d6002f;">
-                                  <div class="card-body">
+								  <a href="project_details.php?project_id=<?php echo $row['project_id']; ?>" class="h5 font-weight-bold text-uppercase mb-1"  style="color: #d6002f;">
+                                  <div class="card-body" style="color:#9a1b25;">
                                       
                                         <?php echo $rRow['project_name']; ?>
                                       

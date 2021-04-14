@@ -62,7 +62,7 @@ include_once '../helpers/module.php';
 <div class="wrapper">
 
 	<?php include('../navigation/topbar.php');?>
-    <?php include('../navigation/user/docgeneratorminutes_sidebar.php');?>
+    <?php include('../navigation/user/docgeneratordraft_sidebar.php');?>
 
 	<div class="content-wrapper">
 		<section class="content">

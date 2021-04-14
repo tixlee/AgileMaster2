@@ -296,7 +296,7 @@ file_put_contents('pdfs/Meeting Minutes Document.pdf', $dompdf->output());
 									</div>
 								</div>
 								
-								<br><hr><br>
+								<br>
 
 								<div class="row">
                                 <div class="col text-left">

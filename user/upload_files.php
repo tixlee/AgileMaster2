@@ -60,6 +60,34 @@
    <head>
       <title>AgileMaster | Upload Files</title>
       <?php include('../navigation/head.php');?>
+	  <style type="text/css">
+        #wrapper .card{
+			cursor: pointer;
+		}
+		
+		.bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 100px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 40px 0px 0px 0px;
+              font-size: 60px;
+              font-weight: bold;
+           }
+	</style>
       
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
@@ -69,15 +97,25 @@
          <?php include('../navigation/user/upload_sidebar.php');?>
          <!-- Content Wrapper. Contains page content -->
          <div class="content-wrapper">
-            <br ><br >
             <!-- Main content -->
             <section class="content">
+			
+			<div class="bg-custom">
+				<div class="bg-img" style="text-align: center;">
+					<div class="searchContainer">
+						<h2>Files Upload</h2>
+					</div>
+                               
+				</div>
+                <br>
+			</div>
+			<br>
                <div class="container-fluid">
                   <!-- Button trigger modal -->
                   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
-                  Upload File
+                  <i class="ri-upload-2-fill"></i> Upload
                   </button>
-                  <br><br>
+                  <br>
                   <!-- Modal -->
                   <div class="modal fade" id="exampleModalCenter"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                      <div class="modal-dialog " role="document">
@@ -149,9 +187,10 @@
                        $rRow = mysqli_fetch_array($getAllProjects);
                        $project = $row['project_id'];
                      ?>
-                  <div class="card shadow mb-4">
+					 <br>
+                  <div class="card shadow mb-4 card-danger card-outline">
                      <div class="card-header">
-                        <h1 class="card-title font-weight-bold"  style="color: #990021;">Project Name: <?php echo $rRow['project_name']; ?></h1>
+                        <h3 class="card-title font-weight-bold"  style="color: #990021;">Project: <?php echo $rRow['project_name']; ?></h3>
                         <input type = "hidden" id = "project_id" value = "<?php echo $a_fetch['project_id'];?>" />
                         <div class="card-tools">
                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
