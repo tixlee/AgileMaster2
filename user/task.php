@@ -1,0 +1,671 @@
+<?php
+   session_start();
+   ob_start();
+   
+   include_once '../connection/dbconnection.php';
+   include_once '../helpers/module.php';
+   include_once '../resources/links/require.php';
+   
+   if(isset($_SESSION['user_id']))
+   {
+   	$userId = $_SESSION["user_id"];
+   }
+
+$getAllProjectsAdmin = getAllProjectsAdmin();
+$iRow = mysqli_fetch_array($getAllProjectsAdmin);
+$project_id = $iRow['project_id'];
+
+$get_project = get_project($project_id);
+$cRow = mysqli_fetch_array($get_project);
+
+$get_not_board = get_not_board($project_id);
+$nuRow = mysqli_fetch_array($get_not_board);
+
+$user_not = get_user($userId);
+$yRow = mysqli_fetch_array($user_not);
+$user_name = $yRow['fname'] . " " . $yRow['lname'];
+   
+   if(isset($_POST['create'])){
+       $board_id = $_GET['board_id'];
+       $created_by = $_POST['user_id'];
+   //    $user_id = $_POST['user_id'];
+   	
+       $task_name = strip_tags($_POST['task_name']);
+       $task_desc = strip_tags($_POST['task_desc']);
+       $due_date = strip_tags($_POST['due_date']);
+       $start_date = strip_tags($_POST['start_date']);
+       
+       $task_name = mysqli_real_escape_string($conn, $task_name);
+       $task_desc = mysqli_real_escape_string($conn, $task_desc);
+       $due_date = mysqli_real_escape_string($conn, $due_date);
+       $start_date = mysqli_real_escape_string($conn, $start_date);
+       
+       $user_id = $_POST["user_id"];
+   
+       $sqlCount = "SELECT * FROM `task`";
+       if($result = $conn->query($sqlCount)){
+           $project_task_num = $result->num_rows+1;
+       insert_task($task_name, $task_desc, $project_task_num, $board_id, $due_date, $start_date, 1, $created_by);
+       insert_task_assignees($user_id);
+   	insert_events($created_by, $task_name, $due_date, $due_date, '#FF0000', '#ffffff');
+           
+       $get_not_comment = get_not_comment($cRow['project_id']);
+       $mrRow = mysqli_fetch_array($get_not_comment);
+           $recipient_id = $_POST["user_id"];
+           insert_notification($recipient_id, "$user_name assigned $task_name task in $board_id board" );
+           
+       echo "<script>window.location.href ='../user/task.php?board_id=$board_id'</script>";
+      
+       }
+   
+   }
+   
+   $board_id = $_GET['board_id'];
+   
+   
+   
+   ?>
+<?php 
+   $month = date('m');
+   $day = date('d');
+   $year = date('Y');
+   
+   $today = $year . '-' . $month . '-' . $day;
+   ?>
+   
+<?php
+// Create an encryption method to hide the id number in the URL Link
+
+// Create a variable for data
+$data = 50;
+
+// Encrypt the data by randoming the number from 10 to 100000
+$encrypt_1 =  $data*rand(10,10000);
+
+// Using Base64 Encryption method to encrypt the data and show on the URL for id number
+// $link = "../user/project_details.php?project_id=".urlencode(base64_encode($encrypt_1));
+
+?>
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>AgileMaster | Task</title>
+      <?php include('../navigation/head.php');?>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+	  <style type="text/css">
+        #wrapper .card{
+			cursor: pointer;
+		}
+		
+		.bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 100px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 40px 0px 0px 0px;
+              font-size: 60px;
+              font-weight: bold;
+           }
+
+		 .card-body a:hover{
+			webkit-transform: scale(0.9);
+			-ms-transform: scale(0.9);
+			transform: scale(0.9);
+		   }	   
+		</style>
+   </head>
+   <body class="hold-transition sidebar-mini layout-fixed">
+       <div class="se-pre-con"></div>
+      <div class="wrapper">
+         <?php include('../navigation/topbar.php');?>
+         <?php include('../navigation/user/project_sidebar.php');?>
+         <div class="content-wrapper">
+            <section class="content">
+			
+			<div class="bg-custom">
+			<?php
+                     $getAllProjectsAdmin = getAllProjectsAdmin();
+                     $iRow = mysqli_fetch_array($getAllProjectsAdmin);
+//                     $project_id = $_GET['project_id'];
+                     $query = $conn->query("SELECT * FROM `project` NATURAL JOIN `user_project`  WHERE `project_id` = '$iRow[project_id]'") or die(mysqli_error());
+                     $l_query = $query->fetch_array();
+                     
+                     $board_id = $_GET['board_id'];
+                     $sql = "SELECT * FROM `board` NATURAL JOIN `project` WHERE `board_id` = '$board_id'";
+                     $result = $conn->query($sql);
+                     $bRow = $result->fetch_assoc();
+                     $result->free_result();
+                     $project_id = $l_query['project_id'];
+ 
+                     if(isset($bRow['board_id'])){
+               ?>
+			   
+			   
+				<div class="bg-img" style="text-align: center;">
+					<div class="searchContainer">
+						<h2>Board</h2>
+						<h5 class=" font-weight-bold">Project Name: &nbsp; <?php echo $bRow['project_name']; ?></h5>
+						<h5 class=" font-weight-bold">Board Name: &nbsp; <?php echo $bRow['board_name']; ?></h5>
+					</div>
+
+                               
+				</div>
+                <br>
+			</div>
+			
+               <div class="container-fluid">
+					 
+					 
+                  <div class="col-md-12">
+                      <button onclick="location.href='project_details.php?project_id=<?php echo $bRow['project_id']; ?>'" type="button" class="btn btn-dark">
+						<i class="ri-arrow-go-back-line"></i> Back
+                     </button>
+                   <br><br>
+                     <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body" style="background-image: url('../resources/images/wallpaper1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center; min-height: 600px; background-attachment: fixed; ">
+                           <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
+                           <i class="fas fa-plus"></i> Add Task
+                           </button>
+                           <br><br>
+                           <!-- Modal -->
+                           <div class="modal fade" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                       <h5 class="modal-title" id="exampleModalLongTitle">New Task</h5>
+                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                       </button>
+                                    </div>
+                                    <div class="modal-body">
+                                       <form method="POST" enctype="multipart/form-data">
+                                          <input type="hidden" name="task_id" value="<?php $_POST['task_id']; ?>">
+                                          <input type="hidden" name="project_task_num" value="<?php $_POST['project_task_num']; ?>">
+                                          <div class="row col-md-12 col-xm-3">
+                                             <label for="task_name" >Task Name</label>
+                                             <input type="text" name="task_name" id="task_name" class="form-control" placeholder="Task Name" required autocomplete="off">
+                                          </div>
+                                          <br>
+                                          <div class="form-group shadow-textarea">
+                                             <label for="task_desc">Description</label>
+                                             <textarea class="form-control"  name="task_desc" id="task_desc" rows="3" placeholder="Add Task Description"  required=""></textarea>
+                                          </div>
+                                          <br>
+                                          <div class="row col-md-12 col-xm-6">
+                                             <label for="due_date" >Start Date</label>
+                                             <input class="form-control" value="<?php echo $today; ?>" type="date" placeholder="Start Date" id="start_date" name="start_date" required=""/>
+                                          </div>
+                                          <br>
+                                          <div class="row col-md-12 col-xm-6">
+                                             <label for="due_date" >Due Date</label>
+                                             <input class="form-control" type="date" placeholder="Due Date" id="due_date" name="due_date" required=""/>
+                                          </div>
+                                          <br>
+                                          <div class="row col-md-12 col-xm-6 mb-3 ">
+                                             <label for="exampleDropdown" >Assign To</label>
+                                             <select data-live-search="true" title="Please select member" name="user_id" class="form-control selectpicker col-sm-12">
+                                                <?php
+                                                   $user_id = $_GET['user_id'];
+                                                   $query = $conn->query("SELECT * FROM `user_project` NATURAL JOIN `users`  WHERE `project_id` = '$bRow[project_id]'") or die(mysqli_error());
+                                                   while($u_query = $query->fetch_array())
+                                                   {
+                                                   ?>
+                                                <option value="<?php echo $u_query['user_id']; ?>" <?php if ($user_id == $u_query['user_id']) {echo "selected";} ?> required><?php echo $u_query['fname']; ?></option>
+                                                <?php
+                                                   }
+                                                   ?>
+                                             </select>
+                                          </div>
+                                          <br>
+                                          <div class="modal-footer">
+                                             <input type="button" name="submit" value="Close" id="back-fs" class="btn btn-danger" data-dismiss="modal">
+                                             <input type="submit" name="create" value="Create" id="submit-fs" class="btn btn-success" >
+                                          </div>
+                                       </form>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="task-list">
+                              <div class="lg-3 backlog ">
+                                 <div>
+                                    <div class="card-header text-center" style="background-color:#ededed;" >
+                                       <h6 class="font-weight-bold" >BACKLOG</h6>
+                                    </div>
+                                    <?php
+                                       $sql1 = "SELECT * FROM task WHERE board_id = '$board_id' AND state = '1'";
+                                       $sql2 = "SELECT * FROM task WHERE board_id = '$board_id' AND state = '2'";
+                                       $sql3 = "SELECT * FROM task WHERE board_id = '$board_id' AND state = '3'";
+                                       $sql4 = "SELECT * FROM task WHERE board_id = '$board_id' AND state = '4'";
+                                       $sql5 = "SELECT * FROM task WHERE board_id = '$board_id' AND state = '5'";
+                                       
+                                       if($result = $conn->query($sql1)){
+                                           $projectsCount = $result->num_rows;
+                                           if($projectsCount>0){
+                                               
+                                               while ($row = mysqli_fetch_array($result)) {
+                                                   $tn = $row['project_task_num'];
+                                                   $task_id = $row['task_id'].urlencode(base64_encode($encrypt_1));
+                                                   $assignees_arr = array();
+                                                   $getAssignees = getAssignees($task_id);
+                                       //                                                                    $nRow = mysqli_fetch_array($getAssignees);
+                                                   while ($nRow = mysqli_fetch_array($getAssignees)){
+                                                   array_push($assignees_arr, $nRow['fname']);
+                                                   $assignees = implode($assignees_arr, ", ");}
+                                                   $confirmation = "Are you sure about deleting task?";
+                                                   
+                                                   $due_date = $row['due_date'];
+                                                   // Creating timestamp from given date
+                                                   $timestamp = strtotime($due_date);
+                                       
+                                                   // Creating new date format from that timestamp
+                                                   $new_format_date = date("d-m-Y", $timestamp);
+                                                   
+                                                   echo "
+                                                   <div class='card'>
+                                                   <div class='card-body'>
+                                                           <div class='item-action dropdown' align='right' style='position: absolute; right: 5px; top: 5px; z-index: 1;' > 
+                                                               <a id='task-optn' href='#' data-toggle='dropdown' class='text-muted' data-abc='true' > 
+                                                                   <svg xmlns='http://www.w3.org/2000/svg'  color='black' width='25' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-more-vertical'>
+                                                                       <circle cx='16' cy='12' r='1'></circle>
+                                                                       <circle cx='16' cy='5' r='1'></circle>
+                                                                       <circle cx='16' cy='19' r='1'></circle>
+                                                                   </svg> 
+                                                               </a>
+                                                               <div class='dropdown-menu dropdown-menu-right bg-black' role='menu'> 
+                                                                  
+                                                                   <a href = 'delete_task.php?task_id=".$row['task_id']."&board_id=".$row['board_id']."' class='dropdown-item trash' data-abc='true'>
+                                                                       Delete Task</a>
+                                       
+                                                               </div>
+                                                           </div>
+                                                       
+                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task' style='text-decoration:none;'>
+                                                               <h6 class='font-weight-bold'>" . ($row['task_name']) . "</h6>
+                                                               <input type = 'hidden' id = 'task_id' value = ". $row["task_id"] ." />
+                                                               <div>
+                                                                   <span class='task-id' style='color: #404040;'>Assigned: " . $assignees ."</span>
+                                                                   <br>
+                                                                   <span class='task-id' style='color: #404040;'>Due: " . $new_format_date ."</span>
+                                                                   <br>
+                                                                   <p class='text-right'>See Details</p>
+                                                               </div>
+                                                           </a>
+                                                           <select data-live-search='true' class='form-control changeStatus col-sm-8' onchange='location = this.value'>
+                                                               <option class='no-display' selected='selected'>Status</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>To Do</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>Doing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>Testing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>Done</option>
+                                                           </select>
+                                                       </div>
+                                                   </div>
+                                                   ";
+                                               }
+                                               $result->free_result();
+                                           }
+                                       }
+                                       
+                                       ?>
+                                 </div>
+                              </div>
+                              <div class="lg-3 todo">
+                                 <div>
+                                    <div class="card-header text-center"  style="background-color:#ededed;" >
+                                       <h6  class="font-weight-bold">TO DO</h6>
+                                    </div>
+                                    <?php
+                                       if($result = $conn->query($sql2)){
+                                           $projectsCount = $result->num_rows;
+                                           if($projectsCount>0){
+                                       
+                                               while ($row = mysqli_fetch_array($result)) {
+                                                   $tn = $row['project_task_num'];
+                                                   $task_id = $row['task_id'];
+                                                   $assignees_arr = array();
+                                                   $getAssignees = getAssignees($task_id);
+                                       //                                                                    $nRow = mysqli_fetch_array($getAssignees);
+                                                   while ($nRow = mysqli_fetch_array($getAssignees)){
+                                                   array_push($assignees_arr, $nRow['fname']);
+                                                   $assignees = implode($assignees_arr, ", ");}
+                                                   $confirmation = "Are you sure about deleting task?";
+                                                   
+                                                   $due_date = $row['due_date'];
+                                                   // Creating timestamp from given date
+                                                   $timestamp = strtotime($due_date);
+                                       
+                                                   // Creating new date format from that timestamp
+                                                   $new_format_date = date("d-m-Y", $timestamp);
+                                                   echo "
+                                                   <div class='card'>
+                                                   <div class='card-body'>
+                                                           <div class='item-action dropdown' align='right' style='position: absolute; right: 5px; top: 5px; z-index: 1;' > 
+                                                               <a id='task-optn' href='#' data-toggle='dropdown' class='text-muted' data-abc='true' > 
+                                                                   <svg xmlns='http://www.w3.org/2000/svg'  color='black' width='25' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-more-vertical'>
+                                                                       <circle cx='16' cy='12' r='1'></circle>
+                                                                       <circle cx='16' cy='5' r='1'></circle>
+                                                                       <circle cx='16' cy='19' r='1'></circle>
+                                                                   </svg> 
+                                                               </a>
+                                                               <div class='dropdown-menu dropdown-menu-right bg-black' role='menu'> 
+                                                                  
+                                                                   <a href = 'delete_task.php?task_id=".$row['task_id']."&board_id=".$row['board_id']."' class='dropdown-item trash' data-abc='true'>
+                                                                       Delete Task</a>
+                                       
+                                                               </div>
+                                                           </div>
+                                                       
+                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task' style='text-decoration:none;'>
+                                                               <h6 class='font-weight-bold'>" . ($row['task_name']) . "</h6>
+                                                               <input type = 'hidden' id = 'task_id' value = ". $row["task_id"] ." />
+                                                               <div>
+                                                                   <span class='task-id' style='color: #404040;'>Assigned: " . $assignees ."</span>
+                                                                   <br>
+                                                                   <span class='task-id' style='color: #404040;'>Due: " . $new_format_date ."</span>
+                                                                   <br>
+                                                                   <p class='text-right'>See Details</p>
+                                                               </div>
+                                                           </a>
+                                                           <select data-live-search='true' class='form-control changeStatus col-sm-8' onchange='location = this.value'>
+                                                               <option class='no-display' selected='selected'>Status</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>To Do</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>Doing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>Testing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>Done</option>
+                                                           </select>
+                                                       </div>
+                                                   </div>
+                                                   ";
+                                               }
+                                               $result->free_result();
+                                           }
+                                       }
+                                       ?>
+                                 </div>
+                              </div>
+                              <div class="lg-3 doing">
+                                 <div>
+                                    <div class="card-header text-center"  style="background-color:#ededed;" >
+                                       <h6 class="font-weight-bold">DOING</h6>
+                                    </div>
+                                    <?php
+                                       if($result = $conn->query($sql3)){
+                                           $projectsCount = $result->num_rows;
+                                           if($projectsCount>0){
+                                       
+                                               while ($row = mysqli_fetch_array($result)) {
+                                                   $tn = $row['project_task_num'];
+                                                   $task_id = $row['task_id'];
+                                                   $assignees_arr = array();
+                                                   $getAssignees = getAssignees($task_id);
+                                       //                                                                    $nRow = mysqli_fetch_array($getAssignees);
+                                                   while ($nRow = mysqli_fetch_array($getAssignees)){
+                                                   array_push($assignees_arr, $nRow['fname']);
+                                                   $assignees = implode($assignees_arr, ", ");}
+                                                   $confirmation = "Are you sure about deleting task?";
+                                                   
+                                                   $due_date = $row['due_date'];
+                                                   // Creating timestamp from given date
+                                                   $timestamp = strtotime($due_date);
+                                       
+                                                   // Creating new date format from that timestamp
+                                                   $new_format_date = date("d-m-Y", $timestamp);
+                                                   echo "
+                                                   <div class='card'>
+                                                   <div class='card-body'>
+                                                           <div class='item-action dropdown' align='right' style='position: absolute; right: 5px; top: 5px; z-index: 1;' > 
+                                                               <a id='task-optn' href='#' data-toggle='dropdown' class='text-muted' data-abc='true' > 
+                                                                   <svg xmlns='http://www.w3.org/2000/svg'  color='black' width='25' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-more-vertical'>
+                                                                       <circle cx='16' cy='12' r='1'></circle>
+                                                                       <circle cx='16' cy='5' r='1'></circle>
+                                                                       <circle cx='16' cy='19' r='1'></circle>
+                                                                   </svg> 
+                                                               </a>
+                                                               <div class='dropdown-menu dropdown-menu-right bg-black' role='menu'> 
+                                                                  
+                                                                   <a href = 'delete_task.php?task_id=".$row['task_id']."&board_id=".$row['board_id']."' class='dropdown-item trash' data-abc='true'>
+                                                                       Delete Task</a>
+                                       
+                                                               </div>
+                                                           </div>
+                                                       
+                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task' style='text-decoration:none;'>
+                                                               <h6 class='font-weight-bold'>" . ($row['task_name']) . "</h6>
+                                                               <input type = 'hidden' id = 'task_id' value = ". $row["task_id"] ." />
+                                                               <div>
+                                                                   <span class='task-id' style='color: #404040;'>Assigned: " . $assignees ."</span>
+                                                                   <br>
+                                                                   <span class='task-id' style='color: #404040;'>Due: " . $new_format_date ."</span>
+                                                                   <br>
+                                                                   <p class='text-right'>See Details</p>
+                                                               </div>
+                                                           </a>
+                                                           <select data-live-search='true' class='form-control changeStatus col-sm-8' onchange='location = this.value'>
+                                                               <option class='no-display' selected='selected'>Status</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>To Do</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>Doing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>Testing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>Done</option>
+                                                           </select>
+                                                       </div>
+                                                   </div>
+                                                   ";
+                                               }
+                                               $result->free_result();
+                                           }
+                                       }
+                                       ?>
+                                 </div>
+                              </div>
+                              <div class="lg-3 done">
+                                 <div>
+                                    <div class="card-header text-center"  style="background-color:#ededed;" >
+                                       <h6 class="font-weight-bold">TESTING</h6>
+                                    </div>
+                                    <?php
+                                       if($result = $conn->query($sql4)){
+                                           $projectsCount = $result->num_rows;
+                                           if($projectsCount>0){
+                                       
+                                               while ($row = mysqli_fetch_array($result)) {
+                                                   $tn = $row['project_task_num'];
+                                                   $task_id = $row['task_id'];
+                                                   $assignees_arr = array();
+                                                   $getAssignees = getAssignees($task_id);
+                                       //                                                                    $nRow = mysqli_fetch_array($getAssignees);
+                                                   while ($nRow = mysqli_fetch_array($getAssignees)){
+                                                   array_push($assignees_arr, $nRow['fname']);
+                                                   $assignees = implode($assignees_arr, ", ");}
+                                                   $confirmation = "Are you sure about deleting task?";
+                                                   
+                                                   $due_date = $row['due_date'];
+                                                   // Creating timestamp from given date
+                                                   $timestamp = strtotime($due_date);
+                                       
+                                                   // Creating new date format from that timestamp
+                                                   $new_format_date = date("d-m-Y", $timestamp);
+                                                   echo "
+                                                   <div class='card'>
+                                                   <div class='card-body'>
+                                                           <div class='item-action dropdown' align='right' style='position: absolute; right: 5px; top: 5px; z-index: 1;' > 
+                                                               <a id='task-optn' href='#' data-toggle='dropdown' class='text-muted' data-abc='true' > 
+                                                                   <svg xmlns='http://www.w3.org/2000/svg'  color='black' width='25' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-more-vertical'>
+                                                                       <circle cx='16' cy='12' r='1'></circle>
+                                                                       <circle cx='16' cy='5' r='1'></circle>
+                                                                       <circle cx='16' cy='19' r='1'></circle>
+                                                                   </svg> 
+                                                               </a>
+                                                               <div class='dropdown-menu dropdown-menu-right bg-black' role='menu'> 
+                                                                  
+                                                                   <a href = 'delete_task.php?task_id=".$row['task_id']."&board_id=".$row['board_id']."' class='dropdown-item trash' data-abc='true'>
+                                                                       Delete Task</a>
+                                       
+                                                               </div>
+                                                           </div>
+                                                       
+                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task' style='text-decoration:none;'>
+                                                               <h6 class='font-weight-bold'>" . ($row['task_name']) . "</h6>
+                                                               <input type = 'hidden' id = 'task_id' value = ". $row["task_id"] ." />
+                                                               <div>
+                                                                   <span class='task-id' style='color: #404040;'>Assigned: " . $assignees ."</span>
+                                                                   <br>
+                                                                   <span class='task-id' style='color: #404040;'>Due: " . $new_format_date ."</span>
+                                                                   <br>
+                                                                   <p class='text-right'>See Details</p>
+                                                               </div>
+                                                           </a>
+                                                           <select data-live-search='true' class='form-control changeStatus col-sm-8' onchange='location = this.value'>
+                                                               <option class='no-display' selected='selected'>Status</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>To Do</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>Doing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>Testing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>Done</option>
+                                                           </select>
+                                                       </div>
+                                                   </div>
+                                                   ";
+                                               }
+                                               $result->free_result();
+                                           }
+                                       }
+                                       ?>
+                                 </div>
+                              </div>
+                              <div class="lg-3 testing">
+                                 <div>
+                                    <div class="card-header text-center"  style="background-color:#ededed;" >
+                                       <h6 class="font-weight-bold">DONE</h6>
+                                    </div>
+                                    <?php
+                                       if($result = $conn->query($sql5)){
+                                           $projectsCount = $result->num_rows;
+                                           if($projectsCount>0){
+                                       
+                                               while ($row = mysqli_fetch_array($result)) {
+                                                   $tn = $row['project_task_num'];
+                                                   $task_id = $row['task_id'];
+                                                   $assignees_arr = array();
+                                                   $getAssignees = getAssignees($task_id);
+                                       //                                                                    $nRow = mysqli_fetch_array($getAssignees);
+                                                   while ($nRow = mysqli_fetch_array($getAssignees)){
+                                                   array_push($assignees_arr, $nRow['fname']);
+                                                   $assignees = implode($assignees_arr, ", ");}
+                                                   $confirmation = "Are you sure about deleting task?";
+                                                   
+                                                   $due_date = $row['due_date'];
+                                                   // Creating timestamp from given date
+                                                   $timestamp = strtotime($due_date);
+                                       
+                                                   // Creating new date format from that timestamp
+                                                   $new_format_date = date("d-m-Y", $timestamp);
+                                                   echo "
+                                                   <div class='card'>
+                                                   <div class='card-body'>
+                                                           <div class='item-action dropdown' align='right' style='position: absolute; right: 5px; top: 5px; z-index: 1;' > 
+                                                               <a id='task-optn' href='#' data-toggle='dropdown' class='text-muted' data-abc='true' > 
+                                                                   <svg xmlns='http://www.w3.org/2000/svg'  color='black' width='25' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-more-vertical'>
+                                                                       <circle cx='16' cy='12' r='1'></circle>
+                                                                       <circle cx='16' cy='5' r='1'></circle>
+                                                                       <circle cx='16' cy='19' r='1'></circle>
+                                                                   </svg> 
+                                                               </a>
+                                                               <div class='dropdown-menu dropdown-menu-right bg-black' role='menu'> 
+                                                                  
+                                                                   <a href = 'delete_task.php?task_id=".$row['task_id']."&board_id=".$row['board_id']."' class='dropdown-item trash' data-abc='true'>
+                                                                       Delete Task</a>
+                                       
+                                                               </div>
+                                                           </div>
+                                                       
+                                                           <a href='task_details.php?task_id=$task_id&board_id=$board_id&tn=$tn' class='task' style='text-decoration:none;'>
+                                                               <h6 class='font-weight-bold'>" . ($row['task_name']) . "</h6>
+                                                               <input type = 'hidden' id = 'task_id' value = ". $row["task_id"] ." />
+                                                               <div>
+                                                                   <span class='task-id' style='color: #404040;'>Assigned: " . $assignees ."</span>
+                                                                   <br>
+                                                                   <span class='task-id' style='color: #404040;'>Due: " . $new_format_date ."</span>
+                                                                   <br>
+                                                                   <p class='text-right'>See Details</p>
+                                                               </div>
+                                                           </a>
+                                                           <select data-live-search='true' class='form-control changeStatus col-sm-8' onchange='location = this.value'>
+                                                               <option class='no-display' selected='selected'>Status</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=1'>Backlog</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=2'>To Do</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=3'>Doing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=4'>Testing</option>
+                                                               <option value='changeStatus.php?task_id=$task_id&board_id=$board_id&tn=$tn&status=5'>Done</option>
+                                                           </select>
+                                                       </div>
+                                                   </div>
+                                                   ";
+                                               }
+                                               $result->free_result();
+                                           }
+                                       }
+                                       ?>
+                                 </div>
+                              </div>
+                           </div>
+
+                        </div>
+                     </div>
+                  </div>
+                   <?php
+                     }else{
+                         echo "<script>window.location.href ='../user/error_page.php'</script>";
+                     }
+                   ?>
+               </div>
+            </section>
+            <aside class="control-sidebar control-sidebar-dark">
+            </aside>
+         </div>
+      </div>
+       
+
+      <script src="../dependencies/scripts/custom.js"></script>
+      <script src="../dependencies/navigation/jquery/jquery.min.js"></script>
+      <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="../dependencies/navigation/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+      <script src="../dependencies/vendor/jquery-easing/jquery.easing.min.js"></script>
+      <script src="../dependencies/scripts/sb-admin-2.min.js"></script>
+      <script src="../dependencies/vendor/datatables/jquery.dataTables.min.js"></script>
+      <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+      <script src="../dependencies/scripts/datatables-demo.js"></script>
+      <script src="../dependencies/navigation/js/adminlte.js"></script>
+	  <script src="../dependencies/scripts/google.js"></script>
+      <script type="text/javascript">
+         $("#due_date").change(function () {
+         var startDate = document.getElementById("start_date").value;
+         var endDate = document.getElementById("due_date").value;
+         
+         if ((Date.parse(endDate) <= Date.parse(startDate))) {
+         alert("Due date should be greater than start date!");
+         document.getElementById("due_date").value = "";
+         }
+         });
+         
+         
+         
+      </script>
+   </body>
+</html>
