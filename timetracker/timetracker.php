@@ -64,6 +64,43 @@ include_once '../resources/links/require.php';
             }
 
        </style>
+       <script>
+$(document).ready(function(){
+    $('#project').on('change', function(){
+        var projectID = $(this).val();
+        if(projectID){
+            $.ajax({
+                type:'POST',
+                url:'ajaxData.php',
+                data:'project_id='+projectID,
+                success:function(html){
+                    $('#board').html(html);
+                }
+            });
+        }else{
+            $('#board').html('<option value="">Select project first</option>');
+            $('#task').html('<option value="">Select board first</option>');
+        }
+    });
+
+    $('#board').on('change', function(){
+        var boardID = $(this).val();
+        if(boardID){
+            $.ajax({
+                type:'POST',
+                url:'ajaxData.php',
+                data:'board_id='+boardID,
+                success:function(html){
+                    $('#task').html(html);
+                }
+            });
+        }else{
+            $('#task').html('<option value="">Select board first</option>');
+        }
+    });
+});
+
+</script>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
 	  <div class="se-pre-con"></div>
@@ -73,6 +110,44 @@ include_once '../resources/links/require.php';
 	<?php include('../navigation/user/timetracker_sidebar.php');?>
 
 	<div class="content-wrapper">
+  <br/>
+
+<?php
+// Include the database config file
+include_once 'dbConfig.php';
+
+// Fetch all the country data
+$query = "SELECT * FROM project ORDER BY project_name ASC";
+$result = $db->query($query);
+?>
+
+<!-- Country dropdown -->
+<form action="" method="post" style="margin-left: 50px;">
+<select id="project" name="project">
+<option value="">Select Project</option>
+<?php
+if($result->num_rows > 0){
+    while($row = $result->fetch_assoc()){
+        echo '<option value="'.$row['project_id'].'">'.$row['project_name'].'</option>';
+    }
+}else{
+    echo '<option value="">Project not available</option>';
+}
+?>
+</select>
+
+<!-- State dropdown -->
+<select id="board" name="board">
+<option value="">Select Project first</option>
+</select>
+
+<!-- City dropdown -->
+<select id="task" name="task">
+<option value="">Select Task first</option>
+</select>
+<input type="submit" id="submit" name="submit" class="btn btn-success" value="Submit"/>
+</form>
+
 		<br><br>
 		<section class="content">
 			<div class="container-fluid">
@@ -83,7 +158,7 @@ include_once '../resources/links/require.php';
 					</div>
               
 					<div class="card-body">
-						<button type="button" class="btn btn-success" id="add-project-button" disabled="disabled" title="Restart your browser if button are disabled.">Add Project/Task</button>
+						<button type="button" class="btn btn-success" id="add-project-button" disabled="disabled">Add Project/Task</button>
 						<br><br>
 						
 						<div class="table-responsive">
@@ -98,6 +173,10 @@ include_once '../resources/links/require.php';
 							</table>
 						</div>
 					</div>
+
+          <script type="text/javascript">
+          echo (prob);
+          </script>
 				</div>
 			</div>
 		</section>
@@ -105,6 +184,25 @@ include_once '../resources/links/require.php';
 	<aside class="control-sidebar control-sidebar-dark">
 	</aside>
 </div>
+
+<?php
+if(isset($_POST['submit'])){
+$sql1 = "SELECT * FROM project WHERE project_id = '".$_POST['project']."'";
+$sql2 = "SELECT * FROM board WHERE board_id = '".$_POST['board']."'";
+$sql3 = "SELECT * FROM task WHERE task_id = '".$_POST['task']."'";
+$result1 = $db->query($sql1);
+$result2 = $db->query($sql2);
+$result3 = $db->query($sql3);
+$row1 = $result1->fetch_assoc();
+$row2 = $result2->fetch_assoc();
+$row3 = $result3->fetch_assoc();
+$pro = $row1['project_name'].'/'.$row2['board_name'].'/'.$row3['task_name'];
+}
+
+?>
+<script type="text/javascript">
+          var prob = '<?= $pro;?>';
+          </script>
 
 <script src="../dependencies/navigation/jquery/jquery.min.js"></script>
 <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -116,6 +214,9 @@ include_once '../resources/links/require.php';
 <script src="../dependencies/scripts/datatables-demo.js"></script> 
 <script src="../dependencies/navigation/js/adminlte.js"></script>
 <script src="../dependencies/scripts/google.js"></script>
+
+
+
 
 </body>
 </html>
