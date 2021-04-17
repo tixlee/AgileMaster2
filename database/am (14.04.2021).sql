@@ -288,7 +288,7 @@ CREATE TABLE `meeting_minutes_draft` (
   `new_action_items` varchar(255) NOT NULL,
   `notes_info` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
- 
+
 
 -- --------------------------------------------------------
 
@@ -627,7 +627,8 @@ INSERT INTO `users` (`user_id`, `fname`, `lname`, `age`, `occupation`, `city`, `
 (6, 'Tarek', 'ABdelRaouf', 23, 'Student', 'Kuching', 'Malaysia', 'tarekabdelraouf@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'user2-160x160.jpg', 599275412, 'Offline', 'project member'),
 (7, 'Ziad', 'Tarek', 20, 'Student', 'Alexandria', 'Egypt', 'ziad@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'user2-160x160.jpg', 821755372, 'Online', 'project member'),
 (8, 'John', 'Smith', 23, 'Engineer', 'Kuala Lampur', 'Malaysia', 'johnsmith@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'user2-160x160.jpg', 828240262, 'Online', 'project member'),
-(9, 'Ahmed', 'AbdelRaouf', 25, 'STUDENT', 'kUCHING', 'MALAYSIA', '100089038@students.swinburne.edu.my', 'e10adc3949ba59abbe56e057f20f883e', '46dae512e375bee2664a025507da8795.jpg', 977431543, 'Offline', 'project manager');
+(9, 'Ahmed', 'AbdelRaouf', 25, 'STUDENT', 'kUCHING', 'MALAYSIA', '100089038@students.swinburne.edu.my', 'e10adc3949ba59abbe56e057f20f883e', '46dae512e375bee2664a025507da8795.jpg', 977431543, 'Offline', 'project manager'),
+(10, 'Siaw Zhen', 'Bong', 23, 'Student', 'Kuching', 'Malaysia', 'bong@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'user2-160x160.jpg', 841443134, 'Offline', 'project manager');
 
 -- --------------------------------------------------------
 
@@ -977,7 +978,7 @@ ALTER TABLE `user_created_project`
 --
 ALTER TABLE `user_project`
   MODIFY `user_proj_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-  
+
 --
 -- AUTO_INCREMENT for table `announcement`
 --
