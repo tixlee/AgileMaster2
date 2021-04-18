@@ -18,51 +18,32 @@ include_once '../resources/links/require.php';
 	<?php include('../navigation/head.php');?>
        <style type="text/css">
 
-           /* Center the loader */
-            #loader {
-              position: absolute;
-              left: 50%;
-              top: 50%;
-              z-index: 1;
-              width: 120px;
-              height: 120px;
-              margin: -76px 0 0 -76px;
-              border: 16px solid #f3f3f3;
-              border-radius: 50%;
-              border-top: 16px solid #9a1b25;
-              -webkit-animation: spin 2s linear infinite;
-              animation: spin 2s linear infinite;
-            }
-
-            @-webkit-keyframes spin {
-              0% { -webkit-transform: rotate(0deg); }
-              100% { -webkit-transform: rotate(360deg); }
-            }
-
-            @keyframes spin {
-              0% { transform: rotate(0deg); }
-              100% { transform: rotate(360deg); }
-            }
-
-            /* Add animation to "page content" */
-            .animate-bottom {
-              position: relative;
-              -webkit-animation-name: animatebottom;
-              -webkit-animation-duration: 1s;
-              animation-name: animatebottom;
-              animation-duration: 1s
-            }
-
-            @-webkit-keyframes animatebottom {
-              from { bottom:-100px; opacity:0 } 
-              to { bottom:0px; opacity:1 }
-            }
-
-            @keyframes animatebottom { 
-              from{ bottom:-100px; opacity:0 } 
-              to{ bottom:0; opacity:1 }
-            }
-
+            .bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 220px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 20px 0px 20px 0px;
+              font-size: 20px;
+              font-weight: bold;
+           }
+           .custom-select{
+               width: 200px;
+               margin-top: 5px;
+           }
        </style>
        <script>
 $(document).ready(function(){
@@ -109,18 +90,18 @@ $(document).ready(function(){
 	<?php include('../navigation/topbar.php');?>
 	<?php include('../navigation/user/timetracker_sidebar.php');?>
 
-	<div class="content-wrapper">
+	<div class="content-wrapper"  style="background-color: #ffffff;">
+               <div class="bg-custom" >
+                    <div class="bg-img" style="text-align: center;">
+                            <h2 class="mb-3">Time Tracker</h2>
+
   <br/>
 
-<?php
-
-      
-
-?>
-
 <!-- Country dropdown -->
-<form action="" method="post" style="margin-left: 50px;">
-<select id="project" name="project">
+<form action="" method="post">
+<div class="row">
+<div class="col-sm">
+<select class="custom-select" id="project" name="project" style="position:relative">
 <option value="">Select Project</option>
 <?php
     
@@ -145,31 +126,38 @@ if($result->num_rows > 0){
 } }
 ?>
 </select>
+</div>
 
 <!-- State dropdown -->
-<select id="board" name="board">
+<div class="col-sm">
+<select class="custom-select" id="board" name="board">
 <option value="">Select Project first</option>
 </select>
+</div>
 
 <!-- City dropdown -->
-<select id="task" name="task">
+<div class="col-sm">
+<select class="custom-select" id="task" name="task">
 <option value="">Select Task first</option>
 </select>
-<input type="submit" id="submit" name="submit" class="btn btn-success" value="Submit"/>
+</div>
+</div>
+<input type="submit" id="submit" name="submit" class="btn btn-success" value="Submit" style="margin-top:10px;"/>
 </form>
+</div>
+</div>
+
 
 		<br><br>
-		<section class="content">
+		<section class="content ">
 			<div class="container-fluid">
 	  
-				<div class="card shadow mb-4">
+				<div class="card shadow mb-4 card-danger card-outline">
 					<div class="card-header py-3">
 						<h5 class="m-0 font-weight-bold text-black" style="color: #990021;">Time Tracker</h5>
 					</div>
               
 					<div class="card-body">
-						<button type="button" class="btn btn-success" id="add-project-button" disabled="disabled">Add Project/Task</button>
-						<br><br>
 						
 						<div class="table-responsive">
 							<table class="table table-bordered" id="dataTables" width="100%" cellspacing="0">
@@ -192,6 +180,7 @@ if($result->num_rows > 0){
 	<aside class="control-sidebar control-sidebar-dark">
 	</aside>
 </div>
+
 
 <?php
 if(isset($_POST['submit'])){

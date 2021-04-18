@@ -423,7 +423,7 @@ function buildProjectRow(project, index) {
 
   var startStopLink = $(
     "<a href='#' class='start-stop-link' title='Start/stop'>"
-    + "<img src='" + computeStartStopLinkImageUrl(project.getState()) + "' width='30' height='30' style='margin-right: 25px' alt='Start/stop' />"
+    + "<img src='" + computeStartStopLinkImageUrl(project.getState()) + "' width='25' height='25' style='margin-right: 25px' alt='Start/stop' />"
     + "</a>"
   );
   startStopLink.click(function() {
@@ -443,7 +443,7 @@ function buildProjectRow(project, index) {
 
   var resetLink = $(
     "<a href='#' title='Reset'>"
-    + "<img src='img/reset.png' width='30' height='30' style='margin-right: 15px' alt='Reset' />"
+    + "<img src='img/reset.png' width='25' height='25' style='margin-right: 15px' alt='Reset' />"
     + "</a>"
   );
   resetLink.click(function() {
@@ -454,7 +454,7 @@ function buildProjectRow(project, index) {
 
   var deleteLink = $(
     "<a href='#' title='Delete'>"
-    + "<img src='img/delete.png' width='30' height='30' alt='Delete' />"
+    + "<img src='img/delete.png' width='25' height='25' alt='Delete' />"
     + "</a>"
   );
   deleteLink.click(function() {

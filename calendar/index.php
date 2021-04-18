@@ -39,15 +39,53 @@ if(isset($_SESSION['user_id']))
     <script src='packages/datepicker/datepicker.js'></script>
     <script src='packages/colorpicker/bootstrap-colorpicker.min.js'></script>
     <script src='calendar.js'></script>
+	<style type="text/css">
+        #wrapper .card{
+			cursor: pointer;
+		}
+		
+		.bg-custom{
+              background-image: url("../resources/images/profile_header.png");
+              background-color: #9a1b25;
+              border-bottom-left-radius: 20% 50%;
+              border-bottom-right-radius: 20% 50%;
+              
+          }
+          .bg-img {
+              max-width: 35%;
+              min-height: 100px;
+              max-height: auto;
+              margin-left:auto;
+              margin-right:auto;
+              text-align: center;
+              background-position: center;
+              background-repeat: no-repeat;
+              background-size: cover;
+              color: white; 
+              padding: 40px 0px 0px 0px;
+              font-size: 60px;
+              font-weight: bold;
+           }
+ </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-<div id="loader"></div>
+	<div class="se-pre-con"></div>
 <div class="wrapper animate-bottom">
 	<?php include('../navigation/topbar.php');?>
 	<?php include('../navigation/user/calendar_sidebar.php');?>
 	<div class="content-wrapper">
-	<div class="card-header py-3">
-	</div>
+	<section class="content">
+	
+	<div class="bg-custom">
+				<div class="bg-img" style="text-align: center;">
+					<div class="searchContainer">
+						<h2>Calendar</h2>
+					</div>
+                               
+				</div>
+                <br>
+			</div>
+
 	<div class="card-body" style="background-color: white;">
 	<div class="container" style="border: 1px solid #e6e6e6";>
 	
@@ -206,9 +244,9 @@ if(isset($_SESSION['user_id']))
 
 <div class="container">
 
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addeventmodal">
-      Add Event
+	<br>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addeventmodal">
+      <i class="fas fa-calendar-day"></i>&nbsp; Add Event
     </button>
 
     <div id="calendar"></div>
@@ -217,6 +255,7 @@ if(isset($_SESSION['user_id']))
 	<aside class="control-sidebar control-sidebar-dark">
 	</aside>
 	</div>
+	</section>
 </div>
 </div>
 <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
