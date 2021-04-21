@@ -1,0 +1,18 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+	<div id="div">
+		<button onclick ="appendRow()" value="Add Row">Add Row</button>
+	</div>
+</body>
+<script>
+var x=1
+function appendRow()
+{
+   var d = document.getElementById('div');
+   d.innerHTML += "<input type='text' id='tst"+ x++ +"'><br >";
+}
+</script>
+</html>
