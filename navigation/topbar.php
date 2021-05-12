@@ -57,11 +57,12 @@ if(isset($_SESSION['user_id']))
           </li>
 -->
             
-			
-			<a class="nav-link"  href="users.php">
+			<div id="noti_count">
+			<a class="nav-link" href="users.php">
 					<i class='fas fa-comments' style="font-size: 1.5em;"></i>
-					<span class="badge badge-warning navbar-badge"></span>
+					<span class="badge badge-danger navbar-badge counter">0</span>
 			</a>
+			</div>
 			
 		
 			<li class="nav-item dropdown">
@@ -106,25 +107,36 @@ if(isset($_SESSION['user_id']))
 	}
 </style>
 
-<!--
 <script type="text/javascript">
     
-    function myFunction() {
-
-        $('.counter').text('0').hide();
-        
-	 }
-    
     $(document).ready(function (){
-        
-        
-    $('#noti_count').on('click',function (){
-            counter = 0;
-            $('.counter').text('0').hide();
+		$('.counter').text(0).hide();
+
+		<?php 
+			$count = mysqli_query($conn, "SELECT * FROM messages WHERE read_status=0 AND incoming_msg_id = {$_SESSION['unique_id']}" );
+			if(mysqli_num_rows($count)>0){
+				$num = mysqli_num_rows($count);
+			}
+			else{
+				$num=0;
+			}
+		?>
+
+		var number = "<?php echo $num;?>";
+		console.log(number);
+		if(number>0){
+		$('.counter').text(number).show();
+		}
+		else if(number = 0){
+			$('.counter').text(0).hide();
+		}
+
+		$('#noti_count').on('click',function (){
+			<?php
+				$update = mysqli_query($conn,"UPDATE messages SET read_status=1 WHERE incoming_msg_id = {$_SESSION['unique_id']}");
+			?>
+			$('.counter').text(0).hide();
         });
-});
-    
-    
-    
-    
-</script>-->
+	});
+
+</script>
