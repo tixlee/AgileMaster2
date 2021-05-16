@@ -539,7 +539,7 @@ function initializeTimer() {
   }, 1 * MILISECONDS_IN_SECOND);
 }
 
-/* Initializes the application. */
+/* Initializes the application. 
 $(document).ready(function(){
   try {
     if (!getStorage()) {
@@ -561,3 +561,4 @@ $(document).ready(function(){
 
   initializeTimer();
 });
+*/

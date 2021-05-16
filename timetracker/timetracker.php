@@ -182,23 +182,36 @@ if($result->num_rows > 0){
 </div>
 
 
-<?php
-if(isset($_POST['submit'])){
-$sql1 = "SELECT * FROM project WHERE project_id = '".$_POST['project']."'";
-$sql2 = "SELECT * FROM board WHERE board_id = '".$_POST['board']."'";
-$sql3 = "SELECT * FROM task WHERE task_id = '".$_POST['task']."'";
-$result1 = $db->query($sql1);
-$result2 = $db->query($sql2);
-$result3 = $db->query($sql3);
-$row1 = $result1->fetch_assoc();
-$row2 = $result2->fetch_assoc();
-$row3 = $result3->fetch_assoc();
-$pro = $row3['task_name'];
-}
 
-?>
 <script type="text/javascript">
-          var prob = '<?= $pro;?>';
+          
+        $(document).ready(function(){
+            initializeProjectsEventHandlers();
+            loadProjects();
+            $("#submit").click(function() {
+                <?php
+                $sql1 = "SELECT * FROM project WHERE project_id = '".$_POST['project']."'";
+                $sql2 = "SELECT * FROM board WHERE board_id = '".$_POST['board']."'";
+                $sql3 = "SELECT * FROM task WHERE task_id = '".$_POST['task']."'";
+                $result1 = $db->query($sql1);
+                $result2 = $db->query($sql2);
+                $result3 = $db->query($sql3);
+                $row1 = $result1->fetch_assoc();
+                $row2 = $result2->fetch_assoc();
+                $row3 = $result3->fetch_assoc();
+                $pro = $row3['task_name'];
+
+                ?>
+                var prob = '<?= $pro;?>';
+                    alert(prob);
+            });
+            if (prob === null) { return; }
+            var project = new Project(prob);
+            projects.add(project);
+            
+            saveProjects();
+            initializeTimer();
+        });
           </script>
 
 <script src="../dependencies/navigation/jquery/jquery.min.js"></script>
