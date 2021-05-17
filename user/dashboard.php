@@ -28,7 +28,7 @@
    </head>
    
    <body class="hold-transition sidebar-mini layout-fixed">
-       <div class="se-pre-con"></div>
+	<div class="se-pre-con"></div>
       <div class="wrapper">
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/user_sidebar.php');?>
@@ -356,13 +356,15 @@
                            <div class="toast-header">
                                 <strong><i class="fa fa-bell" aria-hidden="true"></i></strong>
                                 &nbsp;
-                                <strong>Notification</strong> <div class="col text-right"><strong><?php echo $notRow['date_time']; ?></strong></div>
+                                <strong>Notification</strong> 
 
                                 <!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button> -->
                             </div>
-
+							<div class="toast-header">
+								<strong><?php echo $notRow['date_time']; ?></strong>
+							</div>
                             <div class="toast-body">
                                 <?php echo $notRow['activity']; ?>
                             </div>
@@ -406,7 +408,7 @@
                                     
                                     <div class="col"><?php echo $announRow['description']; ?></div>
                                     <div class="col-sm-5 col-md-5 border-left">
-                                        Posted by: <strong>Project Manger</strong>
+                                        Posted by: <strong>Project Manager</strong>
                                         <br>
                                         Project name: <strong><?php echo $announRow['project_name']; ?></strong>
                                         <br>

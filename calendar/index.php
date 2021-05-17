@@ -12,6 +12,8 @@ if(isset($_SESSION['user_id']))
    }
 ?>
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,7 +74,7 @@ if(isset($_SESSION['user_id']))
 	<div class="se-pre-con"></div>
 <div class="wrapper animate-bottom">
 	<?php include('../navigation/topbar_calendar.php');?>
-	<?php include('../navigation/calendar_sidebar.php');?>
+	<?php include('../navigation/user/calendar_sidebar.php');?>
 	<div class="content-wrapper">
 	<section class="content">
 	
@@ -263,5 +265,29 @@ if(isset($_SESSION['user_id']))
 <script src="../dependencies/vendor/jquery-easing/jquery.easing.min.js"></script>
 <script src="../dependencies/navigation/js/adminlte.js"></script>
 <script src="../dependencies/scripts/google.js"></script>
+
+      <script type="text/javascript">
+         $("#endDate").change(function () {
+         var start_Date = document.getElementById("startDate").value;
+         var end_Date = document.getElementById("endDate").value;
+         
+         if ((Date.parse(end_Date) < Date.parse(start_Date))) {
+         alert("Due date should be greater than start date!");
+         document.getElementById("endDate").value = "";
+         }
+         });
+      </script>
+	  
+	   <script type="text/javascript">
+         $("#editEndDate").change(function () {
+         var start_Date1 = document.getElementById("editStartDate").value;
+         var end_Date1 = document.getElementById("editEndDate").value;
+         
+         if ((Date.parse(end_Date1) < Date.parse(start_Date1))) {
+         alert("Due date should be greater than start date!");
+         document.getElementById("editEndDate").value = "";
+         }
+         });
+      </script>
 </body>
 </html>

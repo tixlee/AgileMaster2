@@ -58,7 +58,7 @@ include_once '../helpers/module.php';
 			<div class="bg-custom">
 				<div class="bg-img" style="text-align: center;">
 					<div class="searchContainer">
-						<h2>Boards</h2>
+						<h2>Projects</h2>
 					</div>
                                
 				</div>
