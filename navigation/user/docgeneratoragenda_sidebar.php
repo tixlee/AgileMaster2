@@ -18,7 +18,7 @@
             
             <div class="col-auto ">
                 <!-- Avatar -->
-                <a href="profile.php" class="avatar avatar-xl rounded-circle">
+                <a href="../user/profile.php" class="avatar avatar-xl rounded-circle">
                     <?php
                         $get_user = get_user($userId);
                         $row = mysqli_fetch_array($get_user);
@@ -28,7 +28,7 @@
             </div>
             <div class="col right ml--1 mb-1">
                 <h5 class="mb-0">
-                    <a href="profile.php" class="text-white"><strong> <?php echo $row["fname"]; ?></strong></a>
+                    <a href="../user/profile.php" class="text-white"><strong> <?php echo $row["fname"]; ?></strong></a>
                 </h5>
 
                 <?php

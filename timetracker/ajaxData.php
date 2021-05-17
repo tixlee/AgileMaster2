@@ -1,7 +1,18 @@
 <?php 
 // Include the database config file 
-include_once 'dbConfig.php'; 
+
  
+session_start();
+ob_start();
+
+include_once 'dbConfig.php'; 
+include_once '../helpers/module.php';
+//include_once '../resources/links/require.php';
+
+   if(isset($_SESSION['user_id']))
+   {
+   	$userId = $_SESSION["user_id"];
+   }
 
 
 if(!empty($_POST["project_id"])){ 
@@ -20,7 +31,7 @@ if(!empty($_POST["project_id"])){
     } 
 }elseif(!empty($_POST["board_id"])){ 
     // Fetch city data based on the specific state 
-    $query = "SELECT * FROM task WHERE board_id = ".$_POST['board_id']." ORDER BY task_name ASC"; 
+    $query = "SELECT * FROM `task` NATURAL JOIN `board` NATURAL JOIN `task_assignees` WHERE board_id = ".$_POST['board_id']." AND `user_id` = '$userId' ORDER BY task_name ASC"; 
     $result = $db->query($query); 
      
     // Generate HTML of city options list 
