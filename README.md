@@ -1,4 +1,4 @@
-# Agile Master
+# Agile Master - Agile Software Project Management System
 
 This is a Final Year Project (Agile Software Project Management System) Software created by:
 
@@ -26,7 +26,7 @@ Click the created database and click import and choose the am.sql in the Databas
 Click Go!
 
 
-Type localhost/AgileMaster and enter.
+Type localhost/AgileMaster2 and enter.
 
 
 Enjoy.
@@ -34,14 +34,3 @@ Enjoy.
 Email: Gmail
 agilemaster2020@gmail.com
 agilemaster123
-
-
-159.65.132.105
-amaster.online
-admin
-aGile@2020Master
-
-128.199.253.218
-agilemaster.net
-admin
-aGile@2020Master
