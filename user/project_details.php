@@ -10,23 +10,23 @@
    {
    	$userId = $_SESSION["user_id"];
    }
-$project_id = $_GET['project_id'];
-$get_project = get_project($project_id);
-$cRow = mysqli_fetch_array($get_project);
-
-$get_not_board = get_not_board($project_id);
-$nuRow = mysqli_fetch_array($get_not_board);
-
-$user_not = get_user($userId);
-$yRow = mysqli_fetch_array($user_not);
-
-$user_name = $yRow['fname'];
-$proj_name = $cRow['project_name'];
-// $brd_name = $nuRow['board_name'];
+   $project_id = $_GET['project_id'];
+   $get_project = get_project($project_id);
+   $cRow = mysqli_fetch_array($get_project);
+   
+   $get_not_board = get_not_board($project_id);
+   $nuRow = mysqli_fetch_array($get_not_board);
+   
+   $user_not = get_user($userId);
+   $yRow = mysqli_fetch_array($user_not);
+   
+   $user_name = $yRow['fname'];
+   $proj_name = $cRow['project_name'];
+   // $brd_name = $nuRow['board_name'];
    
    if(isset($_POST['save'])){
-//       $recipients = array($nuRow['user_id']);
-//       $recipient_id = implode($recipients);
+   //       $recipients = array($nuRow['user_id']);
+   //       $recipient_id = implode($recipients);
        $project_id = $_GET['project_id'];
        $board_name = strip_tags($_POST['board_name']);
        $board_name = mysqli_real_escape_string($conn, $board_name);
@@ -40,7 +40,7 @@ $proj_name = $cRow['project_name'];
            $recipient_id = $assigns;
            insert_notification($recipient_id, "Project Manager added new board in $proj_name project" );}
        
-//       insert_notification($recipient_id, "$user_name added $board_name board into $proj_name project" );
+   //       insert_notification($recipient_id, "$user_name added $board_name board into $proj_name project" );
        echo "<script>window.location.href ='../user/project_details.php?project_id=$project_id'</script>";
       
     
@@ -55,18 +55,18 @@ $proj_name = $cRow['project_name'];
        
        $userId = $_SESSION['user_id'];
        $project_id = $_GET['project_id'];
-
+   
        $title = strip_tags($_POST['title']);
        $description = strip_tags($_POST['description']);
        
        $title = mysqli_real_escape_string($conn, $title);
        $description = mysqli_real_escape_string($conn, $description);
        
-//       $assigns_arr = array();
+   //       $assigns_arr = array();
        $get_not_comment = get_not_comment($cRow['project_id']);
        while ($mrRow = mysqli_fetch_array($get_not_comment)){
-//           $assigns_arr = array($mrRow['user_id']);
-//           $assigns = implode($assigns_arr);
+   //           $assigns_arr = array($mrRow['user_id']);
+   //           $assigns = implode($assigns_arr);
            $recipient_id = $mrRow['user_id'];
            insert_announcement($userId, $project_id, $recipient_id, $title, $description);}
        echo "<script>window.location.href ='../user/project_details.php?project_id=$project_id'</script>";
@@ -107,113 +107,97 @@ $proj_name = $cRow['project_name'];
    
    
    ?>
-   
 <?php
-// Create an encryption method to hide the id number in the URL Link
-
-// Create a variable for data
-$data = 50;
-
-// Encrypt the data by randoming the number from 10 to 100000
-$encrypt_1 =  $data*rand(10,10000);
-
-// Using Base64 Encryption method to encrypt the data and show on the URL for id number
-// $link = "../user/project_details.php?project_id=".urlencode(base64_encode($encrypt_1));
-
-?>
+   // Create an encryption method to hide the id number in the URL Link
    
+   // Create a variable for data
+   $data = 50;
+   
+   // Encrypt the data by randoming the number from 10 to 100000
+   $encrypt_1 =  $data*rand(10,10000);
+   
+   // Using Base64 Encryption method to encrypt the data and show on the URL for id number
+   // $link = "../user/project_details.php?project_id=".urlencode(base64_encode($encrypt_1));
+   
+   ?>
 <?php include 'sendemail.php'; ?>
 <!DOCTYPE html>
 <html>
    <head>
       <title>AgileMaster | Project Details</title>
       <?php include('../navigation/head.php');?>
-       <style type="text/css">
-          .nav-tabs{
-          border:1px solid rgba(0,0,0,.125);
-		  border-top-left-radius: 0rem;
-          border-top-right-radius: 0rem;
-          }
-          .nav-tabs .nav-link{
-	      border-left:1px solid rgba(0,0,0,.125);  
-          padding: 15px 30px;
-          border-top-left-radius: 0rem;
-          border-top-right-radius: 0rem;
-          }
-          .nav-tabs .nav-link.active{
-          background-color: #2a384c;
-          border-color: #2a384c;
-          color: #fff;
-          }
-          .nav-tabs .nav-item a{
-          color: #000;
-          }
-		  
-		  
-		  #wrapper .card{
-			cursor: pointer;
-		}
-		
-		.bg-custom{
-              background-image: url("../resources/images/profile_header.png");
-              background-color: #9a1b25;
-              border-bottom-left-radius: 20% 50%;
-              border-bottom-right-radius: 20% 50%;
-              
-          }
-          .bg-img {
-              max-width: 35%;
-              min-height: 100px;
-              max-height: auto;
-              margin-left:auto;
-              margin-right:auto;
-              text-align: center;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-              color: white; 
-              padding: 40px 0px 0px 0px;
-              font-size: 60px;
-              font-weight: bold;
-           }
-       </style>
+      <style type="text/css">
+         .nav-tabs{
+         border:1px solid rgba(0,0,0,.125);
+         border-top-left-radius: 0rem;
+         border-top-right-radius: 0rem;
+         }
+         .nav-tabs .nav-link{
+         border-left:1px solid rgba(0,0,0,.125);  
+         padding: 15px 30px;
+         border-top-left-radius: 0rem;
+         border-top-right-radius: 0rem;
+         }
+         .nav-tabs .nav-link.active{
+         background-color: #2a384c;
+         border-color: #2a384c;
+         color: #fff;
+         }
+         .nav-tabs .nav-item a{
+         color: #000;
+         }
+         #wrapper .card{
+         cursor: pointer;
+         }
+         .bg-custom{
+         background-image: url("../resources/images/profile_header.png");
+         background-color: #9a1b25;
+         border-bottom-left-radius: 20% 50%;
+         border-bottom-right-radius: 20% 50%;
+         }
+         .bg-img {
+         max-width: 35%;
+         min-height: 100px;
+         max-height: auto;
+         margin-left:auto;
+         margin-right:auto;
+         text-align: center;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         color: white; 
+         padding: 40px 0px 0px 0px;
+         font-size: 60px;
+         font-weight: bold;
+         }
+      </style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
-       <div class="se-pre-con"></div>
+      <div class="se-pre-con"></div>
       <div class="wrapper">
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/project_sidebar.php');?>
          <div class="content-wrapper">
             <section class="content">
-			
-			<div class="bg-custom">
-				<div class="bg-img" style="text-align: center;">
-					<div class="searchContainer">
-						<h2>Project Details</h2>
-					</div>
-                               
-				</div>
-                <br>
-			</div>
-			
+               <div class="bg-custom">
+                  <div class="bg-img" style="text-align: center;">
+                     <div class="searchContainer">
+                        <h2>Project Details</h2>
+                     </div>
+                  </div>
+                  <br>
+               </div>
                <div class="container-fluid">
                   <?php 
-                     
-                     
-                     
                      ?>
-					 <!-- Back Button -->
-					<!-- Back Button -->
-					 <br>
-					 
-					 
-				  <div class="col-md-12">
-                      
-                      <button onclick="location.href='project.php'" type="button" class="btn btn-dark">
-						<i class="ri-arrow-go-back-line"></i> Back
+                  <!-- Back Button -->
+                  <!-- Back Button -->
+                  <br>
+                  <div class="col-md-12">
+                     <button onclick="location.href='project.php'" type="button" class="btn btn-dark">
+                     <i class="ri-arrow-go-back-line"></i> Back
                      </button>
-					 <br><br>
-                      
+                     <br><br>
                      <div class="card">
                         <div class="card-header">
                            <h1 class="card-title font-weight-bold">Project: <?php echo $cRow['project_name']; ?></h1>
@@ -358,8 +342,7 @@ $encrypt_1 =  $data*rand(10,10000);
                                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myAnnounModal">
                                     <i class="fa fa-bullhorn" aria-hidden="true"></i>  Add Announcement
                                     </button>
-                                    
-                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
                                     <i class="fas fa-users"></i>  Add Member
                                     </button>
                                     <?php
@@ -390,7 +373,7 @@ $encrypt_1 =  $data*rand(10,10000);
                                           </div>
                                        </div>
                                     </div>
-                                      <!-- The Modal -->
+                                    <!-- The Modal -->
                                     <div class="modal fade" id="myAnnounModal"  role="dialog" aria-labelledby="myAnnounModal" aria-hidden="true">
                                        <div class="modal-dialog" role="document">
                                           <div class="modal-content">
@@ -401,28 +384,26 @@ $encrypt_1 =  $data*rand(10,10000);
                                              </div>
                                              <!-- Modal body -->
                                              <div class="modal-body">
-                                              <form method="POST" enctype="multipart/form-data">
-                                                 <div class="row col-md-12 col-xm-3">
-                                                    <label for="project_name">Title</label>
-                                                    <input type="text" name="title" id="title" class="form-control" placeholder="Announcement Title" required autocomplete="off">
-                                                 </div>
-                                                 <br>
-                                                 <div class="row col-md-12 col-xm-6">
-                                                    <label for="project_description">Description</label>
-                                                    <textarea class="form-control" id="description" name="description"  placeholder="Announcement Description" autocomplete="off" required></textarea>
-                                                 </div>
-                                                 <br>
-                                                 <div class="modal-footer">
-                                                    <input type="button" name="submit" value="Close" id="back-fs" class="btn btn-danger" data-dismiss="modal">
-                                                    <input type="submit" name="post" value="Post" id="submit-fs" class="btn btn-success" >
-                                                 </div>
-                                              </form>
-                                           </div>
+                                                <form method="POST" enctype="multipart/form-data">
+                                                   <div class="row col-md-12 col-xm-3">
+                                                      <label for="project_name">Title</label>
+                                                      <input type="text" name="title" id="title" class="form-control" placeholder="Announcement Title" required autocomplete="off">
+                                                   </div>
+                                                   <br>
+                                                   <div class="row col-md-12 col-xm-6">
+                                                      <label for="project_description">Description</label>
+                                                      <textarea class="form-control" id="description" name="description"  placeholder="Announcement Description" autocomplete="off" required></textarea>
+                                                   </div>
+                                                   <br>
+                                                   <div class="modal-footer">
+                                                      <input type="button" name="submit" value="Close" id="back-fs" class="btn btn-danger" data-dismiss="modal">
+                                                      <input type="submit" name="post" value="Post" id="submit-fs" class="btn btn-success" >
+                                                   </div>
+                                                </form>
+                                             </div>
                                           </div>
                                        </div>
                                     </div>
-                                     
-                                     
                                     <!-- The Modal -->
                                     <div class="modal fade" id="myModal"  role="dialog" aria-labelledby="myModal" aria-hidden="true">
                                        <div class="modal-dialog" role="document">
@@ -440,13 +421,13 @@ $encrypt_1 =  $data*rand(10,10000);
                                                          <label for="exampleDropdown">Select your team member: </label>
                                                          <select data-live-search="true" title="Please select member" name="user_id" class="form-control selectpicker col-sm-6">
                                                             <?php
-//                                                               $users = getAllUser();
-                                                             $users = mysqli_query($conn,"SELECT * FROM `users` WHERE NOT `user_id` = '" . $userId . "'");
-                                                               $user_id = $_GET['user_id'];
-                                                               
-                                                               while ($p = mysqli_fetch_array($users))
-                                                               {
-                                                               ?>
+                                                               //                                                               $users = getAllUser();
+                                                                                                                            $users = mysqli_query($conn,"SELECT * FROM `users` WHERE NOT `user_id` = '" . $userId . "'");
+                                                                                                                              $user_id = $_GET['user_id'];
+                                                                                                                              
+                                                                                                                              while ($p = mysqli_fetch_array($users))
+                                                                                                                              {
+                                                                                                                              ?>
                                                             <option value="<?php echo $p['user_id']; ?>" <?php if ($user_id == $p['user_id']) {echo "selected";} ?> required><?php echo $p['fname']. ' ' .$p['lname']; ?> <em style="font-style: italic;"> (<?php echo $p['email']; ?>)</em></option>
                                                             <?php
                                                                }
@@ -521,7 +502,7 @@ $encrypt_1 =  $data*rand(10,10000);
                                                    if($u_fetch['user_id'] != $f_query['user_id'])
                                                    {
                                                    ?>
-												<td style="border: 0px;">
+                                                <td style="border: 0px;">
                                                    <center>
                                                       <form method="POST"enctype="multipart/form-data">
                                                          <input type = "hidden" id = "user_id" name = "user_id" value = "<?php echo $f_query['user_id'];?>" />
@@ -532,34 +513,32 @@ $encrypt_1 =  $data*rand(10,10000);
                                                 <td style="border: 0px;">
                                                    <center>
                                                       <a  href = "#" class = "btn btn-danger "  data-toggle="modal" data-target="#MYModal">
-                                                          
                                                       <span class = "glyphicon glyphicon-trash"></span> <i class="fa fa-trash" aria-hidden="true"></i>
                                                       </a>
-                                                       <!-- The Modal -->
-                                                        <div class="modal" id="MYModal">
-                                                          <div class="modal-dialog modal-dialog-centered">
+                                                      <!-- The Modal -->
+                                                      <div class="modal" id="MYModal">
+                                                         <div class="modal-dialog modal-dialog-centered">
                                                             <div class="modal-content">
-                                                              <!-- Modal Header -->
-                                                              <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                              </div>
-                                                              <!-- Modal body -->
-                                                              <div class="modal-body text-center mb-5">
-                                                                <img src="../resources/images/right1.png" class="img-responsive" style="width: 15%;">
-                                                                <h1>Are You Sure?</h1>
-                                                                <p>Do you sure to remove this user? This action could not be undone.</p>
-                                                                <div class="btn-group">
-                                                                  <button type="button" class="btn btn-secondary mr-2 rounded-lg" data-dismiss="modal">Cancel</button>
-<!--                                                                  <button type="button" class="btn btn-danger btn-lg rounded-lg">Delete</button>-->
-                                                                    <a  href = "delete.php?user_id=<?php echo $f_query['user_id']?>&project_id=<?php echo $f_query['project_id']?>" class = "btn btn-danger rounded-lg" onload="myFunction()">Delete</a>
-                                                                </div>
-                                                              </div>
+                                                               <!-- Modal Header -->
+                                                               <div class="modal-header">
+                                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                               </div>
+                                                               <!-- Modal body -->
+                                                               <div class="modal-body text-center mb-5">
+                                                                  <img src="../resources/images/right1.png" class="img-responsive" style="width: 15%;">
+                                                                  <h1>Are You Sure?</h1>
+                                                                  <p>Do you sure to remove this user? This action could not be undone.</p>
+                                                                  <div class="btn-group">
+                                                                     <button type="button" class="btn btn-secondary mr-2 rounded-lg" data-dismiss="modal">Cancel</button>
+                                                                     <!--                                                                  <button type="button" class="btn btn-danger btn-lg rounded-lg">Delete</button>-->
+                                                                     <a  href = "delete.php?user_id=<?php echo $f_query['user_id']?>&project_id=<?php echo $f_query['project_id']?>" class = "btn btn-danger rounded-lg" onload="myFunction()">Delete</a>
+                                                                  </div>
+                                                               </div>
                                                             </div>
-                                                          </div>
-                                                        </div>
+                                                         </div>
+                                                      </div>
                                                    </center>
                                                 </td>
-                                                
                                                 <?php } ?>
                                              </tr>
                                              <?php
@@ -581,10 +560,6 @@ $encrypt_1 =  $data*rand(10,10000);
             </aside>
          </div>
       </div>
-       
-      
-       
-       
       <script src="../dependencies/navigation/jquery/jquery.min.js"></script>
       <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
       <script src="../dependencies/navigation/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
@@ -594,6 +569,6 @@ $encrypt_1 =  $data*rand(10,10000);
       <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
       <script src="../dependencies/scripts/datatables-demo.js"></script>
       <script src="../dependencies/navigation/js/adminlte.js"></script>
-	  <script src="../dependencies/scripts/google.js"></script>
+      <script src="../dependencies/scripts/google.js"></script>
    </body>
 </html>

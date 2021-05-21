@@ -10,20 +10,20 @@
    {
    	$userId = $_SESSION["user_id"];
    }
-
-$getAllProjectsAdmin = getAllProjectsAdmin();
-$iRow = mysqli_fetch_array($getAllProjectsAdmin);
-$project_id = $iRow['project_id'];
-
-$get_project = get_project($project_id);
-$cRow = mysqli_fetch_array($get_project);
-
-$get_not_board = get_not_board($project_id);
-$nuRow = mysqli_fetch_array($get_not_board);
-
-$user_not = get_user($userId);
-$yRow = mysqli_fetch_array($user_not);
-$user_name = $yRow['fname'] . " " . $yRow['lname'];
+   
+   $getAllProjectsAdmin = getAllProjectsAdmin();
+   $iRow = mysqli_fetch_array($getAllProjectsAdmin);
+   $project_id = $iRow['project_id'];
+   
+   $get_project = get_project($project_id);
+   $cRow = mysqli_fetch_array($get_project);
+   
+   $get_not_board = get_not_board($project_id);
+   $nuRow = mysqli_fetch_array($get_not_board);
+   
+   $user_not = get_user($userId);
+   $yRow = mysqli_fetch_array($user_not);
+   $user_name = $yRow['fname'] . " " . $yRow['lname'];
    
    if(isset($_POST['create'])){
        $board_id = $_GET['board_id'];
@@ -48,7 +48,7 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
        insert_task($task_name, $task_desc, $project_task_num, $board_id, $due_date, $start_date, 1, $created_by);
        insert_task_assignees($user_id);
    	insert_events($created_by, $task_name, $due_date, $due_date, '#FF0000', '#ffffff');
-
+   
        
        $board_name = $nuRow['board_name'];
            
@@ -76,74 +76,69 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
    
    $today = $year . '-' . $month . '-' . $day;
    ?>
-   
 <?php
-// Create an encryption method to hide the id number in the URL Link
-
-// Create a variable for data
-$data = 50;
-
-// Encrypt the data by randoming the number from 10 to 100000
-$encrypt_1 =  $data*rand(10,10000);
-
-// Using Base64 Encryption method to encrypt the data and show on the URL for id number
-// $link = "../user/project_details.php?project_id=".urlencode(base64_encode($encrypt_1));
-
-?>
+   // Create an encryption method to hide the id number in the URL Link
+   
+   // Create a variable for data
+   $data = 50;
+   
+   // Encrypt the data by randoming the number from 10 to 100000
+   $encrypt_1 =  $data*rand(10,10000);
+   
+   // Using Base64 Encryption method to encrypt the data and show on the URL for id number
+   // $link = "../user/project_details.php?project_id=".urlencode(base64_encode($encrypt_1));
+   
+   ?>
 <!DOCTYPE html>
 <html>
    <head>
       <title>AgileMaster | Task</title>
       <?php include('../navigation/head.php');?>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
-	  <style type="text/css">
-        #wrapper .card{
-			cursor: pointer;
-		}
-		
-		.bg-custom{
-              background-image: url("../resources/images/profile_header.png");
-              background-color: #9a1b25;
-              border-bottom-left-radius: 20% 50%;
-              border-bottom-right-radius: 20% 50%;
-              
-          }
-          .bg-img {
-              max-width: 35%;
-              min-height: 100px;
-              max-height: auto;
-              margin-left:auto;
-              margin-right:auto;
-              text-align: center;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-              color: white; 
-              padding: 40px 0px 0px 0px;
-              font-size: 60px;
-              font-weight: bold;
-           }
-
-		 .card-body a:hover{
-			webkit-transform: scale(0.9);
-			-ms-transform: scale(0.9);
-			transform: scale(0.9);
-		   }	   
-		</style>
+      <style type="text/css">
+         #wrapper .card{
+         cursor: pointer;
+         }
+         .bg-custom{
+         background-image: url("../resources/images/profile_header.png");
+         background-color: #9a1b25;
+         border-bottom-left-radius: 20% 50%;
+         border-bottom-right-radius: 20% 50%;
+         }
+         .bg-img {
+         max-width: 35%;
+         min-height: 100px;
+         max-height: auto;
+         margin-left:auto;
+         margin-right:auto;
+         text-align: center;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         color: white; 
+         padding: 40px 0px 0px 0px;
+         font-size: 60px;
+         font-weight: bold;
+         }
+         .card-body a:hover{
+         webkit-transform: scale(0.9);
+         -ms-transform: scale(0.9);
+         transform: scale(0.9);
+         }	   
+      </style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
-       <div class="se-pre-con"></div>
+      <div class="se-pre-con"></div>
       <div class="wrapper">
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/project_sidebar.php');?>
          <div class="content-wrapper">
             <section class="content">
-			
-			<div class="bg-custom">
-			<?php
+               <div class="bg-custom">
+                  <?php
                      $getAllProjectsAdmin = getAllProjectsAdmin();
                      $iRow = mysqli_fetch_array($getAllProjectsAdmin);
-//                     $project_id = $_GET['project_id'];
+                     //                     $project_id = $_GET['project_id'];
                      $query = $conn->query("SELECT * FROM `project` NATURAL JOIN `user_project`  WHERE `project_id` = '$iRow[project_id]'") or die(mysqli_error());
                      $l_query = $query->fetch_array();
                      
@@ -153,31 +148,23 @@ $encrypt_1 =  $data*rand(10,10000);
                      $bRow = $result->fetch_assoc();
                      $result->free_result();
                      $project_id = $l_query['project_id'];
- 
+                     
                      if(isset($bRow['board_id'])){
-               ?>
-			   
-			   
-				<div class="bg-img" style="text-align: center;">
-					<div class="searchContainer">
-						<h2>Board</h2>
-						<h5 class=" font-weight-bold"><?php echo $bRow['project_name'] . " / " . $bRow['board_name']; ?></h5>
-						
-					</div>
-
-                               
-				</div>
-                <br>
-			</div>
-			
+                     ?>
+                  <div class="bg-img" style="text-align: center;">
+                     <div class="searchContainer">
+                        <h2>Board</h2>
+                        <h5 class=" font-weight-bold"><?php echo $bRow['project_name'] . " / " . $bRow['board_name']; ?></h5>
+                     </div>
+                  </div>
+                  <br>
+               </div>
                <div class="container-fluid">
-					 
-					 
                   <div class="col-md-12">
-                      <button onclick="location.href='project_details.php?project_id=<?php echo $bRow['project_id']; ?>'" type="button" class="btn btn-dark">
-						<i class="ri-arrow-go-back-line"></i> Back
+                     <button onclick="location.href='project_details.php?project_id=<?php echo $bRow['project_id']; ?>'" type="button" class="btn btn-dark">
+                     <i class="ri-arrow-go-back-line"></i> Back
                      </button>
-                   <br><br>
+                     <br><br>
                      <div class="card">
                         <!-- /.card-header -->
                         <div class="card-body" style="background-image: url('../resources/images/wallpaper1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center; min-height: 600px; background-attachment: fixed; ">
@@ -629,23 +616,20 @@ $encrypt_1 =  $data*rand(10,10000);
                                  </div>
                               </div>
                            </div>
-
                         </div>
                      </div>
                   </div>
-                   <?php
+                  <?php
                      }else{
                          echo "<script>window.location.href ='../user/error_page.php'</script>";
                      }
-                   ?>
+                     ?>
                </div>
             </section>
             <aside class="control-sidebar control-sidebar-dark">
             </aside>
          </div>
       </div>
-       
-
       <script src="../dependencies/scripts/custom.js"></script>
       <script src="../dependencies/navigation/jquery/jquery.min.js"></script>
       <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -656,7 +640,7 @@ $encrypt_1 =  $data*rand(10,10000);
       <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
       <script src="../dependencies/scripts/datatables-demo.js"></script>
       <script src="../dependencies/navigation/js/adminlte.js"></script>
-	  <script src="../dependencies/scripts/google.js"></script>
+      <script src="../dependencies/scripts/google.js"></script>
       <script type="text/javascript">
          $("#due_date").change(function () {
          var startDate = document.getElementById("start_date").value;

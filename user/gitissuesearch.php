@@ -10,32 +10,29 @@
 <html>
    <head>
       <title>AgileMaster | GitHub Issue Search</title>
-       <style type="text/css">
-          
-           
-           .bg-custom{
-              background-image: url("../resources/images/profile_header.png");
-              background-color: #9a1b25;
-              border-bottom-left-radius: 20% 50%;
-              border-bottom-right-radius: 20% 50%;
-              
-          }
-          .bg-img {
-              max-width: 35%;
-              min-height: 220px;
-              max-height: auto;
-              margin-left:auto;
-              margin-right:auto;
-              text-align: center;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-              color: white; 
-              padding: 30px 0px 0px 0px;
-              font-size: 60px;
-              font-weight: bold;
-           }
-       </style>
+      <style type="text/css">
+         .bg-custom{
+         background-image: url("../resources/images/profile_header.png");
+         background-color: #9a1b25;
+         border-bottom-left-radius: 20% 50%;
+         border-bottom-right-radius: 20% 50%;
+         }
+         .bg-img {
+         max-width: 35%;
+         min-height: 220px;
+         max-height: auto;
+         margin-left:auto;
+         margin-right:auto;
+         text-align: center;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         color: white; 
+         padding: 30px 0px 0px 0px;
+         font-size: 60px;
+         font-weight: bold;
+         }
+      </style>
       <?php include('../navigation/head.php');?>
       <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css"> -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
@@ -43,32 +40,29 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>  
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
-       <div class="se-pre-con"></div>
+      <div class="se-pre-con"></div>
       <div class="wrapper">
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/githubissue_sidebar.php');?>
          <div class="content-wrapper"  style="background-color: #ffffff;">
             <section class="content">
                <div class="bg-custom" >
-                    <div class="bg-img" style="text-align: center;">
-                            <h2 class="mb-3">Github Issue Search</h2>
-
-
-                            <div class="form-group">
-                                <div  class="row">
-                                    <div class="col">
-                                        <input type="text" id="name" class="form-control" placeholder="Username" required="required">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" id="repo" class="form-control" placeholder="Repository" required="required">
-                                    </div>
-                                 </div>
-                                <button id = 'btnIssues' class="btn btn-success">Search</button>
-                             </div>
-                        
+                  <div class="bg-img" style="text-align: center;">
+                     <h2 class="mb-3">Github Issue Search</h2>
+                     <div class="form-group">
+                        <div  class="row">
+                           <div class="col">
+                              <input type="text" id="name" class="form-control" placeholder="Username" required="required">
+                           </div>
+                           <div class="col">
+                              <input type="text" id="repo" class="form-control" placeholder="Repository" required="required">
+                           </div>
+                        </div>
+                        <button id = 'btnIssues' class="btn btn-success">Search</button>
+                     </div>
                   </div>
-                </div>
-                <div class="container-fluid">
+               </div>
+               <div class="container-fluid">
                   <br>
                   <div class="card shadow mb-4">
                      <div class="card-header py-3">
@@ -123,7 +117,7 @@
       <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
       <script src="../dependencies/scripts/datatables-demo.js"></script>
       <script src="../dependencies/navigation/js/adminlte.js"></script>
-	  <script src="../dependencies/scripts/google.js"></script>
+      <script src="../dependencies/scripts/google.js"></script>
       <!-- DataTables scripts -
          <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
          <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
@@ -144,8 +138,6 @@
          	} );
          } );
          </script> -->
-       
-                 
       <script>
          function downloadtable() {
              var node = document.getElementById('dataTable');

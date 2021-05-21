@@ -11,18 +11,18 @@
    	$userId = $_SESSION["user_id"];
    }   
      
-$getAllProjectsAdmin = getAllProjectsAdmin();
-$iRow = mysqli_fetch_array($getAllProjectsAdmin);
-$project_id = $iRow['project_id'];
-$get_project = get_project($project_id);
-$cRow = mysqli_fetch_array($get_project);
-
-$get_not_board = get_not_board($project_id);
-$nuRow = mysqli_fetch_array($get_not_board);
-
-$user_not = get_user($userId);
-$yRow = mysqli_fetch_array($user_not);
-$user_name = $yRow['fname'] . " " . $yRow['lname'];
+   $getAllProjectsAdmin = getAllProjectsAdmin();
+   $iRow = mysqli_fetch_array($getAllProjectsAdmin);
+   $project_id = $iRow['project_id'];
+   $get_project = get_project($project_id);
+   $cRow = mysqli_fetch_array($get_project);
+   
+   $get_not_board = get_not_board($project_id);
+   $nuRow = mysqli_fetch_array($get_not_board);
+   
+   $user_not = get_user($userId);
+   $yRow = mysqli_fetch_array($user_not);
+   $user_name = $yRow['fname'] . " " . $yRow['lname'];
    
    if(isset($_POST['save'])){
        $board_id = $_GET['board_id'];
@@ -48,7 +48,7 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
        $task_id = $_GET['task_id'];
    
        $tn = $_GET['tn'];
-
+   
        
        $query = $conn->query("SELECT * FROM `task` WHERE `task_id` = '$task_id' AND `board_id` = '$board_id'") or die(mysqli_error());
        $b_query = $query->fetch_array();
@@ -60,7 +60,7 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
        $board_name = $nuRow['board_name'];
        insert_more_task_assignees($user_id, $task_id);
        insert_events($created_by, $task_name, $due_date, $due_date, '#FF0000', '#ffffff');
-
+   
            $recipient_id = $_POST["user_id"];
            insert_notification($recipient_id, "Project Manger assigned  $task_name task to you in $board_name board" );
        
@@ -91,8 +91,8 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
        
        $task_name = $b_query['task_name'];
        $board_name = $nuRow['board_name'];
-
-$assigns_arr = array();
+   
+   $assigns_arr = array();
        $get_not_comment = get_not_comment($cRow['project_id']);
        while ($mrRow = mysqli_fetch_array($get_not_comment)){
            $assigns_arr = array($mrRow['user_id']);
@@ -118,66 +118,55 @@ $assigns_arr = array();
    
    $today = $year . '-' . $month . '-' . $day;
    ?>
-   
-
 <!DOCTYPE html>
 <html>
    <head>
       <title>AgileMaster | Board</title>
       <?php include('../navigation/head.php');?>
-	<style type="text/css">
-        #wrapper .card{
-			cursor: pointer;
-		}
-		
-		.bg-custom{
-              background-image: url("../resources/images/profile_header.png");
-              background-color: #9a1b25;
-              border-bottom-left-radius: 20% 50%;
-              border-bottom-right-radius: 20% 50%;
-              
-          }
-          .bg-img {
-              max-width: 35%;
-              min-height: 100px;
-              max-height: auto;
-              margin-left:auto;
-              margin-right:auto;
-              text-align: center;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-              color: white; 
-              padding: 40px 0px 0px 0px;
-              font-size: 60px;
-              font-weight: bold;
-           }
-   
-		</style>
+      <style type="text/css">
+         #wrapper .card{
+         cursor: pointer;
+         }
+         .bg-custom{
+         background-image: url("../resources/images/profile_header.png");
+         background-color: #9a1b25;
+         border-bottom-left-radius: 20% 50%;
+         border-bottom-right-radius: 20% 50%;
+         }
+         .bg-img {
+         max-width: 35%;
+         min-height: 100px;
+         max-height: auto;
+         margin-left:auto;
+         margin-right:auto;
+         text-align: center;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         color: white; 
+         padding: 40px 0px 0px 0px;
+         font-size: 60px;
+         font-weight: bold;
+         }
+      </style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
-       <div class="se-pre-con"></div>
+      <div class="se-pre-con"></div>
       <div class="wrapper">
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/project_sidebar.php');?>
          <div class="content-wrapper">
             <section class="content">
-			
-			<div class="bg-custom">
-				<div class="bg-img" style="text-align: center;">
-					<div class="searchContainer">
-						<h2>Task Details</h2>
-					</div>
-                               
-				</div>
-                <br>
-			</div>
-			
+               <div class="bg-custom">
+                  <div class="bg-img" style="text-align: center;">
+                     <div class="searchContainer">
+                        <h2>Task Details</h2>
+                     </div>
+                  </div>
+                  <br>
+               </div>
                <div class="container-fluid">
-			   
-			   <br>
-					 
-						
+                  <br>
                   <?php 
                      $getProjectByUser = getProjectByUser($userId);
                      $iRow = mysqli_fetch_array($getProjectByUser);
@@ -199,12 +188,12 @@ $assigns_arr = array();
                              $result->free_result();
                          }
                      }
-                   if(isset($row['task_id'])){
+                     if(isset($row['task_id'])){
                        
                      ?>
                   <div class="col-md-12">
-                      <button onclick="location.href='task.php?board_id=<?php echo $board_id ?>'" type="button" class="btn btn-dark">
-						<i class="ri-arrow-go-back-line"></i> Back
+                     <button onclick="location.href='task.php?board_id=<?php echo $board_id ?>'" type="button" class="btn btn-dark">
+                     <i class="ri-arrow-go-back-line"></i> Back
                      </button>
                      <br>
                      <br>
@@ -225,7 +214,6 @@ $assigns_arr = array();
                                     <div class="form-group shadow-textarea">
                                        <label for="task_desc">Description</label>
                                        <textarea class="form-control"  name="task_desc" id="task_desc" rows="3" readonly><?php echo $row['task_desc']; ?></textarea>
-	
                                     </div>
                                  </form>
                               </div>
@@ -310,19 +298,19 @@ $assigns_arr = array();
                                                    $completion_date = $row['completion_date'];
                                                    // Creating timestamp from given date
                                                    $timestamp = strtotime($completion_date);
-												   $ontime = " <span style='color:#00FF00; font-weight: bold;'>(ON TIME)</span>";
-												   $late = " <span style='color:red; font-weight: bold;'>(LATE)</span>";
+                                                   $ontime = " <span style='color:#00FF00; font-weight: bold;'>(ON TIME)</span>";
+                                                   $late = " <span style='color:red; font-weight: bold;'>(LATE)</span>";
                                                    
                                                    // Creating new date format from that timestamp
                                                    $completion_format_date = date("d-m-Y", $timestamp);
                                                    
                                                    if($row['completion_date'] != NULL){
-													   if($completion_date > $due_date){
-														   echo $completion_format_date . $late;
-													   }
-													   else{
-														   echo $completion_format_date . $ontime;
-													   }
+                                                   if($completion_date > $due_date){
+                                                   echo $completion_format_date . $late;
+                                                   }
+                                                   else{
+                                                   echo $completion_format_date . $ontime;
+                                                   }
                                                        
                                                    
                                                    }else{
@@ -354,13 +342,13 @@ $assigns_arr = array();
                               </div>
                               <!-- /.card-header -->
                               <div class="card-body">
-                                <?php
-                                       $u_query = $conn->query("SELECT * FROM `user_created_project` WHERE `created_proj_id` = '$bRow[project_id]'") or die(mysqli_error());
-                                       $u_fetch = $u_query->fetch_array();
-                                       if($u_fetch['user_id'] == $userId)
-                                       {
-                                       ?>
-                                  <br>
+                                 <?php
+                                    $u_query = $conn->query("SELECT * FROM `user_created_project` WHERE `created_proj_id` = '$bRow[project_id]'") or die(mysqli_error());
+                                    $u_fetch = $u_query->fetch_array();
+                                    if($u_fetch['user_id'] == $userId)
+                                    {
+                                    ?>
+                                 <br>
                                  <form method="POST" enctype="multipart/form-data">
                                     <div class="row col-md-6 col-xm-6 mb-3 ">
                                        <label for="exampleDropdown" ></label>
@@ -379,12 +367,8 @@ $assigns_arr = array();
                                        <input type="submit" name="assign" value="Assign" id="submit-fs" class="btn btn-success" >  
                                     </div>
                                  </form>
-                                  
-                                  
                                  <br>
-                                  
-                                  <?php } ?>
-                                  
+                                 <?php } ?>
                                  <div class="table-responsive">
                                     <table class="table " id="table" width="100%" cellspacing="0">
                                        <tbody>
@@ -415,7 +399,6 @@ $assigns_arr = array();
                                              <td class="border-top-0">
                                                 <div class="" value = "<?php echo $nRow['user_id'];?>"><strong><?php echo $nRow['fname'] . " " . $nRow['lname']?></strong> </div>
                                              </td>
-                                              
                                           </tr>
                                           <?php
                                              } }
@@ -476,19 +459,17 @@ $assigns_arr = array();
                         </div>
                      </div>
                   </div>
-                   <?php 
-                       }else{
-                       echo "<script>window.location.href ='../user/error_page.php'</script>";
-                   }
-                   ?>
+                  <?php 
+                     }else{
+                     echo "<script>window.location.href ='../user/error_page.php'</script>";
+                     }
+                     ?>
                </div>
             </section>
             <aside class="control-sidebar control-sidebar-dark">
             </aside>
          </div>
       </div>
-       
-             
       <script src="../dependencies/scripts/custom.js"></script>
       <script src="../dependencies/navigation/jquery/jquery.min.js"></script>
       <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -499,7 +480,7 @@ $assigns_arr = array();
       <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
       <script src="../dependencies/scripts/datatables-demo.js"></script>  
       <script src="../dependencies/navigation/js/adminlte.js"></script>
-	  <script src="../dependencies/scripts/google.js"></script>
+      <script src="../dependencies/scripts/google.js"></script>
       <script type="text/javascript">
          $("#completion_date").change(function () {
          var completeDate = "<?php echo $start_date ?>";

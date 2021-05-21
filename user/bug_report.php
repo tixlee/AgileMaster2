@@ -11,21 +11,21 @@
    	$userId = $_SESSION["user_id"];
    }
    
-$getAllProjectsAdmin = getAllProjectsAdmin();
-$iRow = mysqli_fetch_array($getAllProjectsAdmin);
-$project_id = $iRow['project_id'];
-
-$get_project = get_project($project_id);
-$cRow = mysqli_fetch_array($get_project);
-
-
-$get_not_board = get_not_board($project_id);
-$nuRow = mysqli_fetch_array($get_not_board);
-
-$user_not = get_user($userId);
-$yRow = mysqli_fetch_array($user_not);
-$user_name = $yRow['fname'] . " " . $yRow['lname'];
-
+   $getAllProjectsAdmin = getAllProjectsAdmin();
+   $iRow = mysqli_fetch_array($getAllProjectsAdmin);
+   $project_id = $iRow['project_id'];
+   
+   $get_project = get_project($project_id);
+   $cRow = mysqli_fetch_array($get_project);
+   
+   
+   $get_not_board = get_not_board($project_id);
+   $nuRow = mysqli_fetch_array($get_not_board);
+   
+   $user_not = get_user($userId);
+   $yRow = mysqli_fetch_array($user_not);
+   $user_name = $yRow['fname'] . " " . $yRow['lname'];
+   
    
    if(isset($_POST['create'])){
        date_default_timezone_set("Asia/Kuala_Lumpur");
@@ -112,61 +112,57 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
          $("#suggesstion-box").hide();
          }
       </script>
-	  <style type="text/css">
-	  .nav-tabs{
-          border:1px solid rgba(0,0,0,.125);
-		  border-top-left-radius: 0rem;
-          border-top-right-radius: 0rem;
-          }
-          .nav-tabs .nav-link{
-	      border-left:1px solid rgba(0,0,0,.125);  
-          padding: 15px 30px;
-          border-top-left-radius: 0rem;
-          border-top-right-radius: 0rem;
-          }
-          .nav-tabs .nav-link.active{
-          background-color: #2a384c;
-          border-color: #2a384c;
-          color: #fff;
-          }
-          .nav-tabs .nav-item a{
-          color: #000;
-          }
-		  
-		  
-		  #wrapper .card{
-			cursor: pointer;
-		}
-        #wrapper .card{
-			cursor: pointer;
-		}
-		
-		.bg-custom{
-              background-image: url("../resources/images/profile_header.png");
-              background-color: #9a1b25;
-              border-bottom-left-radius: 20% 50%;
-              border-bottom-right-radius: 20% 50%;
-              
-          }
-          .bg-img {
-              max-width: 35%;
-              min-height: 100px;
-              max-height: auto;
-              margin-left:auto;
-              margin-right:auto;
-              text-align: center;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-              color: white; 
-              padding: 40px 0px 0px 0px;
-              font-size: 60px;
-              font-weight: bold;
-           }
-	</style>
+      <style type="text/css">
+         .nav-tabs{
+         border:1px solid rgba(0,0,0,.125);
+         border-top-left-radius: 0rem;
+         border-top-right-radius: 0rem;
+         }
+         .nav-tabs .nav-link{
+         border-left:1px solid rgba(0,0,0,.125);  
+         padding: 15px 30px;
+         border-top-left-radius: 0rem;
+         border-top-right-radius: 0rem;
+         }
+         .nav-tabs .nav-link.active{
+         background-color: #2a384c;
+         border-color: #2a384c;
+         color: #fff;
+         }
+         .nav-tabs .nav-item a{
+         color: #000;
+         }
+         #wrapper .card{
+         cursor: pointer;
+         }
+         #wrapper .card{
+         cursor: pointer;
+         }
+         .bg-custom{
+         background-image: url("../resources/images/profile_header.png");
+         background-color: #9a1b25;
+         border-bottom-left-radius: 20% 50%;
+         border-bottom-right-radius: 20% 50%;
+         }
+         .bg-img {
+         max-width: 35%;
+         min-height: 100px;
+         max-height: auto;
+         margin-left:auto;
+         margin-right:auto;
+         text-align: center;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         color: white; 
+         padding: 40px 0px 0px 0px;
+         font-size: 60px;
+         font-weight: bold;
+         }
+      </style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
-       <div class="se-pre-con"></div>
+      <div class="se-pre-con"></div>
       <div class="wrapper">
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/bug_sidebar.php');?>
@@ -174,21 +170,17 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
          <div class="content-wrapper">
             <!-- Main content -->
             <section class="content">
-			
-			<div class="bg-custom">
-				<div class="bg-img" style="text-align: center;">
-					<div class="searchContainer">
-						<h2>Bugs Page</h2>
-					</div>        
-				</div>
-                <br>
-			</div>
-			<br>
-			
+               <div class="bg-custom">
+                  <div class="bg-img" style="text-align: center;">
+                     <div class="searchContainer">
+                        <h2>Bugs Page</h2>
+                     </div>
+                  </div>
+                  <br>
+               </div>
+               <br>
                <div class="container-fluid">
                   <?php
-                     
-                     
                      $sql = "SELECT * FROM `project` NATURAL JOIN `users`";
                      $result = $conn->query($sql);
                      $bRow = $result->fetch_assoc();
@@ -468,9 +460,9 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
                                                 $getResolvedBugByUserId = getResolvedBugByUserId($userId);
                                                 while($buuggRow = mysqli_fetch_array($getResolvedBugByUserId))
                                                 {
-//                                                    $created_by = $buuggRow['created_by'];
-//                                                    $getBugByUserId = getBugByUserId($created_by);
-//                                                    $assignedRow = mysqli_fetch_array($getBugByUserId);
+                                                //                                                    $created_by = $buuggRow['created_by'];
+                                                //                                                    $getBugByUserId = getBugByUserId($created_by);
+                                                //                                                    $assignedRow = mysqli_fetch_array($getBugByUserId);
                                                     
                                                     $getAssigneeBugByUserId = getAssigneeBugByUserId($userId);
                                                     $assigneeRow = mysqli_fetch_array($getAssigneeBugByUserId);
@@ -525,7 +517,6 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
             </aside>
          </div>
       </div>
- 
       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
       <script src="../dependencies/navigation/jquery/jquery.min.js"></script>
       <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -536,7 +527,7 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
       <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
       <script src="../dependencies/scripts/datatables-demo.js"></script>
       <script src="../dependencies/navigation/js/adminlte.js"></script>
-	  <script src="../dependencies/scripts/google.js"></script>
+      <script src="../dependencies/scripts/google.js"></script>
       <script>
          $(document).ready(function() {
              $('table#dataTables').DataTable( {

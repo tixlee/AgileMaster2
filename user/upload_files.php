@@ -10,24 +10,24 @@
    {
    	$userId = $_SESSION["user_id"];
    }
- 
-
-$getAllProjectsAdmin = getAllProjectsAdmin();
-$iRow = mysqli_fetch_array($getAllProjectsAdmin);
-$project_id = $iRow['project_id'];
-
-$get_project = get_project($project_id);
-$cRow = mysqli_fetch_array($get_project);
-
-
-
-$get_not_board = get_not_board($project_id);
-$nuRow = mysqli_fetch_array($get_not_board);
-
-$user_not = get_user($userId);
-$yRow = mysqli_fetch_array($user_not);
-$user_name = $yRow['fname'] . " " . $yRow['lname'];
-
+   
+   
+   $getAllProjectsAdmin = getAllProjectsAdmin();
+   $iRow = mysqli_fetch_array($getAllProjectsAdmin);
+   $project_id = $iRow['project_id'];
+   
+   $get_project = get_project($project_id);
+   $cRow = mysqli_fetch_array($get_project);
+   
+   
+   
+   $get_not_board = get_not_board($project_id);
+   $nuRow = mysqli_fetch_array($get_not_board);
+   
+   $user_not = get_user($userId);
+   $yRow = mysqli_fetch_array($user_not);
+   $user_name = $yRow['fname'] . " " . $yRow['lname'];
+   
    
    if(isset($_POST['upload']))
    {	
@@ -90,38 +90,35 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
    <head>
       <title>AgileMaster | Upload Files</title>
       <?php include('../navigation/head.php');?>
-	  <style type="text/css">
-        #wrapper .card{
-			cursor: pointer;
-		}
-		
-		.bg-custom{
-              background-image: url("../resources/images/profile_header.png");
-              background-color: #9a1b25;
-              border-bottom-left-radius: 20% 50%;
-              border-bottom-right-radius: 20% 50%;
-              
-          }
-          .bg-img {
-              max-width: 35%;
-              min-height: 100px;
-              max-height: auto;
-              margin-left:auto;
-              margin-right:auto;
-              text-align: center;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-              color: white; 
-              padding: 40px 0px 0px 0px;
-              font-size: 60px;
-              font-weight: bold;
-           }
-	</style>
-      
+      <style type="text/css">
+         #wrapper .card{
+         cursor: pointer;
+         }
+         .bg-custom{
+         background-image: url("../resources/images/profile_header.png");
+         background-color: #9a1b25;
+         border-bottom-left-radius: 20% 50%;
+         border-bottom-right-radius: 20% 50%;
+         }
+         .bg-img {
+         max-width: 35%;
+         min-height: 100px;
+         max-height: auto;
+         margin-left:auto;
+         margin-right:auto;
+         text-align: center;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         color: white; 
+         padding: 40px 0px 0px 0px;
+         font-size: 60px;
+         font-weight: bold;
+         }
+      </style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="se-pre-con"></div>
+      <div class="se-pre-con"></div>
       <div class="wrapper">
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/upload_sidebar.php');?>
@@ -129,17 +126,15 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
          <div class="content-wrapper">
             <!-- Main content -->
             <section class="content">
-			
-			<div class="bg-custom">
-				<div class="bg-img" style="text-align: center;">
-					<div class="searchContainer">
-						<h2>Files Upload</h2>
-					</div>
-                               
-				</div>
-                <br>
-			</div>
-			<br>
+               <div class="bg-custom">
+                  <div class="bg-img" style="text-align: center;">
+                     <div class="searchContainer">
+                        <h2>Files Upload</h2>
+                     </div>
+                  </div>
+                  <br>
+               </div>
+               <br>
                <div class="container-fluid">
                   <!-- Button trigger modal -->
                   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">
@@ -217,7 +212,7 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
                        $rRow = mysqli_fetch_array($getAllProjects);
                        $project = $row['project_id'];
                      ?>
-					 <br>
+                  <br>
                   <div class="card shadow mb-4 card-danger card-outline">
                      <div class="card-header">
                         <h3 class="card-title font-weight-bold"  style="color: #990021;">Project: <?php echo $rRow['project_name']; ?></h3>
@@ -248,7 +243,7 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
                                     while($b_query = $query->fetch_array())
                                     {
                                                                     
-                                 ?>
+                                    ?>
                                  <tr class='tbl-link' href="../upload/file_storage/">
                                     <td><?php echo $b_query['file_name']?></td>
                                     <td><?php echo $b_query['file']?></td>
@@ -307,8 +302,6 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
          <aside class="control-sidebar control-sidebar-dark">
          </aside>
       </div>
-       
-         
       <script src="../dependencies/navigation/jquery/jquery.min.js"></script>
       <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
       <script src="../dependencies/navigation/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
@@ -318,7 +311,7 @@ $user_name = $yRow['fname'] . " " . $yRow['lname'];
       <script src="../dependencies/vendor/datatables/dataTables.bootstrap4.min.js"></script>
       <script src="../dependencies/scripts/datatables-demo.js"></script>
       <script src="../dependencies/navigation/js/adminlte.js"></script>
-	  <script src="../dependencies/scripts/google.js"></script>
+      <script src="../dependencies/scripts/google.js"></script>
       <script>
          $(document).ready(function() {
              $('table#dataTables').DataTable( {

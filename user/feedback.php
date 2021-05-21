@@ -68,57 +68,52 @@
 <html>
    <head>
       <title>AgileMaster | Feedback Survey</title>
-       
       <?php include('../navigation/head.php');?>
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
-	  <style type="text/css">
-        #wrapper .card{
-			cursor: pointer;
-		}
-		
-		.bg-custom{
-              background-image: url("../resources/images/profile_header.png");
-              background-color: #9a1b25;
-              border-bottom-left-radius: 20% 50%;
-              border-bottom-right-radius: 20% 50%;
-              
-          }
-          .bg-img {
-              max-width: 35%;
-              min-height: 100px;
-              max-height: auto;
-              margin-left:auto;
-              margin-right:auto;
-              text-align: center;
-              background-position: center;
-              background-repeat: no-repeat;
-              background-size: cover;
-              color: white; 
-              padding: 40px 0px 0px 0px;
-              font-size: 60px;
-              font-weight: bold;
-           }
-	</style>
+      <style type="text/css">
+         #wrapper .card{
+         cursor: pointer;
+         }
+         .bg-custom{
+         background-image: url("../resources/images/profile_header.png");
+         background-color: #9a1b25;
+         border-bottom-left-radius: 20% 50%;
+         border-bottom-right-radius: 20% 50%;
+         }
+         .bg-img {
+         max-width: 35%;
+         min-height: 100px;
+         max-height: auto;
+         margin-left:auto;
+         margin-right:auto;
+         text-align: center;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;
+         color: white; 
+         padding: 40px 0px 0px 0px;
+         font-size: 60px;
+         font-weight: bold;
+         }
+      </style>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed">
-       <div class="se-pre-con"></div>
+      <div class="se-pre-con"></div>
       <div class="wrapper">
          <?php include('../navigation/topbar.php');?>
          <?php include('../navigation/user/feedbacksurvey_sidebar.php');?>
          <div class="content-wrapper">
             <section class="content">
-               
-                  <div class="bg-custom" >
-                            <div class="bg-img" style="text-align: center;">
-                        <h3>Feedback Survey</h3>
-                        <p class="lead" style="font-size: 20px; padding-bottom: 5%;"><b class="font-weight-bold">Note: </b><i class="font-weight-normal">This feedback survey is to collect the testing result in using Agile Master system (User Module). 
-                           User could access to all the functionalities in this system. Do give us more feedback so that the team could improve the system in future. Thank you for your participation.</i>
-                        </p>
-						
-                     </div>
+               <div class="bg-custom" >
+                  <div class="bg-img" style="text-align: center;">
+                     <h3>Feedback Survey</h3>
+                     <p class="lead" style="font-size: 20px; padding-bottom: 5%;"><b class="font-weight-bold">Note: </b><i class="font-weight-normal">This feedback survey is to collect the testing result in using Agile Master system (User Module). 
+                        User could access to all the functionalities in this system. Do give us more feedback so that the team could improve the system in future. Thank you for your participation.</i>
+                     </p>
                   </div>
-                <div class="container-fluid">
-                   <br>
+               </div>
+               <div class="container-fluid">
+                  <br>
                   <form method="POST" enctype="multipart/form-data">
                      <!--							<div class="row">-->
                      <div class="card shadow mb-4 card-danger card-outline">
@@ -166,9 +161,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">Understanding of Agile Software Development?</h3>
@@ -199,9 +192,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">Experience of using Agile Software Development before?</h3>
@@ -242,9 +233,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">How do you like User the Interface (UI)?</h3>
@@ -285,9 +274,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">How do you like the Navigation?</h3>
@@ -328,9 +315,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">How do you like the Process Flow?</h3>
@@ -371,9 +356,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">How do you like the Tools Provided?</h3>
@@ -414,9 +397,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">How do you find the linkage between the different tools, do you feels that they are linked together or stand alone?</h3>
@@ -457,9 +438,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">How would you rate your experience of using this system?</h3>
@@ -500,9 +479,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">Considering your complete experience with Agile Master, How likely would you be to recommend it to a friends or colleague?</h3>
@@ -528,9 +505,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">If you encountered any errors while going through the process flow, please report it here with more specific comment.</h3>
@@ -545,8 +520,7 @@
                            </div>
                         </div>
                      </div>
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">What did you like the most in the system?</h3>
@@ -561,9 +535,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">What did you like the least in the system?</h3>
@@ -578,9 +550,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">Which part of the system could be improve and how?</h3>
@@ -595,9 +565,7 @@
                            </div>
                         </div>
                      </div>
-					 
-					 <br>
-					 
+                     <br>
                      <div class="card shadow mb-4 card-danger card-outline">
                         <div class="card-header">
                            <h3 class="card-title font-weight-bold" style="color: #990021;">Are there any features that you would like to proposed in this system?</h3>
@@ -611,15 +579,12 @@
                               <textarea type="text" class="md-textarea form-control"  id="new_feature" name="new_feature" rows="4" cols="50"></textarea>
                            </div>
                         </div>
-						 <div class="card-footer">
+                        <div class="card-footer">
                            Thank you for your time filling this feedback survey!
                         </div>
                      </div>
-                     
-                       
-                           <input type="submit" name="submit" value="Submit" id="submit-fs" class="btn btn-success" >
-							<br><br>
-                     
+                     <input type="submit" name="submit" value="Submit" id="submit-fs" class="btn btn-success" >
+                     <br><br>
                   </form>
                </div>
             </section>
@@ -627,8 +592,6 @@
          <aside class="control-sidebar control-sidebar-dark">
          </aside>
       </div>
-       
-           
       <script src="../dependencies/navigation/jquery/jquery.min.js"></script>
       <script src="../dependencies/navigation/bootstrap/js/bootstrap.bundle.min.js"></script>
       <script src="../dependencies/navigation/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
@@ -639,6 +602,6 @@
       <script src="../dependencies/scripts/datatables-demo.js"></script>
       <script src="../dependencies/navigation/js/adminlte.js"></script>
       <script src="../dependencies/select/select2/js/select2.full.min.js"></script>
-	  <script src="../dependencies/scripts/google.js"></script>
+      <script src="../dependencies/scripts/google.js"></script>
    </body>
 </html>
