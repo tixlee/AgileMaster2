@@ -34,14 +34,3 @@ Enjoy.
 Email: Gmail
 agilemaster2020@gmail.com
 agilemaster123
-
-
-159.65.132.105
-amaster.online
-admin
-aGile@2020Master
-
-128.199.253.218
-agilemaster.net
-admin
-aGile@2020Master
