@@ -799,7 +799,7 @@
    function getAssignedBugByUserId($userId)
    {
    	global $conn;
-   	$result = mysqli_query($conn, "SELECT * FROM `bug_report` WHERE `assignee` = '$userId'");
+   	$result = mysqli_query($conn, "SELECT * FROM `bug_report` WHERE `assignee` = '$userId' AND NOT `state` = 'Closed'");
    
    	return $result;
    }

@@ -114,7 +114,7 @@
                      <div class="box-wrap col-xl-3 col-md-4 mb-4">
                         <div class="card shadow " style="border-radius: 15px;">
                            <a href="project_details.php?project_id=<?php echo $row['project_id']; ?>">
-                           <img src="../resources/images/5.jpg" class="" style="filter: brightness(90%); color: #990021; width: 100%; border-top-left-radius: 15px; border-top-right-radius: 15px;"/></a>
+                           <img src="../resources/images/5.jpg" height="180" class="" style="filter: brightness(90%); color: #990021; width: 100%; border-top-left-radius: 15px; border-top-right-radius: 15px;"/></a>
                            <?php
                               $u_query = $conn->query("SELECT * FROM `user_created_project` WHERE `created_proj_id` = '$project_id'") or die(mysqli_error());
                               $u_fetch = $u_query->fetch_array();
