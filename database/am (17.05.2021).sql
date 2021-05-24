@@ -70,12 +70,6 @@ CREATE TABLE `board` (
   `date_time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `board`
---
-
-INSERT INTO `board` (`board_id`, `project_id`, `board_name`, `date_time`) VALUES
-(1, 1, 'Board', '2021-05-10 21:58:10');
 
 -- --------------------------------------------------------
 
