@@ -457,8 +457,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `fname`, `lname`, `age`, `occupation`, `city`, `country`, `email`, `password`, `photo`, `unique_id`, `status`, `role`) VALUES
 (1, 'dummy1', ' ', 20, 'Student', 'Kuching', 'Malaysia', 'dummy1@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'bot.jpeg', 1332808358, 'Online', 'project manager'),
 (2, 'dummy2', ' ', 20, 'Student', 'Tawau', 'Malaysia', 'dummy2@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'bot.jpeg', 966478505, 'Offline', 'project member'),
-(3, 'Dummy3', ' ', 20, 'Student', 'Kuching', 'Malaysia', 'dummy3@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'bot.jpeg', 655539570, 'Offline', 'project member'),
-(4, 'AHMED ', 'TAREK', 25, 'Student', 'Kuching', 'Malaysia', 'ahmedtarek5656@gmail.com', 'be845fa49fbfd6d9dd74ab90dec88a1e', 'user2-160x160.jpg', 1421356119, 'Online', 'project manager');
+(3, 'Dummy3', ' ', 20, 'Student', 'Kuching', 'Malaysia', 'dummy3@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'bot.jpeg', 655539570, 'Offline', 'project member');
 
 -- --------------------------------------------------------
 
